@@ -63,5 +63,11 @@
     <Compile Include="Models\VisitorStatistic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">
+      <Project>{44707f55-8cbe-4ba9-95d6-6c2908789717}</Project>
+      <Name>BigShop.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,6 +61,28 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">
+      <Project>{44707f55-8cbe-4ba9-95d6-6c2908789717}</Project>
+      <Name>BigShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BigShop.Data\BigShop.Data.csproj">
+      <Project>{c59e6641-2300-4d9a-bc2f-68e2815ab03f}</Project>
+      <Name>BigShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BigShop.Model\BigShop.Model.csproj">
+      <Project>{b456b536-6ecc-4c6d-be42-796749a00100}</Project>
+      <Name>BigShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BigShop.Service\BigShop.Service.csproj">
+      <Project>{4713bd3e-8f54-40c2-812f-d594dc138d3a}</Project>
+      <Name>BigShop.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BigShop.Web\BigShop.Web.csproj">
+      <Project>{b964080e-5dd4-4823-bce9-d3babbba9ef2}</Project>
+      <Name>BigShop.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
