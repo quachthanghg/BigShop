@@ -205,6 +205,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +223,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\app.js" />
+    <Content Include="App\component\productcategories\productCategoryAddController.js" />
+    <Content Include="App\component\productcategories\productCategoryAddView.html" />
+    <Content Include="App\component\productcategories\productCategoryEditController.js" />
+    <Content Include="App\component\productcategories\productCategoryEditView.html" />
+    <Content Include="App\component\productcategories\productCategoryListController.js" />
+    <Content Include="App\component\productcategories\productCategoryListView.html" />
+    <Content Include="App\component\productcategories\productCategories.route.js" />
+    <Content Include="App\component\products\products.route.js" />
+    <Content Include="App\component\products\productAddController.js" />
+    <Content Include="App\component\products\productAddView.html" />
+    <Content Include="App\component\products\productEditController.js" />
+    <Content Include="App\component\products\productEditView.html" />
+    <Content Include="App\component\products\productListController.js" />
+    <Content Include="App\component\products\productListView.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -242,8 +258,17 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\" />
-    <Folder Include="Assets\Admin\" />
+    <Folder Include="App\component\home\" />
+    <Folder Include="App\component\orders\" />
+    <Folder Include="App\component\roles\" />
+    <Folder Include="App\component\users\" />
+    <Folder Include="App\shared\directives\" />
+    <Folder Include="App\shared\filters\" />
+    <Folder Include="App\shared\footer\" />
+    <Folder Include="App\shared\navigation\" />
+    <Folder Include="App\shared\services\" />
+    <Folder Include="App\shared\views\" />
+    <Folder Include="Assets\Admin\libs\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Scripts\Spa\" />
   </ItemGroup>
@@ -267,6 +292,7 @@
     <Content Include="Scripts\Plugins\angular\LICENSE.md" />
     <Content Include="Scripts\Plugins\angular\package.json" />
     <Content Include="Scripts\Plugins\angular\README.md" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">
