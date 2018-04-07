@@ -13,6 +13,5 @@
             templateUrl: '/app/component/products/productAddView.html',
             controller: 'productAddController'
         });
-
     }
 })();

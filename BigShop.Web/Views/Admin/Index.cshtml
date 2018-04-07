@@ -48,8 +48,8 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a ui-sref="products">Danh mục sản phẩm</a></li>
-                                        <li><a ui-sref="add_products">Danh sách sản phẩm</a></li>
+                                        <li><a ui-sref="product_categories">Danh mục sản phẩm</a></li>
+                                        <li><a ui-sref="products">Danh sách sản phẩm</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -299,7 +299,7 @@
     <!-- DateJS -->
     <script src="~/Assets/Admin/vendors/DateJS/build/date.js"></script>
     <!-- bootstrap-daterangepicker -->
-   <script src="~/Assets/Admin/vendors/moment/min/moment.min.js"></script>
+    <script src="~/Assets/Admin/vendors/moment/min/moment.min.js"></script>
     <script src="~/Assets/Admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Assets/Admin/build/js/custom.min.js"></script>
@@ -310,9 +310,12 @@
     <script src="~/Assets/Admin/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="~/App/shared/modules/bigshop.common.js"></script>
     <script src="~/App/component/products/products.module.js"></script>
+    <script src="~/App/component/productcategories/productCategories.module.js"></script>
     <script src="~/App/app.js"></script>
+    <script src="~/App/shared/services/apiService.js"></script>
     <script src="~/App/component/home/homeController.js"></script>
     <script src="~/App/component/products/productAddController.js"></script>
     <script src="~/App/component/products/productListController.js"></script>
+    <script src="~/App/component/productcategories/productCategoryListController.js"></script>
 </body>
 </html>

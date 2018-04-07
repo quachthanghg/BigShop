@@ -1,7 +1,7 @@
 ﻿/// <reference path="../scripts/plugins/angular/angular.js" />
 
 (function () {
-    angular.module('bishop', ['bigshop.common', 'bigshop.products']).config(config);
+    angular.module('bishop', ['bigshop.common', 'bigshop.products', 'bigshop.productcategories']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

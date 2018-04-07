@@ -1,5 +1,13 @@
-﻿/// <reference path="../../../assets/admin/libs/angular/angular.js" />
+﻿(function () {
+    angular.module('bigshop.productcategories', ['bigshop.common']).config(config);
 
-(function () {
-    
-})
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+    function config($stateProvider, $urlRouterProvider) {
+        $stateProvider.state('product_categories', {
+            url: '/product_categories',
+            templateUrl: '/app/component/productcategories/productCategoryListView.html',
+            controller: 'productCategoryListController'
+        })
+    }
+})();

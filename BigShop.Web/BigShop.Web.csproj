@@ -200,6 +200,7 @@
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -228,13 +229,13 @@
     <Content Include="App\app.js" />
     <Content Include="App\component\home\homeController.js" />
     <Content Include="App\component\home\homeView.html" />
+    <Content Include="App\component\productcategories\productCategories.module.js" />
     <Content Include="App\component\productcategories\productCategoryAddController.js" />
     <Content Include="App\component\productcategories\productCategoryAddView.html" />
     <Content Include="App\component\productcategories\productCategoryEditController.js" />
     <Content Include="App\component\productcategories\productCategoryEditView.html" />
     <Content Include="App\component\productcategories\productCategoryListController.js" />
     <Content Include="App\component\productcategories\productCategoryListView.html" />
-    <Content Include="App\component\productcategories\productCategories.module.js" />
     <Content Include="App\component\products\products.module.js" />
     <Content Include="App\component\products\productAddController.js" />
     <Content Include="App\component\products\productAddView.html" />
@@ -243,6 +244,7 @@
     <Content Include="App\component\products\productListController.js" />
     <Content Include="App\component\products\productListView.html" />
     <Content Include="App\shared\modules\bigshop.common.js" />
+    <Content Include="App\shared\services\apiService.js" />
     <Content Include="Assets\Admin\build\css\custom.css" />
     <Content Include="Assets\Admin\build\css\custom.min.css" />
     <Content Include="Assets\Admin\build\images\back_disabled.png" />
@@ -3681,7 +3683,6 @@
     <Folder Include="App\shared\filters\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
-    <Folder Include="App\shared\services\" />
     <Folder Include="App\shared\views\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Scripts\Spa\" />
