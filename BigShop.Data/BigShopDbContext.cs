@@ -1,9 +1,10 @@
 ﻿using BigShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace BigShop.Data
 {
-    public class BigShopDbContext : DbContext
+    public class BigShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public BigShopDbContext() : base("BigShopFinal")
         {
@@ -38,8 +39,8 @@ namespace BigShop.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<IdentityUserRole>().HasKey(p => new { p.UserId, p.RoleId });
-            //modelBuilder.Entity<IdentityUserLogin>().HasKey(p => p.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(p => new { p.UserId, p.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(p => p.UserId);
         }
     }
 }

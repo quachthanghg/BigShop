@@ -1,6 +1,8 @@
-﻿using BigShop.Model.Models;
+﻿using AutoMapper;
+using BigShop.Model.Models;
 using BigShop.Service.Services;
 using BigShop.Web.Infrastructure.Core;
+using BigShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,8 @@ namespace BigShop.Web.Api
             return CreateHttpResponse(requestMessage, () =>
             {
                 //int totalRow = 0;
-                var list = _postCategoryService.GetAll();
+                var query = _postCategoryService.GetAll();
+                var listProductViewModel = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(query);
                 //totalRow = list.Count();
                 //var query = list.OrderByDescending(p => p.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
@@ -41,7 +44,7 @@ namespace BigShop.Web.Api
                 //    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
                 //};
 
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, list);
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listProductViewModel);
                 return responseMessage;
             });
         }
