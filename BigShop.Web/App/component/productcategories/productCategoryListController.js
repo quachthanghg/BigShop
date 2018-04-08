@@ -18,9 +18,6 @@
                 }
             };
             apiService.get('/Api/ProductCategory/GetAll', config, function (result) {
-                if (result.data.TotalCount > 0) {
-                    notificationService.displaySuccess(result.data.TotalCount + " đã được load ra");
-                }
                 $scope.lstProductCategory = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pageCount = result.data.TotalPages;

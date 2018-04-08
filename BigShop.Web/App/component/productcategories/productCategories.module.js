@@ -8,6 +8,10 @@
             url: '/product_categories',
             templateUrl: '/app/component/productcategories/productCategoryListView.html',
             controller: 'productCategoryListController'
+        }).state('add_product_category', {
+            url: '/add_product_category',
+            templateUrl: '/app/component/productcategories/productCategoryAddView.html',
+            controller: 'productCategoryAddController'
         })
     }
 })();
