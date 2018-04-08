@@ -3,7 +3,9 @@ using BigShop.Model.Models;
 using BigShop.Service.Services;
 using BigShop.Web.Infrastructure.Core;
 using BigShop.Web.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -22,13 +24,24 @@ namespace BigShop.Web.Api
 
         [HttpGet]
         [Route("GetAll")]
-        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage, int page, int pageSize)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
-                var query = _productCategoryService.GetAll();
+                int totalRow = 0;
+                var model = _productCategoryService.GetAll();
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
-                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                var pagination = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, pagination);
                 return response;
             });
         }

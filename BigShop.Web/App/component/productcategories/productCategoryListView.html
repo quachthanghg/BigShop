@@ -42,25 +42,33 @@
         </div>
         <div class="x_content">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Tên danh mục</th>
-                        <th>Ngày tạo</th>
-                        <th>Trạng thái</th>
+                        <th style="width: 5%">ID</th>
+                        <th style="width: 60%">Tên danh mục</th>
+                        <th style="width: 17%">Ngày tạo</th>
+                        <th style="width: 10%">Trạng thái</th>
+                        <th style="width: 8%">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in lstProductCategory">
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.Name}}</td>
-                        <td>{{item.CreatedDate}}</td>
-                        <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status}}</td>
+                        <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                        <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
+                        <td>
+                            <button class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                            <button class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-
+            <div class="box-footer">
+                <!--<span style="color: red">Trang: {{page+1}} / {{total}}</span>-->
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="getListProductCategory(page)"></pager-directive>
+            </div>
         </div>
     </div>
 </div>
