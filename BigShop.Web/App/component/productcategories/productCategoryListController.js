@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function productCategoryListController($scope, apiService) {
+    function productCategoryListController($scope, apiService, notificationService) {
         // GetAll
         $scope.lstProductCategory = [];
         $scope.page = 0;
@@ -18,6 +18,9 @@
                 }
             };
             apiService.get('/Api/ProductCategory/GetAll', config, function (result) {
+                if (result.data.TotalCount > 0) {
+                    notificationService.displaySuccess(result.data.TotalCount + " đã được load ra");
+                }
                 $scope.lstProductCategory = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pageCount = result.data.TotalPages;
@@ -41,6 +44,12 @@
                 }
             };
             apiService.get('/Api/ProductCategory/Search', config, function (result) {
+                if (result.data.TotalCount > 0) {
+                    notificationService.displaySuccess("Đã tìm thấy " + result.data.TotalCount + " bản ghi");
+                }
+                else{
+                    notificationService.displayWarning("Đã tìm thấy " + result.data.TotalCount + " bản ghi");
+                }
                 $scope.lstProductCategory = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pageCount = result.data.TotalPages;

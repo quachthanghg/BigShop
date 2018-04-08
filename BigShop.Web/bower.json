@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "angular": "~1.6.9",
-    "angular-ui-router": "~1.0.15"
+    "angular-ui-router": "~1.0.15",
+    "toastr": "~2.1.3"
   }
 }
