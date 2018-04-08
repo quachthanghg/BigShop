@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('productCategoryAddController', productCategoryAddController)
-    productCategoryAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state']
-    function productCategoryAddController($scope, apiService, notificationService, $state) {
+    productCategoryAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
+    function productCategoryAddController($scope, apiService, notificationService, $state, commonService) {
         // Load combobox
         $scope.productCategory = {
             CreatedDate: new Date(),
@@ -27,5 +27,11 @@
                 notificationService.displayError("Thêm mới không được thêm mới");
             });
         }
+
+        // GetSEOTitle
+        $scope.getSeoTitle = getSeoTitle;
+        function getSeoTitle() {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+        }
     }
-})(angular.module('bigshop.common'));
+})(angular.module('bigshop.productcategories'));

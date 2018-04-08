@@ -6,8 +6,8 @@
     function apiService($http, notificationService) {
         return {
             get: get,
-            post: post
-            //put: put,
+            post: post,
+            put: put,
             //del: del
         }
         // Get
@@ -31,6 +31,21 @@
                     failure(error);
                 }
                 
+            });
+        }
+
+        // Put
+        function put(url, params, success, failure) {
+            $http.put(url, params).then(function (result) {
+                success(result);
+            }, function (error) {
+                if (error.status === 401) {
+                    notificationService.displayError("Authenticate is required !");
+                }
+                else if (failure != null) {
+                    failure(error);
+                }
+
             });
         }
     };

@@ -59,7 +59,7 @@
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                         <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                         <td>
-                            <button class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                            <button ui-sref="update_product_category({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
                             <button class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                         </td>
                     </tr>

@@ -249,6 +249,7 @@
     <Content Include="App\shared\filters\statusFilter.js" />
     <Content Include="App\shared\modules\bigshop.common.js" />
     <Content Include="App\shared\services\apiService.js" />
+    <Content Include="App\shared\services\commonService.js" />
     <Content Include="App\shared\services\notificationService.js" />
     <Content Include="Assets\Admin\build\css\custom.css" />
     <Content Include="Assets\Admin\build\css\custom.min.css" />
