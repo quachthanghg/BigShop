@@ -81,7 +81,14 @@ namespace BigShop.Service.Services
 
         public IEnumerable<ProductCategory> Search(string filter)
         {
-            return _productCategoryRepository.Search(filter);
+            if (!string.IsNullOrEmpty(filter))
+            {
+                return _productCategoryRepository.Search(filter);
+            }
+            else
+            {
+                return _productCategoryRepository.GetAll();
+            }
         }
 
         public void Update(ProductCategory productCategory)

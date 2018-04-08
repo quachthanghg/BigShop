@@ -29,5 +29,27 @@
         }
         $scope.getListProductCategory();
         // End GetAll
+        // Search
+        $scope.filter = '';
+        function Search(filter, page) {
+            page = page || 0;
+            var config = {
+                params: {
+                    filter: $scope.filter,
+                    page: page,
+                    pageSize: 2
+                }
+            };
+            apiService.get('/Api/ProductCategory/Search', config, function (result) {
+                $scope.lstProductCategory = result.data.Items;
+                $scope.page = result.data.Page;
+                $scope.pageCount = result.data.TotalPages;
+                $scope.totalCount = result.data.TotalCount;
+                $scope.TotalPages = Math.ceil($scope.totalCount / $scope.pageCount);
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        $scope.Search = Search;
     }
 })(angular.module('bigshop.productcategories'));

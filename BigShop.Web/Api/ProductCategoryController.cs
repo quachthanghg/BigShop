@@ -45,5 +45,29 @@ namespace BigShop.Web.Api
                 return response;
             });
         }
+
+        [HttpGet]
+        [Route("Search")]
+        public HttpResponseMessage Search(HttpRequestMessage requestMessage,string filter, int page, int pageSize)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                int totalRow = 0;
+                var model = _productCategoryService.Search(filter);
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+                var pagination = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, pagination);
+                return response;
+            });
+        }
     }
 }
