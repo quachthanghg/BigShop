@@ -19,6 +19,8 @@
         {
             CreateAccountSample(context);
             CreateProductCategorySample(context);
+
+            CreateProductSample(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
@@ -61,6 +63,21 @@
                     new ProductCategory(){Name="Laptop", Alias="laptop", Status=true}
                 };
                 context.ProductCategories.AddRange(list);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateProductSample(BigShopDbContext context)
+        {
+            if (context.Products.Count() == 0)
+            {
+                List<Product> list = new List<Product>()
+                {
+                    new Product(){Name="IPhone 6", Alias="iphone-6", Description="A", CategoryID = 1, Status=true},
+                    new Product(){Name="IPhone 7", Alias="iphone-7", Description="A", CategoryID = 2, Status=true},
+                    new Product(){Name="IPhone 8", Alias="iphone-8", Description="A", CategoryID = 3, Status=true}
+                };
+                context.Products.AddRange(list);
                 context.SaveChanges();
             }
         }

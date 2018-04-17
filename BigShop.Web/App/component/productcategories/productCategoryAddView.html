@@ -48,7 +48,9 @@
                                 Tên danh mục <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="name" ng-change="getSeoTitle()" ng-model="productCategory.Name" required="required" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="5" autofocus name="name" ng-change="getSeoTitle()" ng-model="productCategory.Name" required type="text">
+                                <span ng-show="frmProductCategory.name.$error.minlength" class="">Tên danh mục phải lớn hơn 5 ký tự</span>
+                                <span ng-show="frmProductCategory.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -56,7 +58,7 @@
                                 Tiêu đề SEO <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="alias" ng-model="productCategory.Alias" required="required" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" ng-disabled="true" name="alias" ng-model="productCategory.Alias" required="required" type="text">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -64,7 +66,8 @@
                                 Mô tả ngắn <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="productCategory.Description" required="required" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="productCategory.Description" ng-minlength="5" required="required" type="text">
+                                <span ng-show="frmProductCategory.name.$error.minlength" class="">Mô tả phải lớn hơn 5 ký tự</span>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -130,7 +133,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <button ui-sref="product_categories" class="btn btn-default">Cancel</button>
-                                <button id="send" type="submit" class="btn btn-success">Save</button>
+                                <button id="send" type="submit" class="btn btn-success" ng-disabled="frmProductCategory.$invalid">Save</button>
                             </div>
                         </div>
                     </form>

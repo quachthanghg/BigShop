@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace BigShop.Web.Api
 {
@@ -145,6 +146,55 @@ namespace BigShop.Web.Api
                     _productCategoryService.SaveChanges();
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategoy);
                     responseMessage = requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return responseMessage;
+            });
+        }
+
+        [Route("Delete")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage responseMessage = null;
+                if (!ModelState.IsValid)
+                {
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var productCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.SaveChanges();
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return responseMessage;
+            });
+        }
+
+        [Route("DeleteMulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage requestMessage, string isCheckID)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage responseMessage = null;
+                if (!ModelState.IsValid)
+                {
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(isCheckID);
+                    foreach (var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.SaveChanges();
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
                 }
                 return responseMessage;
             });

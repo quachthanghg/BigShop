@@ -8,7 +8,7 @@
             get: get,
             post: post,
             put: put,
-            //del: del
+            del: del
         }
         // Get
         function get(url, data, success, failure) {
@@ -45,6 +45,23 @@
                 else if (failure != null) {
                     failure(error);
                 }
+
+            });
+        }
+
+        // Delete
+        function del(url, data, success, failure) {
+            //authenticationService.setHeader();
+            $http.delete(url, data).then(function (result) {
+                success(result);
+            }, function (error) {
+                if (error.staus === 401) {
+                    notificationService.displayError('Authenticate is required');
+                }
+                else (failure != null)
+                {
+                    failure(error);
+                };
 
             });
         }

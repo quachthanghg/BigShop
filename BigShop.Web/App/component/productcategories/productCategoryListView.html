@@ -42,9 +42,13 @@
         </div>
         <div class="x_content">
             <button id="send" ui-sref="add_product_category" class="btn btn-success">Create</button>
+            <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled >Delete</button>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
+                        <th>
+                            <input type="checkbox" name="all" ng-click="selectAll()" id="check-all" class="flat">
+                        </th>
                         <th style="width: 5%">ID</th>
                         <th style="width: 60%">Tên danh mục</th>
                         <th style="width: 17%">Ngày tạo</th>
@@ -54,13 +58,16 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in lstProductCategory">
+                        <td class="a-center ">
+                            <input type="checkbox" ng-model="item.checked" name="all" class="flat"/>
+                        </td>
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.Name}}</td>
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                         <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                         <td>
                             <button ui-sref="update_product_category({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
-                            <button class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
+                            <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                         </td>
                     </tr>
                 </tbody>

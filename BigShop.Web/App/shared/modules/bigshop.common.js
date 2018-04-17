@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('bigshop.common', ['ui.router']);
+    angular.module('bigshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor']);
 })();
