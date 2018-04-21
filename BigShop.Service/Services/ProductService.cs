@@ -1,4 +1,5 @@
-﻿using BigShop.Data.Infrastructure;
+﻿using BigShop.Common;
+using BigShop.Data.Infrastructure;
 using BigShop.Data.Repositories;
 using BigShop.Model.Models;
 using System.Collections.Generic;
@@ -41,42 +42,42 @@ namespace BigShop.Service.Services
     {
         private IProductRepository _productRepository;
         private IUnitOfWork _unitOfWork;
-        //private ITagRepository _tagRepository;
-        //private IProductTagRepository _productTagRepository;
+        private ITagRepository _tagRepository;
+        private IProductTagRepository _productTagRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository)
         {
             this._productRepository = productRepository;
             this._unitOfWork = unitOfWork;
-            //this._productTagRepository = productTagRepository;
-            //this._tagRepository = tagRepository;
+            this._productTagRepository = productTagRepository;
+            this._tagRepository = tagRepository;
         }
 
         public Product Add(Product product)
         {
             var products = _productRepository.Add(product);
             _unitOfWork.Commit();
-            //if (!string.IsNullOrEmpty(product.Tags))
-            //{
-            //    string[] tags = product.Tags.Split(',');
-            //    for (var i = 0; i < tags.Length; i++)
-            //    {
-            //        var tagId = StringHelper.ToUnsignString(tags[i]);
-            //        if (_tagRepository.Count(x => x.ID == tagId) == 0)
-            //        {
-            //            Tag tag = new Tag();
-            //            tag.ID = tagId;
-            //            tag.Name = tags[i];
-            //            tag.Type = CommonConstants.productTag;
-            //            _tagRepository.Add(tag);
-            //        }
+            if (!string.IsNullOrEmpty(product.Tags))
+            {
+                string[] tags = product.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.productTag;
+                        _tagRepository.Add(tag);
+                    }
 
-            //        ProductTag productTag = new ProductTag();
-            //        productTag.ProductID = product.ID;
-            //        productTag.TagID = tagId;
-            //        _productTagRepository.Add(productTag);
-            //    }
-            //}
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+            }
             return products;
         }
 
@@ -202,27 +203,27 @@ namespace BigShop.Service.Services
         public void Update(Product product)
         {
             _productRepository.Update(product);
-            //if (!string.IsNullOrEmpty(product.Tags))
-            //{
-            //    string[] tags = product.Tags.Split(',');
-            //    for (var i = 0; i < tags.Length; i++)
-            //    {
-            //        var tagId = StringHelper.ToUnsignString(tags[i]);
-            //        if (_tagRepository.Count(x => x.ID == tagId) == 0)
-            //        {
-            //            Tag tag = new Tag();
-            //            tag.ID = tagId;
-            //            tag.Name = tags[i];
-            //            tag.Type = CommonConstants.productTag;
-            //            _tagRepository.Add(tag);
-            //        }
-            //        _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
-            //        ProductTag productTag = new ProductTag();
-            //        productTag.ProductID = product.ID;
-            //        productTag.TagID = tagId;
-            //        _productTagRepository.Add(productTag);
-            //    }
-            //}
+            if (!string.IsNullOrEmpty(product.Tags))
+            {
+                string[] tags = product.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.productTag;
+                        _tagRepository.Add(tag);
+                    }
+                    _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+            }
             _unitOfWork.Commit();
         }
     }

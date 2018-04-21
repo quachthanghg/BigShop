@@ -20,6 +20,7 @@
         // Create data
         $scope.AddProduct = AddProduct;
         function AddProduct() {
+            $scope.product.MoreImage = JSON.stringify($scope.lstImages);
             apiService.post('/Api/Product/Create', $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
                 $state.go('products')
@@ -45,7 +46,17 @@
                 $scope.$apply(function () {
                     $scope.product.Image = fileUrl;
                 });
-                $scope.product.Image = fileUrl;
+            }
+            finder.popup();
+        }
+
+        $scope.lstImages = [];
+        $scope.ChooseMoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.lstImages.push(fileUrl);
+                });
             }
             finder.popup();
         }

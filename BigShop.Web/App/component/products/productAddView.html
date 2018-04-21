@@ -72,6 +72,14 @@
                         </div>
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
+                                Tag <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" required="required" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Giá <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -133,12 +141,15 @@
                                 Thêm hình ảnh
                             </label>
                             <div class="col-md-10 col-sm-10 col-xs-10">
-                                <input id="name" class="form-control col-md-5 col-xs-12" name="moreImage" ng-model="product.MoreImage" type="text">
+                                <ul>
+                                    <li ng-repeat="img in lstImages" style="text-decoration: none; display: inline;"><img ng-src="{{img}}" alt="Alternate Text" height="100" width="70" style="margin-left: 15px" /></li>
+                                </ul>
                             </div>
-                             <div class="col-md-2 col-sm-2 col-xs-2">
-                                 <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-default" type="button" ng-click="ChooseMoreImages()">Chọn ảnh</button>
                             </div>
                         </div>
+
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Mô tả nội dung <span class="required">*</span>

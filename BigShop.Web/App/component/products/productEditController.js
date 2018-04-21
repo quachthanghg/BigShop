@@ -33,6 +33,7 @@
         function DetailProduct() {
             apiService.get('/Api/Product/GetById/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                $scope.lstImages = JSON.parse($scope.product.MoreImage);
             }, function (error) {
                 notificationService.displayError("Không lấy được dữ liệu !");
             });
@@ -43,6 +44,28 @@
         $scope.getSeoTitle = getSeoTitle;
         function getSeoTitle() {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
+        }
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
+                $scope.product.Image = fileUrl;
+            }
+            finder.popup();
+        }
+
+        $scope.lstImages = [];
+        $scope.ChooseMoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.lstImages.push(fileUrl);
+                });
+            }
+            finder.popup();
         }
     }
 })(angular.module('bigshop.products'));

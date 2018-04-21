@@ -7509,6 +7509,12 @@
     <Content Include="Assets\Admin\vendors\validator\multifield.js" />
     <Content Include="Assets\Admin\vendors\validator\validator.js" />
     <Content Include="favicon.ico" />
+    <Content Include="FileUploads\images\1.jpg" />
+    <Content Include="FileUploads\images\11390166_478927148930544_6442678274590663051_n.jpg" />
+    <Content Include="FileUploads\images\8.jpg" />
+    <Content Include="FileUploads\_thumbs\Images\1.jpg" />
+    <Content Include="FileUploads\_thumbs\Images\11390166_478927148930544_6442678274590663051_n.jpg" />
+    <Content Include="FileUploads\_thumbs\Images\8.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -7536,7 +7542,7 @@
     <Folder Include="App\shared\navigation\" />
     <Folder Include="App\shared\views\" />
     <Folder Include="Assets\Client\" />
-    <Folder Include="FileUploads\" />
+    <Folder Include="FileUploads\files\" />
     <Folder Include="Scripts\Spa\" />
   </ItemGroup>
   <ItemGroup>
