@@ -19,7 +19,7 @@
         {
             CreateAccountSample(context);
             CreateProductCategorySample(context);
-
+            CreateSlideSample(context);
             CreateProductSample(context);
             //  This method will be called after migrating to the latest version.
 
@@ -78,6 +78,21 @@
                     new Product(){Name="IPhone 8", Alias="iphone-8", Description="A", CategoryID = 3, Status=true}
                 };
                 context.Products.AddRange(list);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateSlideSample(BigShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> list = new List<Slide>()
+                {
+                    new Slide(){Name="Slide 1", URL= "#", DisplayOrder = 1, Description="hinh anh 1", Content= "OK",Image="/Assets/Client/images/bnr-1.jpg", Status= true},
+                    new Slide(){Name="Slide 2", URL= "#", DisplayOrder = 2, Description="hinh anh 2", Content= "OK",Image="/Assets/Client/images/bnr-2.jpg", Status= true},
+                    new Slide(){Name="Slide 3", URL= "#", DisplayOrder = 3, Description="hinh anh 3", Content= "OK",Image="/Assets/Client/images/bnr-3.jpg", Status= true}
+                };
+                context.Slides.AddRange(list);
                 context.SaveChanges();
             }
         }

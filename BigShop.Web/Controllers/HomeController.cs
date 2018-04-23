@@ -1,23 +1,71 @@
-﻿using System;
+﻿using AutoMapper;
+using BigShop.Model.Models;
+using BigShop.Service.Services;
+using BigShop.Web.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BigShop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private IProductService _productService;
+        private IProductCategoryService _productCategoryService;
+        private IFooterService _footerService;
+        private ISlideService _slideService;
+
+        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IFooterService footerService, ISlideService slideService)
         {
-            return View();
+            _productService = productService;
+            _productCategoryService = productCategoryService;
+            _footerService = footerService;
+            _slideService = slideService;
         }
 
-        public ActionResult About()
+        public ActionResult Index()
         {
-            ViewBag.Message = "Your application description page.";
+            var slide = _slideService.GetAll();
+            var slideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slide);
+            var lastestProducts = _productService.GetLastest(4);
+            var lastestProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
+            var topProducts = _productService.GetHotProduct(4);
+            var topProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topProducts);
+            
+            HomeViewModel homeViewModel = new HomeViewModel()
+            {
+                Slides = slideViewModel,
+                LastestProducts = lastestProductsViewModel,
+                TopProducts = topProductsViewModel
+            };
+            return View(homeViewModel);
+        }
 
-            return View();
+        [ChildActionOnly]
+        public ActionResult Footer()
+        {
+            var footer = _footerService.GetAll();
+            var responseData = Mapper.Map<Footer, FooterViewModel>(footer);
+            return PartialView(footer);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Logo()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Navigation()
+        {
+            var model = _productCategoryService.GetAll();
+            var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            return PartialView(responseData);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Header()
+        {
+            return PartialView();
         }
 
         public ActionResult Contact()

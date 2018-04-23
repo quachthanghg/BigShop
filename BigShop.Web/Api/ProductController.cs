@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace BigShop.Web.Api
 {
     [RoutePrefix("Api/Product")]
+    [Authorize]
     public class ProductController : BaseApiController
     {
         private IErrorService _errorService;
@@ -105,6 +106,7 @@ namespace BigShop.Web.Api
                 {
                     var product = new Product();
                     product.UpdateProduct(productViewModel);
+                    product.CreatedBy = User.Identity.Name;
                     product.CreatedDate = DateTime.Now;
                     _productService.Add(product);
                     _productService.SaveChanges();
@@ -142,12 +144,13 @@ namespace BigShop.Web.Api
                 }
                 else
                 {
-                    var productCategoy = _productService.GetSigleById(productViewModel.ID);
-                    productCategoy.UpdateProduct(productViewModel);
-                    productCategoy.UpdatedDate = DateTime.Now;
-                    _productService.Update(productCategoy);
+                    var product = _productService.GetSigleById(productViewModel.ID);
+                    product.UpdateProduct(productViewModel);
+                    product.UpdatedDate = DateTime.Now;
+                    product.CreatedBy = User.Identity.Name;
+                    _productService.Update(product);
                     _productService.SaveChanges();
-                    var responseData = Mapper.Map<Product, ProductViewModel>(productCategoy);
+                    var responseData = Mapper.Map<Product, ProductViewModel>(product);
                     responseMessage = requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return responseMessage;

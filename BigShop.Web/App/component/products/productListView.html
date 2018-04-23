@@ -50,7 +50,8 @@
                             <input type="checkbox" name="all" ng-click="selectAll()" id="check-all" class="flat">
                         </th>
                         <th style="width: 5%">ID</th>
-                        <th style="width: 60%">Tên danh mục</th>
+                        <th style="width: 50%">Tên danh mục</th>
+                        <th style="width: 10%">Giá bán</th>
                         <th style="width: 17%">Ngày tạo</th>
                         <th style="width: 10%">Trạng thái</th>
                         <th style="width: 8%">Thao tác</th>
@@ -63,6 +64,7 @@
                         </td>
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.Name}}</td>
+                        <td>{{item.Price}}</td>
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                         <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                         <td>

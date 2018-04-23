@@ -13,6 +13,7 @@ using System.Web.Http;
 namespace BigShop.Web.Api
 {
     [RoutePrefix("Api/PostCategory")]
+    [Authorize]
     public class PostCategoryController : BaseApiController
     {
         private IErrorService _errorService;

@@ -21,7 +21,7 @@ namespace BigShop.Service.Services
 
         IEnumerable<ProductCategory> Search(string filter);
 
-        IEnumerable<ProductCategory> GetAllByParentId(int parentId);
+        IEnumerable<ProductCategory> GetAllByParentId(int? parentId);
 
         void SaveChanges();
     }
@@ -64,9 +64,16 @@ namespace BigShop.Service.Services
             }
         }
 
-        public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
+        public IEnumerable<ProductCategory> GetAllByParentId(int? parentId)
         {
-            return _productCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+            if (parentId == null)
+            {
+                return _productCategoryRepository.GetAll();
+            }
+            else
+            {
+                return _productCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+            }
         }
 
         public ProductCategory GetSigleById(int id)

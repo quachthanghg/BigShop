@@ -26,10 +26,13 @@ namespace BigShop.Service.Services
         IEnumerable<Product> GetLastest(int top);
 
         IEnumerable<Product> GetHotProduct(int top);
+        IEnumerable<Product> Sort(string price, string alias);
 
         IEnumerable<Product> GetRelatedProducts(int id, int top);
 
-        IEnumerable<Product> GetListProductByCategoryPaging(string alias, int page, int pageSize, string sort, out int totalRow);
+        ProductCategory GetParentID(string alias);
+
+        IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow);
 
         IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
 
@@ -41,13 +44,15 @@ namespace BigShop.Service.Services
     public class ProductService : IProductService
     {
         private IProductRepository _productRepository;
+        private IProductCategoryRepository _productCategoryRepository;
         private IUnitOfWork _unitOfWork;
         private ITagRepository _tagRepository;
         private IProductTagRepository _productTagRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository, IProductCategoryRepository productCategoryRepository)
         {
             this._productRepository = productRepository;
+            this._productCategoryRepository = productCategoryRepository;
             this._unitOfWork = unitOfWork;
             this._productTagRepository = productTagRepository;
             this._tagRepository = tagRepository;
@@ -95,47 +100,90 @@ namespace BigShop.Service.Services
         {
             if (!string.IsNullOrEmpty(filter))
             {
-                return _productRepository.GetMulti(x => x.Name.Contains(filter));
+                return _productRepository.GetMulti(x => x.Name.Contains(filter), new string[] { "PostCategory" });
             }
             else
             {
-                return _productRepository.GetAll();
+                return _productRepository.GetAll(new string[] { "PostCategory" });
             }
+        }
+
+        public ProductCategory GetParentID(string alias)
+        {
+            if (string.IsNullOrEmpty(alias)) return null;
+            var category = _productCategoryRepository.GetSignleByCondition(x=>x.Alias == alias);
+            var lstCategory = _productCategoryRepository.GetSignleByCondition(p => p.ParentID == category.ID);
+            
+            return lstCategory;
         }
 
         public IEnumerable<Product> GetHotProduct(int top)
         {
-            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true, new string[] { "ProductCategory" }).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetLastest(int top)
         {
-            return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status == true, new string[] { "ProductCategory" }).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-        public IEnumerable<Product> GetListProductByCategoryPaging(string alias, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow)
         {
-            var query = _productRepository.GetMulti(p => p.ProductCategory.Alias == alias);
-            switch (sort)
+            var category = _productCategoryRepository.GetSignleByCondition(x => x.Alias == alias);
+            if (string.IsNullOrEmpty(sort))
             {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
-
-                case "discount":
-                    query = query.OrderByDescending(x => x.Promotion.HasValue);
-                    break;
-
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
-
-                default:
-                    query = query.OrderByDescending(x => x.CreatedDate);
-                    break;
+                var query = _productRepository.GetMulti(x => x.ProductCategory != null && (x.ProductCategory.Alias == alias || x.ProductCategory.ParentID == category.ID));
+                totalRow = query.Count();
+                return query.Skip((page - 1) * pageSize).Take(pageSize);
             }
-            totalRow = query.Count();
-            return query.Skip((page - 1) * pageSize).Take(pageSize);
+            else
+            {
+                List<Product> result = new List<Product>();
+                List<Product> resultCategory = new List<Product>();
+
+                string[] strs = sort.Split(new char[] { '|' });
+
+                string[] sortPrice= { };
+                string[] sortCategory= { };
+
+                if (strs.Length == 1)
+                {
+                    sortPrice = strs[0].Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries);
+                }
+                else
+                {
+                    sortPrice = strs[0].Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries);
+                    sortCategory = strs[1].Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries);
+                }
+
+                if (sortCategory.Length > 0)
+                {
+                    foreach (var cat in sortCategory)
+                    {
+                        var query = _productRepository.GetMulti(x => x.ProductCategory != null && (x.ProductCategory.Alias == alias || x.ProductCategory.ParentID == category.ID) &&  x.ProductCategory.Name == cat);
+                        resultCategory.AddRange(query);
+                    }
+                }
+                else
+                {
+                    resultCategory = _productRepository.GetMulti(x => x.ProductCategory != null && (x.ProductCategory.Alias == alias || x.ProductCategory.ParentID == category.ID)).ToList();
+                }
+
+                if (sortPrice.Length > 0)
+                {
+                    foreach (var item in sortPrice)
+                    {
+                        var maxPrice = decimal.Parse(item);
+                        var minPrice = maxPrice - 5000000;
+                        var query = resultCategory.Where(x => x.ProductCategory != null && (x.ProductCategory.Alias == alias || x.ProductCategory.ParentID == category.ID) && x.Price <= maxPrice && x.Price >= minPrice);
+                        result.AddRange(query);
+                    }
+                }
+                else result = resultCategory;
+                
+                totalRow = result.Count();
+                return result.Skip((page - 1) * pageSize).Take(pageSize);
+            }
         }
 
         public IEnumerable<string> GetListProductByName(string name)
@@ -225,6 +273,12 @@ namespace BigShop.Service.Services
                 }
             }
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Product> Sort(string price, string alias)
+        {
+            var model = _productRepository.GetMulti(x => x.Price == decimal.Parse(price) && x.ProductCategory.Alias == alias && x.Status == true);
+            throw new System.NotImplementedException();
         }
     }
 }

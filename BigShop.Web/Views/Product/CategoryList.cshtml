@@ -1,0 +1,87 @@
+﻿@using BigShop.Web.Models
+@using BigShop.Web.Infrastructure.Core
+@model PaginationSet<ProductViewModel>
+
+<div class="product-one">
+
+    @if (Model?.Count > 0)
+    {
+        foreach (var item in Model.Items)
+        {
+            var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.CategoryID + "/" + item.Alias + "/" + item.ID;
+            <div class="col-md-4 product-left p-left">
+                <div class="product-main simpleCart_shelfItem">
+                    <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
+                    <div class="product-bottom">
+                        <h3>@item.Name</h3>
+                        <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>
+                    </div>
+                    <div class="srch srch1">
+                        <span>-50%</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h1 class="text-center" style="color: red">Không có sản phẩm nào</h1>
+    }
+    <div class="clearfix"></div>
+</div>
+
+@if (Model?.TotalPages > 1)
+{
+    // Create numeric links
+    var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+    var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.Page > 1)
+            {
+                <li>
+                    <a href="javascript:changePage(1);" aria-label="First">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:changePage(@Model.Page-1);" aria-label="Previous">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
+            }
+
+            @for (int i = startPageIndex; i <= endPageIndex; i++)
+            {
+                if (Model.Page == i)
+                {
+                    <li class="active"><a href="javascript:changePage(@i);" title="Trang @i" @*onclick=""*@>@i</a></li>
+                }
+                else
+                {
+                    <li><a href="javascript:changePage(@i);" title="Trang @i" @*onclick="changePage(@i)"*@>@i</a></li>
+                }
+            }
+            @if (Model.Page < Model.TotalPages)
+            {
+                <li>
+                    <a href="javascript:changePage(@Model.Page+1);" aria-label="Next" @*onclick="changePage(@Model.Page+1)"*@>
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:changePage(@Model.TotalPages);" aria-label="Last" @*onclick="changePage(@Model.TotalPages)"*@>
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+<script>
+    function changePage(page) {
+        getSort(page);
+    }
+</script>
