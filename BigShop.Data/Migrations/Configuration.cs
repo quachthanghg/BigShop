@@ -1,10 +1,10 @@
-namespace BigShop.Data.Migrations
+﻿namespace BigShop.Data.Migrations
 {
     using BigShop.Model.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
-    using System.Data.Entity;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -18,11 +18,15 @@ namespace BigShop.Data.Migrations
         protected override void Seed(BigShop.Data.BigShopDbContext context)
         {
             CreateAccountSample(context);
+            CreateProductCategorySample(context);
+            CreateSlideSample(context);
+            CreateProductSample(context);
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
         }
+
         private void CreateAccountSample(BigShopDbContext context)
         {
             if (context.ProductCategories.Count() == 0)
@@ -46,7 +50,51 @@ namespace BigShop.Data.Migrations
                 var adminUser = manager.FindByEmail("quachthanghg@gmail.com");
                 manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             }
+        }
 
+        private void CreateProductCategorySample(BigShopDbContext context)
+        {
+            if (context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> list = new List<ProductCategory>()
+                {
+                    new ProductCategory(){Name="Điện thoại", Alias="dien-thoai", Status=true},
+                    new ProductCategory(){Name="Máy tính bảng", Alias="may-tinh-bang", Status=true},
+                    new ProductCategory(){Name="Laptop", Alias="laptop", Status=true}
+                };
+                context.ProductCategories.AddRange(list);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateProductSample(BigShopDbContext context)
+        {
+            if (context.Products.Count() == 0)
+            {
+                List<Product> list = new List<Product>()
+                {
+                    new Product(){Name="IPhone 6", Alias="iphone-6", Description="A", CategoryID = 1, Status=true},
+                    new Product(){Name="IPhone 7", Alias="iphone-7", Description="A", CategoryID = 2, Status=true},
+                    new Product(){Name="IPhone 8", Alias="iphone-8", Description="A", CategoryID = 3, Status=true}
+                };
+                context.Products.AddRange(list);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateSlideSample(BigShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> list = new List<Slide>()
+                {
+                    new Slide(){Name="Slide 1", URL= "#", DisplayOrder = 1, Description="hinh anh 1", Content= "OK",Image="/Assets/Client/images/bnr-1.jpg", Status= true},
+                    new Slide(){Name="Slide 2", URL= "#", DisplayOrder = 2, Description="hinh anh 2", Content= "OK",Image="/Assets/Client/images/bnr-2.jpg", Status= true},
+                    new Slide(){Name="Slide 3", URL= "#", DisplayOrder = 3, Description="hinh anh 3", Content= "OK",Image="/Assets/Client/images/bnr-3.jpg", Status= true}
+                };
+                context.Slides.AddRange(list);
+                context.SaveChanges();
+            }
         }
     }
 }

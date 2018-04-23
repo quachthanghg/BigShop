@@ -1,0 +1,54 @@
+﻿@using BigShop.Web.Models
+@model IEnumerable<ProductCategoryViewModel>
+
+<div class="header-bottom">
+    <div class="container">
+        <div class="header">
+            <div class="col-md-9 header-left">
+                <div class="top-nav">
+                    <ul class="memenu skyblue">
+                        <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        @foreach (var item in Model.Where(x => x.ParentID == null))
+                        {
+                            var url = "/san-pham/" + item.Alias;
+                            var childCategories = Model.Where(x => x.ParentID == item.ID);
+                            <li class="grid">
+                                <a href="@url">@item.Name</a>
+                                @if (childCategories.Count() > 0)
+                                {
+                                    <div class="mepanel">
+                                        <div class="row">
+                                            <div class="col1 me-one">
+                                                <ul>
+                                                    @foreach (var childCategory in childCategories)
+                                                    {
+                                                        var childUrl = "/san-pham/" + @item.Alias + "/" + childCategory.Alias;
+                                                        <li><a href="@childUrl">@childCategory.Name</a></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </li>
+                        }
+                        <li class="grid">
+                            <a href="gioi-thieu">Giới thiệu</a>
+                        </li>
+                        <li class="grid">
+                            <a href="lien-he">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-3 header-right">
+                <div class="search-bar">
+                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <input type="submit" value="">
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

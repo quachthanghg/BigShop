@@ -15,7 +15,7 @@ namespace BigShop.Data.Repositories
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
 
-    internal class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
     {
         public ProductCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
         {

@@ -24,5 +24,53 @@ namespace BigShop.Web.Infrastructure.Extension
             postCategory.MetaDescription = postCategoryViewModel.MetaDescription;
             postCategory.Status = postCategoryViewModel.Status;
         }
+
+        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryViewModel)
+        {
+            productCategory.ID = productCategoryViewModel.ID;
+            productCategory.Name = productCategoryViewModel.Name;
+            productCategory.Alias = productCategoryViewModel.Alias;
+            productCategory.Description = productCategoryViewModel.Description;
+            productCategory.ParentID = productCategoryViewModel.ParentID;
+            productCategory.DisplayOrder = productCategoryViewModel.DisplayOrder;
+            productCategory.Image = productCategoryViewModel.Image;
+
+            productCategory.HomeFlag = productCategoryViewModel.HomeFlag;
+            productCategory.CreatedDate = productCategoryViewModel.CreatedDate;
+            productCategory.CreatedBy = productCategoryViewModel.CreatedBy;
+            productCategory.UpdatedDate = productCategoryViewModel.UpdatedDate;
+            productCategory.UpdatedBy = productCategoryViewModel.UpdatedBy;
+            productCategory.MetaKeyword = productCategoryViewModel.MetaKeyword;
+            productCategory.MetaDescription = productCategoryViewModel.MetaDescription;
+            productCategory.Status = productCategoryViewModel.Status;
+        }
+
+        public static void UpdateProduct(this Product product, ProductViewModel productViewModel)
+        {
+            product.ID = productViewModel.ID;
+            product.Name = productViewModel.Name;
+            product.Alias = productViewModel.Alias;
+            product.CategoryID = productViewModel.CategoryID;
+            product.Image = productViewModel.Image;
+            product.MoreImage = productViewModel.MoreImage;
+            product.Price = productViewModel.Price;
+            product.Promotion = productViewModel.Promotion;
+            product.Warranty = productViewModel.Warranty;
+            product.Description = productViewModel.Description;
+            product.Content = productViewModel.Content;
+            product.HomeFlag = productViewModel.HomeFlag;
+            product.HotFlag = productViewModel.HotFlag;
+            product.ViewCount = productViewModel.ViewCount;
+            product.Tags = productViewModel.Tags;
+            product.Quantity = productViewModel.Quantity;
+
+            product.CreatedDate = productViewModel.CreatedDate;
+            product.CreatedBy = productViewModel.CreatedBy;
+            product.UpdatedDate = productViewModel.UpdatedDate;
+            product.UpdatedBy = productViewModel.UpdatedBy;
+            product.MetaKeyword = productViewModel.MetaKeyword;
+            product.MetaDescription = productViewModel.MetaDescription;
+            product.Status = productViewModel.Status;
+        }
     }
 }

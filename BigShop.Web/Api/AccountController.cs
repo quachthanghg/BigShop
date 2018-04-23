@@ -9,6 +9,7 @@ using static BigShop.Web.App_Start.IdentityConfig;
 namespace BigShop.Web.Api
 {
     [RoutePrefix("Api/Account")]
+    [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;

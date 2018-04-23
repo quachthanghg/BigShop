@@ -1,0 +1,82 @@
+﻿<div class="w_sidebar">
+    <section class="sky-form">
+        <h4>Danh mục</h4>
+        <div class="row1 scroll-pane">
+            <div class="col col-4">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Tất cả</label>
+            </div>
+            <div class="col col-4">
+                @if (ViewBag.lstCategory != null)
+                {
+                    foreach (var item in ViewBag.lstCategory)
+                    {
+                        <label class="checkbox ckbCategory"><input type="checkbox" name="sortByCategory" value="@item.Name"><i></i>@item.Name</label>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+    <section class="sky-form">
+        <h4>Giá (VNĐ)</h4>
+        <div class="row1 row2 scroll-pane">
+            <div class="col col-4">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Tất cả</label>
+            </div>
+            <div class="col col-4">
+                <label class="checkbox ckbPrice"><input type="checkbox" name="sortByPrice" value="5000000"><i></i>Dưới 5.000.000</label>
+                <label class="checkbox ckbPrice"><input type="checkbox" name="sortByPrice" value="10000000"><i></i>5.000.000 - 10.000.000</label>
+                <label class="checkbox ckbPrice"><input type="checkbox" name="sortByPrice" value="15000000"><i></i>10.000.000 - 15.000.000</label>
+                <label class="checkbox ckbPrice"><input type="checkbox" name="sortByPrice" value="20000000"><i></i>15.000.000 - 20.000.000</label>
+                <label class="checkbox ckbPrice"><input type="checkbox" name="sortByPrice" value="25000000"><i></i>trên 20.000.000</label>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+<script>
+    var referrer = window.location.pathname;
+    var res = referrer.split("/");
+    var x = res[2];
+    $(function () {
+        $(".ckbPrice").change(function () {
+            getSort(1);
+        });
+
+        $(".ckbCategory").change(function () {
+            getSort(1);
+        });
+        
+    })
+
+    function getSort(page) {
+        var selectedPrice = $("input[name='sortByPrice']:checked");
+        var selectedCategory = $("input[name='sortByCategory']:checked");
+        var sort = "";
+        selectedPrice.each(function () {
+            sort += $(this).text() + ";" + $(this).val();
+        });
+        sort = sort + "|";
+        selectedCategory.each(function () {
+            sort += $(this).text() + ";" + $(this).val();
+        });
+        //setTimeout(2000);
+        callAjax(sort, page);
+    }
+
+    function callAjax(sort, page) {
+        $.ajax({
+            url: '/Product/CategoryList',
+            type: "GET",
+            dataType: "html",
+            data: {
+                alias: x,
+                sort: sort,
+                page: page
+            }
+        }).done(function (response) {
+            $('#divResult').html(response);
+        });
+    }
+</script>

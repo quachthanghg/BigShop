@@ -1,0 +1,81 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Admin <small>Quản lý danh mục sản phẩm</small></h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="filter" placeholder="Nhập từ khóa">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="Search();">Search</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Danh mục sản phẩm</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#">Settings 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <button id="send" ui-sref="add_product_category" class="btn btn-success">Create</button>
+            <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled >Delete</button>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="all" ng-click="selectAll()" id="check-all" class="flat">
+                        </th>
+                        <th style="width: 5%">ID</th>
+                        <th style="width: 60%">Tên danh mục</th>
+                        <th style="width: 17%">Ngày tạo</th>
+                        <th style="width: 10%">Trạng thái</th>
+                        <th style="width: 8%">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in lstProductCategory">
+                        <td class="a-center ">
+                            <input type="checkbox" ng-model="item.checked" name="all" class="flat"/>
+                        </td>
+                        <th scope="row">{{item.ID}}</th>
+                        <td>{{item.Name}}</td>
+                        <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                        <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
+                        <td>
+                            <button ui-sref="update_product_category({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                            <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="box-footer">
+                <!--<span style="color: red">Trang: {{page+1}} / {{total}}</span>-->
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="getListProductCategory(page)"></pager-directive>
+            </div>
+        </div>
+    </div>
+</div>
