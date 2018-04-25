@@ -13,6 +13,7 @@ namespace BigShop.Web.Models
         public decimal Price { set; get; }
         public decimal? Promotion { set; get; }
         public int? Warranty { set; get; }
+        public string Profile { get; set; }
         public string Description { set; get; }
         public string Content { set; get; }
         public bool? HomeFlag { set; get; }

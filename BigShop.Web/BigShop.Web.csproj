@@ -218,6 +218,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,6 +230,7 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
@@ -260,6 +262,13 @@
     <Content Include="App\component\products\productEditView.html" />
     <Content Include="App\component\products\productListController.js" />
     <Content Include="App\component\products\productListView.html" />
+    <Content Include="App\component\slide\slideAddController.js" />
+    <Content Include="App\component\slide\slideAddView.html" />
+    <Content Include="App\component\slide\slideEditController.js" />
+    <Content Include="App\component\slide\slideEditView.html" />
+    <Content Include="App\component\slide\slideListController.js" />
+    <Content Include="App\component\slide\slideListView.html" />
+    <Content Include="App\component\slide\slides.module.js" />
     <Content Include="App\shared\directives\pagerDirective.html" />
     <Content Include="App\shared\directives\pagerDirective.js" />
     <Content Include="App\shared\filters\statusFilter.js" />
@@ -8084,6 +8093,7 @@
     <Content Include="Assets\Client\images\search.png" />
     <Content Include="Assets\Client\images\star.png" />
     <Content Include="Assets\Client\images\tick.png" />
+    <Content Include="Assets\Client\js\bootstrap.min.js" />
     <Content Include="Assets\Client\js\imagezoom.js" />
     <Content Include="Assets\Client\js\jquery-1.11.0.min.js" />
     <Content Include="Assets\Client\js\jquery.easydropdown.js" />
@@ -9602,6 +9612,8 @@
     <Content Include="Views\Product\Sort.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Product\CategoryList.cshtml" />
+    <Content Include="Views\Product\CategoryDetail.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">

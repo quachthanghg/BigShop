@@ -13,10 +13,17 @@ namespace BigShop.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "About",
+            //    url: "gioi-thieu",
+            //    defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+            //    namespaces: new string[] { "BigShop.Web.Controllers" }
+            //);
+
             routes.MapRoute(
                 name: "About",
-                url: "gioi-thieu",
-                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+                url: "trang/{alias}",
+                defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
                 namespaces: new string[] { "BigShop.Web.Controllers" }
             );
 
@@ -36,8 +43,8 @@ namespace BigShop.Web
 
             routes.MapRoute(
                 name: "Product",
-                url: "san-pham/{alias1}/{alias2}",
-                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
+                url: "san-pham/{category}/{alias}",
+                defaults: new { controller = "Product", action = "CategoryDetail", id = UrlParameter.Optional },
                 namespaces: new string[] { "BigShop.Web.Controllers" }
             );
 
@@ -45,6 +52,13 @@ namespace BigShop.Web
                name: "Product Detail",
                url: "san-pham/{alias1}/{alias2}/{alias3}/{id}",
                defaults: new { controller = "Product", action = "ProductDetail", id = UrlParameter.Optional },
+               namespaces: new string[] { "BigShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
+               name: "Tag List",
+               url: "tag/{tagID}",
+               defaults: new { controller = "Product", action = "ListProductByTag", tagID = UrlParameter.Optional },
                namespaces: new string[] { "BigShop.Web.Controllers" }
            );
 

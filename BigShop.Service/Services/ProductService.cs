@@ -30,13 +30,22 @@ namespace BigShop.Service.Services
 
         IEnumerable<Product> GetRelatedProducts(int id, int top);
 
+        IEnumerable<Product> EquivalentProducts(int id, int top);
+
         ProductCategory GetParentID(string alias);
 
         IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow);
-
         IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
 
         IEnumerable<string> GetListProductByName(string name);
+
+        IEnumerable<Tag> GetListTagByProductID(int id);
+
+        void InCreaseView(int id);
+
+        Tag GetTag(string tagID);
+
+        IEnumerable<Product> GetListProductByTag(string tagID, int page, int pageSize, out int totalRow);
 
         void SaveChanges();
     }
@@ -279,6 +288,48 @@ namespace BigShop.Service.Services
         {
             var model = _productRepository.GetMulti(x => x.Price == decimal.Parse(price) && x.ProductCategory.Alias == alias && x.Status == true);
             throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Tag> GetListTagByProductID(int id)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(z => z.Tag);
+        }
+
+        public void InCreaseView(int id)
+        {
+            var product = _productRepository.GetSignleById(id);
+            if (product.ViewCount.HasValue)
+            {
+                product.ViewCount++;
+            }
+            else
+            {
+                product.ViewCount = 1;
+            }
+        }
+
+        public IEnumerable<Product> GetListProductByTag(string tagID, int page, int pageSize, out int totalRow)
+        {
+            var model = _productRepository.GetMulti(x => x.Status == true && x.ProductTags.Count(z => z.ProductID == z.ProductID) > 0, new string[] { "ProductCategory", "ProductTag" });
+
+            totalRow = model.Count();
+            model = model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+
+            return model;
+        }
+
+        public Tag GetTag(string tagID)
+        {
+            var model = _tagRepository.GetSignleByCondition(x=>x.ID == tagID);
+            return model;
+        }
+
+        public IEnumerable<Product> EquivalentProducts(int id, int top)
+        {
+            var product = _productRepository.GetSignleById(id);
+            decimal maxPrice = product.Price + 2000000;
+            decimal minPrice = product.Price - 2000000;
+            return _productRepository.GetMulti(x => x.ID != id && x.CategoryID != product.CategoryID && x.Price > minPrice && x.Price < maxPrice).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

@@ -63,6 +63,15 @@
                         </div>
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
+                                Cấu hình <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Profile" required="required">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Mô tả ngắn <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -149,7 +158,6 @@
                                 <button class="btn btn-default" type="button" ng-click="ChooseMoreImages()">Chọn ảnh</button>
                             </div>
                         </div>
-
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Mô tả nội dung <span class="required">*</span>

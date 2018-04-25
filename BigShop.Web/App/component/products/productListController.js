@@ -14,7 +14,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 5
+                    pageSize: 10
                 }
             };
             apiService.get('/Api/Product/GetAll', config, function (result) {
@@ -37,7 +37,7 @@
                 params: {
                     filter: $scope.filter,
                     page: page,
-                    pageSize: 2
+                    pageSize: 10
                 }
             };
             apiService.get('/Api/Product/Search', config, function (result) {

@@ -62,12 +62,21 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Cấu hình <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Profile" required="required">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Mô tả ngắn <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Description" required="required" type="text">
-
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Description" required="required">
+                                </textarea>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -147,12 +156,12 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Mô tả nội dung <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Content" ng-minlength="5" required="required" type="text">
-
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Content" required="required">
+                                </textarea>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -186,7 +195,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <input type="checkbox" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag">
                             </div>
-                        </div>  
+                        </div>
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12" for="name">
                                 Sản phẩm HOT

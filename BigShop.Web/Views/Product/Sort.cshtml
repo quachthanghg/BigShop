@@ -1,21 +1,24 @@
 ﻿<div class="w_sidebar">
-    <section class="sky-form">
-        <h4>Danh mục</h4>
-        <div class="row1 scroll-pane">
-            <div class="col col-4">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Tất cả</label>
-            </div>
-            <div class="col col-4">
-                @if (ViewBag.lstCategory != null)
-                {
-                    foreach (var item in ViewBag.lstCategory)
+    @if (ViewBag.IsRoot)
+    {
+        <section class="sky-form">
+            <h4>Danh mục</h4>
+            <div class="row1 scroll-pane">
+                <div class="col col-4">
+                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Tất cả</label>
+                </div>
+                <div class="col col-4">
+                    @if (ViewBag.lstCategory != null)
                     {
-                        <label class="checkbox ckbCategory"><input type="checkbox" name="sortByCategory" value="@item.Name"><i></i>@item.Name</label>
+                        foreach (var item in ViewBag.lstCategory)
+                        {
+                            <label class="checkbox ckbCategory"><input type="checkbox" name="sortByCategory" value="@item.Name"><i></i>@item.Name</label>
+                        }
                     }
-                }
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    }
     <section class="sky-form">
         <h4>Giá (VNĐ)</h4>
         <div class="row1 row2 scroll-pane">
@@ -47,7 +50,7 @@
         $(".ckbCategory").change(function () {
             getSort(1);
         });
-        
+
     })
 
     function getSort(page) {

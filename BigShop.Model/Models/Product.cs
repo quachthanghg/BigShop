@@ -1,4 +1,5 @@
 ﻿using BigShop.Model.Abstracts;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -34,8 +35,10 @@ namespace BigShop.Model.Models
         public decimal? Promotion { set; get; }
 
         public int? Warranty { set; get; }
+        
+        public string Profile { get; set; }
 
-        [MaxLength(500)]
+        
         public string Description { set; get; }
 
         public string Content { set; get; }
@@ -51,5 +54,7 @@ namespace BigShop.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
+        
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }
 }

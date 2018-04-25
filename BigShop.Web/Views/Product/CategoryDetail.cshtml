@@ -1,0 +1,38 @@
+﻿@using BigShop.Web.Models
+@using BigShop.Web.Infrastructure.Core
+@model PaginationSet<ProductViewModel>
+
+@{
+    ViewBag.Title = "CategoryDetail";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Sản phẩm</a></li>
+                <li class="active">Điện thoại</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="prdt">
+    <div class="container">
+        <div class="prdt-top">
+            <div class="col-md-9 prdt-left" id="divResult">
+                @{
+                    Html.RenderAction("CategoryList", new { sort = "", page = 1 });
+                }
+            </div>
+            <div class="col-md-3 prdt-right">
+                @{
+                    Html.RenderAction("Sort");
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

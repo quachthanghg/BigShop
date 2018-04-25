@@ -1,4 +1,5 @@
-﻿@model BigShop.Web.Models.ProductViewModel
+﻿@using BigShop.Web.Models
+@model ProductViewModel
 
 @{
     ViewBag.Title = "ProductDetail";
@@ -23,31 +24,25 @@
                 <div class="sngl-top">
                     <div class="col-md-5 single-top-left">
                         <div class="flexslider">
-                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                                <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-304px, 0px, 0px);">
-                                    <li data-thumb="~/Assets/Client/images/s-3.jpg" class="clone" aria-hidden="true" style="float: left; display: block; width: 304px;">
-                                        <div class="thumb-image">
-                                            <img src="~/Assets/Client/images/s-3.jpg" data-imagezoom="true" class="img-responsive" alt="" draggable="false">
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ol class="flex-control-nav flex-control-thumbs">
-                                <li><img src="~/Assets/Client/images/s-1.jpg" class="flex-active" draggable="false"></li>
-                                <li><img src="~/Assets/Client/images/s-2.jpg" draggable="false" class=""></li>
-                                <li><img src="~/Assets/Client/images/s-3.jpg" draggable="false" class=""></li>
-                            </ol>
-                            <ul class="flex-direction-nav">
-                                <li class="flex-nav-prev">
-                                    <a class="flex-prev" href="#">Previous</a>
-                                </li>
-                                <li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li>
+                            <ul class="slides">
+                                @{
+                                    var moreImages = (List<string>)ViewBag.MoreImages;
+                                }
+                                @if (moreImages.Count > 0)
+                                {
+                                    foreach (var item in moreImages)
+                                    {
+                                        <li data-thumb="@Model.MoreImage">
+                                            <div class="thumb-image"> <img src="@Model.Image" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                         <!-- FlexSlider -->
                         <script src="~/Assets/Client/js/imagezoom.js"></script>
-                        <script defer="" src="~/Assets/Client/js/jquery.flexslider.js"></script>
-                        <link rel="stylesheet" href="~/Assets/Client/css/flexslider.css" type="text/css" media="screen">
+                        <script defer src="~/Assets/Client/js/jquery.flexslider.js"></script>
+                        <link rel="stylesheet" href="~/Assets/Client/css/flexslider.css" type="text/css" media="screen" />
 
                         <script>
                             // Can also be used with $(document).ready()
@@ -77,144 +72,127 @@
                                 <div class="clearfix"> </div>
                             </div>
 
-                            <h5 class="item_price">@Model.Price.ToString("#,##")</h5>
-                            @Model.Description
+                            <h5 class="item_price">@Model.Price.ToString("#,##") VNĐ</h5>
+                            <span>@Model.Quantity Sản phẩm</span>
+                            <p>@Html.Raw(Model.Description)</p>
+
                             <ul class="tag-men">
-                                <li>
-                                    <span>TAG</span>
-                                    <span class="women1">: @Model.Tags,</span>
-                                </li>
-                                <li>
-                                    <span>SKU</span>
-                                    <span class="women1">: CK09</span>
-                                </li>
+                                <span>TAG</span>
+                                @*@{
+                                        var tags = (IEnumerable<TagViewModel>)ViewBag.Tags;
+                                    }
+                                    @if (tags.Count() > 0)
+                                    {
+                                        foreach (var item in tags)
+                                        {
+                                            <li>
+                                                <a href="/tag/@(item.ID)">@item.Name</a>
+                                            </li>
+
+                                        }
+                                    }*@
+
                             </ul>
-                            <a href="#" class="add-cart item_add">Thêm vào giỏ hàng</a>
+                            <a href="#" class="add-cart item_add">THÊM VÀO GIỎ HÀNG</a>
 
                         </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="tabs">
-                    <ul class="menu_drop">
-                        <li class="item1">
-                            <a href="#"><img src="~/Assets/Client/images/arrow.png" alt="">Description</a>
-                            <ul style="display: none;">
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item2">
-                            <a href="#"><img src="~/Assets/Client/images/arrow.png" alt="">Additional information</a>
-                            <ul style="display: none;">
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item3">
-                            <a href="#"><img src="~/Assets/Client/images/arrow.png" alt="">Reviews (10)</a>
-                            <ul style="display: none;">
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item4">
-                            <a href="#"><img src="~/Assets/Client/images/arrow.png" alt="">Helpful Links</a>
-                            <ul style="display: none;">
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item5">
-                            <a href="#"><img src="~/Assets/Client/images/arrow.png" alt="">Make A Gift</a>
-                            <ul style="display: none;">
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="latestproducts">
-                    <div class="product-one">
-                        @foreach (var item in ViewBag.RelatedProducts)
-                        {
-                            <div class="col-md-4 product-left p-left">
-                                <div class="product-main simpleCart_shelfItem">
-                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
-                                    <div class="product-bottom">
-                                        <h3>@item.Name</h3>
-                                        <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price</span></h4>
-                                    </div>
-                                    <div class="srch">
-                                        <span>-50%</span>
+                <hr />
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Cấu hình</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @Html.Raw(Model.Content)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Thông tin chi tiét</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @Html.Raw(Model.Content)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="latestproducts">
+                        <div class="product-one">
+                            @foreach (var item in ViewBag.RelatedProducts)
+                            {
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
+                                        <div class="product-bottom">
+                                            <h3>@item.Name</h3>
+                                            <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price</span></h4>
+                                        </div>
+                                        <div class="srch">
+                                            <span>-50%</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                        <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 single-right">
-                <div class="w_sidebar">
-                    <section class="sky-form">
-                        <h4>Catogories</h4>
-                        <div class="row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All Accessories</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Women Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Kids Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Men Watches</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="sky-form">
-                        <h4>Brand</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sonata</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Titan</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casio</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Omax</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fastrack</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sports</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fossil</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Maxima</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Yepme</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Citizen</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Diesel</label>
-                            </div>
-                        </div>
-                    </section>
 
-                    <section class="sky-form">
-                        <h4>discount</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="col-md-3 prdt-right">
+                <h4 class="font-weight-bold">CẤU HÌNH</h4>
+                @Html.Raw(Model.Profile)
+                <div class="clearfix"></div>
+                <hr />
+
+                @{
+                    var equivalentProducts = (IEnumerable<ProductViewModel>)ViewBag.EquivalentProducts;
+                }
+                @if (equivalentProducts.Count() > 0)
+                {
+                    <h4 class="font-italic">SẢN PHẨM TƯƠNG ĐƯƠNG</h4>
+                    foreach (var item in equivalentProducts)
+                    {
+                        <div class="col-md-12 product-left">
+                            <div class="product-main simpleCart_shelfItem">
+                                <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
+                                <div class="product-bottom">
+                                    <h3>@item.Name</h3>
+                                    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>
+                                </div>
                             </div>
                         </div>
-                    </section>
-                </div>
+                    }
+                }
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"> </div>
         </div>
     </div>
 </div>

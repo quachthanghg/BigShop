@@ -22,11 +22,6 @@
     <link href="~/Assets/Admin/libs/toastr/toastr.css" rel="stylesheet" />
 </head>
 <body class="nav-md" ng-app="bigshop" ng-controller="rootController">
-
-    <div ui-view>
-
-    </div>
-
     <!-- jQuery -->
     <script src="~/Assets/Admin/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -86,5 +81,9 @@
     <script src="~/App/component/productcategories/productCategoryListController.js"></script>
     <script src="~/App/component/productcategories/productCategoryAddController.js"></script>
     <script src="~/App/component/productcategories/productCategoryEditController.js"></script>
+
+    <ui-view>
+
+    </ui-view>
 </body>
 </html>

@@ -19,6 +19,7 @@ namespace BigShop.Web.Mappings
                 config.CreateMap<ProductTagViewModel, ProductTag>();
                 config.CreateMap<FooterViewModel, Footer>();
                 config.CreateMap<SlideViewModel, Slide>();
+                config.CreateMap<PageViewModel, Page>();
             });
         }
     }

@@ -63,6 +63,7 @@ namespace BigShop.Web.Infrastructure.Extension
             product.ViewCount = productViewModel.ViewCount;
             product.Tags = productViewModel.Tags;
             product.Quantity = productViewModel.Quantity;
+            product.Profile = productViewModel.Profile;
 
             product.CreatedDate = productViewModel.CreatedDate;
             product.CreatedBy = productViewModel.CreatedBy;

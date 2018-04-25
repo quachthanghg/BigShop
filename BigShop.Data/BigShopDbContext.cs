@@ -9,7 +9,7 @@ namespace BigShop.Data
         public BigShopDbContext() : base("BigShopFinal")
         {
             // load parent do not include child
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Error> Errors { set; get; }
