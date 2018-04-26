@@ -1,0 +1,49 @@
+﻿@using BigShop.Web.Models
+@model RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Đăng ký thành viên</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="register-top heading">
+            <h2 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h2>
+        </div>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken();
+            @Html.ValidationSummary(false, "", new { @class = "error"});
+            <div class="register-main">
+                <div class="col-md-6 account-left">
+                <input placeholder="Full name" type="text" name="FullName" tabindex="1" required>
+                <input placeholder="User name" type="text" name="UserName" tabindex="2" required>
+                <input placeholder="Email" type="text" name="Email" tabindex="2" required>
+                <input placeholder="Address" type="text" name="Address" tabindex="2" required>
+                <input placeholder="Mobile" type="text" name="PhoneNumber" tabindex="3" required>
+                </div>
+                <div class="col-md-6 account-left">
+                    <input placeholder="Password" type="password" name="Password" tabindex="4" required>
+                    <input placeholder="Retype password" type="password" name="Password" tabindex="4" required>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="address submit">
+                <input type="submit" value="Submit">
+            </div>
+        }
+
+
+    </div>
+</div>
+

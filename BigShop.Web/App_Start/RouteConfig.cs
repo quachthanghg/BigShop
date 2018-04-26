@@ -28,6 +28,13 @@ namespace BigShop.Web
             );
 
             routes.MapRoute(
+                name: "Register",
+                url: "dang-ky",
+                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+                namespaces: new string[] { "BigShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Product Category",
                 url: "san-pham/{alias}",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },

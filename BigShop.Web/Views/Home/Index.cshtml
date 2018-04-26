@@ -7,13 +7,13 @@
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 <!--banner-starts-->
-<div class="bnr" id="home">
+<div class="bnr" id="home" style="height:548px">
     <div id="top" class="callbacks_container">
-        <ul class="rslides" id="slider4">
+        <ul class="rslides" id="slider4" style="height:548px">
             @foreach (var item in Model.Slides)
             {
                 <li>
-                    <img src="@item.Image" alt="Slide" height="548"/>
+                    <img src="@item.Image" alt="Slide" height="548" />
                 </li>
             }
         </ul>
@@ -46,100 +46,83 @@
     </script>
 }
 <!--End-slider-script-->
+<!--about-starts-->
+<div class="about">
+    <div class="container">
+        <div class="about-top grid-1">
+            @foreach (var item in ViewBag.Top)
+            {
+                <div class="col-md-4 about-left">
+                    <figure class="effect-bubba" style="width: 350px; height: 250px">
+                        <img class="img-responsive" src="@item.Image" alt="" style="width: 350px; height: 250px"/>
+                        <figcaption>
+                            <h2>@item.Name</h2>
+                            <p>@item.Price</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            }
 
-    <!--about-starts-->
-    <div class="about">
-        <div class="container">
-            <div class="about-top grid-1">
-                <div class="col-md-4 about-left">
-                    <figure class="effect-bubba">
-                        <img class="img-responsive" src="~/Assets/Client/images/abt-1.jpg" alt="" />
-                        <figcaption>
-                            <h2>Nulla maximus nunc</h2>
-                            <p>In sit amet sapien eros Integer dolore magna aliqua</p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-md-4 about-left">
-                    <figure class="effect-bubba">
-                        <img class="img-responsive" src="~/Assets/Client/images/abt-2.jpg" alt="" />
-                        <figcaption>
-                            <h4>Mauris erat augue</h4>
-                            <p>In sit amet sapien eros Integer dolore magna aliqua</p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-md-4 about-left">
-                    <figure class="effect-bubba">
-                        <img class="img-responsive" src="~/Assets/Client/images/abt-3.jpg" alt="" />
-                        <figcaption>
-                            <h4>Cras elit mauris</h4>
-                            <p>In sit amet sapien eros Integer dolore magna aliqua</p>
-                        </figcaption>
-                    </figure>
-                </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--about-end-->
+<!--product-starts-->
+<div class="product">
+    <div class="container">
+        <h2>Sản phẩm mới nhất</h2>
+        <div class="product-top">
+            <div class="product-one">
+                @foreach (var item in Model.LastestProducts)
+                {
+                    var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
+                    <div class="col-md-3 product-left">
+                        <div class="product-main simpleCart_shelfItem">
+                            <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
+                            <div class="product-bottom">
+                                <h3>@item.Name</h3>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                            </div>
+                            <div class="srch">
+                                <span>-50%</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
-    <!--about-end-->
-    <!--product-starts-->
-    <div class="product">
-        <div class="container">
-            <h2>Sản phẩm mới nhất</h2>
-            <div class="product-top">
-                <div class="product-one">
-                    @foreach (var item in Model.LastestProducts)
-                    {
-                        var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                        <div class="col-md-3 product-left">
-                            <div class="product-main simpleCart_shelfItem">
-                                <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
-                                <div class="product-bottom">
-                                    <h3>@item.Name</h3>
-                                    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
-                                </div>
-                                <div class="srch">
-                                    <span>-50%</span>
-                                </div>
+</div>
+
+<div class="product">
+    <div class="container">
+        <h2>Sản phẩm bán chạy</h2>
+        <div class="product-top">
+            <div class="product-one">
+                @foreach (var item in Model.TopProducts)
+                {
+
+                    var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
+                    <div class="col-md-3 product-left">
+                        <div class="product-main simpleCart_shelfItem">
+                            <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
+                            <div class="product-bottom">
+                                <h3 class="text-center">@item.Name</h3>
+                                <h4 class="text-center"><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                            </div>
+                            <div class="srch">
+                                <span>-50%</span>
                             </div>
                         </div>
-                    }
+                    </div>
+                }
 
-                    <div class="clearfix"></div>
-                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-
-    <div class="product">
-        <div class="container">
-            <h2>Sản phẩm bán chạy</h2>
-            <div class="product-top">
-                <div class="product-one">
-                    @foreach (var item in Model.TopProducts)
-                    {
-
-                        var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                        <div class="col-md-3 product-left">
-                            <div class="product-main simpleCart_shelfItem">
-                                <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
-                                <div class="product-bottom">
-                                    <h3 class="text-center">@item.Name</h3>
-                                    <h4 class="text-center"><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
-                                </div>
-                                <div class="srch">
-                                    <span>-50%</span>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--product-end-->
-
-
+</div>
+<!--product-end-->

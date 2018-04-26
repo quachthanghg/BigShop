@@ -41,7 +41,7 @@
 <script>
     var referrer = window.location.pathname;
     var res = referrer.split("/");
-    var x = res[2];
+    var x = res[res.length-1];
     $(function () {
         $(".ckbPrice").change(function () {
             getSort(1);

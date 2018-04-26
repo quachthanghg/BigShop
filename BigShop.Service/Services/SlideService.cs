@@ -16,7 +16,7 @@ namespace BigShop.Service.Services
         Slide Delete(int id);
         Slide GetSigleById(int id);
         IEnumerable<Slide> GetAll();
-        void Commit();
+        void SaveChanges();
     }
 
     public class SlideService : ISlideService
@@ -35,7 +35,7 @@ namespace BigShop.Service.Services
             return _slideRepository.Add(slide);
         }
 
-        public void Commit()
+        public void SaveChanges()
         {
             _unitOfWork.Commit();
         }

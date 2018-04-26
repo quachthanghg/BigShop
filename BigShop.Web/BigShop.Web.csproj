@@ -60,6 +60,9 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\CKFinder.dll</HintPath>
@@ -207,6 +210,7 @@
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\SlideController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -237,6 +241,7 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -8733,12 +8738,116 @@
     <Content Include="Assets\Client\js\responsiveslides.min.js" />
     <Content Include="Assets\Client\js\simpleCart.min.js" />
     <Content Include="favicon.ico" />
-    <Content Include="FileUploads\images\1.jpg" />
-    <Content Include="FileUploads\images\11390166_478927148930544_6442678274590663051_n.jpg" />
-    <Content Include="FileUploads\images\8.jpg" />
-    <Content Include="FileUploads\_thumbs\Images\1.jpg" />
-    <Content Include="FileUploads\_thumbs\Images\11390166_478927148930544_6442678274590663051_n.jpg" />
-    <Content Include="FileUploads\_thumbs\Images\8.jpg" />
+    <Content Include="FileUploads\images\Banner\BannerIPhoneX.jpg" />
+    <Content Include="FileUploads\images\Banner\BannerS9IphoneX.jpg" />
+    <Content Include="FileUploads\images\Banner\BannerSony.jpg" />
+    <Content Include="FileUploads\images\Banner\Combo.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone6.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone61.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone62.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone6sPlus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone6sPlus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone6sPlus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone7.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone71.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone72.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone7Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone7Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone7Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone8.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone81.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone82%27.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone8Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone8Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\Iphone8Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\IphoneX.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\IphoneX1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\IphoneX2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Iphone\IphoneX3.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA71.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA711.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA712.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA71Neo9.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA7Neo91.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA7Neo92.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA83.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA831.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOA832.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1s.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1s1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF1s2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF3.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF31.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF32.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF3Lite.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF3Lite1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF3Lite2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF5.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF51.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF52.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF5Youth.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF5Youth1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\OPPO\OPPOF5Youth2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA5.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA51.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA52.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA7.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA71.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA72.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA8.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA81.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungA82.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Prime.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Prime1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Prime2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Pro.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Pro1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungJ7Pro2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungNote8.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungNote81.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungNote82.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS7Edge.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS7Edge1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS7Edge2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS8.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS81.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS82.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS8Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS8Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS8Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS9.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS91.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS92.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS9Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS9Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Samsung\SamsungS9Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL1Dual.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL1Dual1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL1Dual12.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL21.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaL22.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA1Plus.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA1Plus1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA1Plus2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXA2.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ11.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ12.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZs.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZs1.png" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZs12.png" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ_1.jpg" />
+    <Content Include="FileUploads\images\DienThoai\Sony\SonyXperiaXZ_2.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -8767,9 +8876,9 @@
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
     <Folder Include="FileUploads\files\" />
+    <Folder Include="FileUploads\_thumbs\Images\" />
     <Folder Include="Scripts\Spa\" />
     <Folder Include="Views\About\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
@@ -10254,6 +10363,9 @@
     <Content Include="Views\Product\CategoryList.cshtml" />
     <Content Include="Views\Product\CategoryDetail.cshtml" />
     <Content Include="Views\Page\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\BigShopProfile.pubxml" />
+    <Content Include="tsconfig.json" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">

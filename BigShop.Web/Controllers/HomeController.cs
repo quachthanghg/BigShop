@@ -33,7 +33,10 @@ namespace BigShop.Web.Controllers
             var lastestProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
             var topProducts = _productService.GetHotProduct(4);
             var topProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topProducts);
-            
+
+            var about = _productService.GetHotProduct(3);
+            ViewBag.Top = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(about);
+
             HomeViewModel homeViewModel = new HomeViewModel()
             {
                 Slides = slideViewModel,

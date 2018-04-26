@@ -26,17 +26,17 @@
                         <div class="flexslider">
                             <ul class="slides">
                                 @{
-                        var moreImages = (List<string>)ViewBag.MoreImages;
+                                    var moreImages = (List<string>)ViewBag.MoreImages;
                                 }
                                 @if (moreImages.Count > 0)
-                    {
-                        foreach (var item in moreImages)
-                        {
-                            <li data-thumb="@Model.MoreImage">
-                                <div class="thumb-image"> <img src="@Model.Image" data-imagezoom="true" class="img-responsive" alt="" /> </div>
-                            </li>
-            }
-        }
+                                {
+                                    foreach (var item in moreImages)
+                                    {
+                                        <li data-thumb="@item">
+                                            <div class="thumb-image"> <img src="@item" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                                        </li>
+                                    }
+                                }
                             </ul>
                         </div>
                         <!-- FlexSlider -->
@@ -76,23 +76,6 @@
                             <span>@Model.Quantity Sản phẩm</span>
                             <p>@Html.Raw(Model.Description)</p>
 
-                            <ul class="tag-men">
-                                <span>TAG</span>
-                                @*@{
-                            var tags = (IEnumerable<TagViewModel>)ViewBag.Tags;
-                        }
-                        @if (tags.Count() > 0)
-                        {
-                            foreach (var item in tags)
-                            {
-                                <li>
-                                    <a href="/tag/@(item.ID)">@item.Name</a>
-                                </li>
-
-                            }
-                        }*@
-
-                            </ul>
                             <a href="#" class="add-cart item_add">THÊM VÀO GIỎ HÀNG</a>
 
                         </div>
@@ -100,28 +83,59 @@
                     <div class="clearfix"> </div>
                 </div>
                 <hr />
-                <div class="container">
-                    
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">CẤU HÌNH</a></li>
-                        <li><a data-toggle="tab" href="#menu1">CHI TIẾT SẢN PHẨM</a></li>
-                        <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
-                    </ul>
+                <div class="details">
+                    <div class="container">
 
-                    <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <h3>CẤU HÌNH</h3>
-                            @Html.Raw(Model.Profile)
-                        </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        <ul class="nav nav-tabs" style="width: 820px">
+                            <li class="active"><a data-toggle="tab" href="#home">CẤU HÌNH</a></li>
+                            <li><a data-toggle="tab" href="#menu1">CHI TIẾT SẢN PHẨM</a></li>
+                            <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <h3>CẤU HÌNH</h3>
+                                <div class="profileProduct">
+
+                                </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div class="productContent" style="width: 820px">
+                                    @Html.Raw(Model.Content)
+                                </div>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <hr />
+                <div class="relatedProduct">
+                    <h3>SẢN PHẨM LIÊN QUAN</h3>
+                    <div class="latestproducts">
+                        <div class="product-one">
+                            @foreach (var item in ViewBag.RelatedProducts)
+                            {
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3>@item.Name</h3>
+                                            <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price</span></h4>
+                                        </div>
+                                        <div class="srch">
+                                            <span>-50%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="col-md-3 prdt-right">
@@ -133,9 +147,10 @@
                     <h4 class="font-italic">SẢN PHẨM TƯƠNG ĐƯƠNG</h4>
                     foreach (var item in equivalentProducts)
                     {
+                        var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
                         <div class="col-md-12 product-left">
                             <div class="product-main simpleCart_shelfItem">
-                                <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
+                                <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
                                 <div class="product-bottom">
                                     <h3>@item.Name</h3>
                                     <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>

@@ -127,7 +127,7 @@ namespace BigShop.Service.Services
 
         public IEnumerable<Product> GetHotProduct(int top)
         {
-            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true, new string[] { "ProductCategory" }).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true, new string[] { "ProductCategory" }).OrderBy(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetLastest(int top)
