@@ -35,9 +35,9 @@ namespace BigShop.Service.Services
         ProductCategory GetParentID(string alias);
 
         IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow);
-        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> Search(string search, int page, int pageSize, string sort, out int totalRow);
 
-        IEnumerable<string> GetListProductByName(string name);
+        IEnumerable<Product> GetListProductByName(string name);
 
         IEnumerable<Tag> GetListTagByProductID(int id);
 
@@ -46,7 +46,6 @@ namespace BigShop.Service.Services
         Tag GetTag(string tagID);
 
         IEnumerable<Product> GetListProductByTag(string tagID, int page, int pageSize, out int totalRow);
-
         void SaveChanges();
     }
 
@@ -138,6 +137,12 @@ namespace BigShop.Service.Services
 
         public IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow)
         {
+            if (string.IsNullOrEmpty(alias))
+            {
+                var query = _productRepository.GetMulti(x => x.ProductCategory != null);
+                totalRow = query.Count();
+                return query.Skip((page - 1) * pageSize).Take(pageSize);
+            }
             var category = _productCategoryRepository.GetSignleByCondition(x => x.Alias == alias);
             if (string.IsNullOrEmpty(sort))
             {
@@ -195,9 +200,18 @@ namespace BigShop.Service.Services
             }
         }
 
-        public IEnumerable<string> GetListProductByName(string name)
+        public IEnumerable<Product> GetListProductByName(string name)
         {
-            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+            else
+            {
+                var model = _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).OrderBy(x => x.Name);
+                int k = model.Count();
+                return model;
+            }
         }
 
         public IEnumerable<Product> GetRelatedProducts(int id, int top)
@@ -217,29 +231,10 @@ namespace BigShop.Service.Services
             _unitOfWork.Commit();
         }
 
-        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        public IEnumerable<Product> Search(string search, int page, int pageSize, string sort, out int totalRow)
         {
-            var query = _productRepository.GetMulti(x => x.Name.Contains(keyword));
-
-            switch (sort)
-            {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
-
-                case "discount":
-                    query = query.OrderByDescending(x => x.Promotion.HasValue);
-                    break;
-
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
-
-                default:
-                    query = query.OrderByDescending(x => x.CreatedDate);
-                    break;
-            }
-
+            var query = _productRepository.GetMulti(x => x.Name.Contains(search));
+            
             totalRow = query.Count();
 
             return query.Skip((page - 1) * pageSize).Take(pageSize);
@@ -329,7 +324,7 @@ namespace BigShop.Service.Services
             var product = _productRepository.GetSignleById(id);
             decimal maxPrice = product.Price + 2000000;
             decimal minPrice = product.Price - 2000000;
-            return _productRepository.GetMulti(x => x.ID != id && x.CategoryID != product.CategoryID && x.Price > minPrice && x.Price < maxPrice).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.ID != id && (x.CategoryID == product.CategoryID || x.CategoryID != product.CategoryID) && x.Price > minPrice && x.Price < maxPrice).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

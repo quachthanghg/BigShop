@@ -12,14 +12,7 @@ namespace BigShop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            //routes.MapRoute(
-            //    name: "About",
-            //    url: "gioi-thieu",
-            //    defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
-            //    namespaces: new string[] { "BigShop.Web.Controllers" }
-            //);
-
+            
             routes.MapRoute(
                 name: "About",
                 url: "trang/{alias}",
@@ -50,7 +43,7 @@ namespace BigShop.Web
 
             routes.MapRoute(
                name: "Product Detail",
-               url: "san-pham/{alias1}/{alias2}/{alias3}/{id}",
+               url: "san-pham/{alias1}/{alias2}/{id}",
                defaults: new { controller = "Product", action = "ProductDetail", id = UrlParameter.Optional },
                namespaces: new string[] { "BigShop.Web.Controllers" }
            );

@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="~/Assets/Client/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <link href="~/Assets/Client/FortAwesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/libs/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -28,8 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
     <!--dropdown-->
     <script src="~/Assets/Client/js/jquery.easydropdown.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Assets/Client/js/bootstrap.min.js"></script>
+    <script src="~/Assets/Admin/libs/jquery-ui/jquery-ui.min.js"></script>
 </head>
 <body>
     <!--top-header-->
@@ -46,5 +47,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     @{Html.RenderAction("Footer", "Home");}
     @RenderSection("FooterJS", required: false)
+    <script src="~/Assets/Client/js/common.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.UI;
+using System.Linq;
 
 namespace BigShop.Web.Controllers
 {
@@ -28,7 +29,6 @@ namespace BigShop.Web.Controllers
         {
             return View();
         }
-
         public ActionResult ProductDetail(int id)
         {
             var model = _productService.GetSigleById(id);
@@ -51,8 +51,6 @@ namespace BigShop.Web.Controllers
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tag);
             return View(responseData);
         }
-        [ChildActionOnly]
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
         public ActionResult Sort()
         {
             string path = HttpContext.Request.Url.AbsolutePath;
@@ -72,8 +70,6 @@ namespace BigShop.Web.Controllers
             }
             return PartialView();
         }
-        [ChildActionOnly]
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
         public ActionResult CategoryList(string alias, string sort = "", int page = 1)
         {
             int totalRow = 0;
@@ -92,13 +88,10 @@ namespace BigShop.Web.Controllers
             };
             return PartialView(paginationSet);
         }
-
         public ActionResult CategoryDetail(string alias, string sort = "", int page = 1)
         {
             return View();
         }
-        [ChildActionOnly]
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
         public ActionResult ListProductByTag(string tagID, int page = 1)
         {
             int totalRow = 0;
@@ -116,6 +109,22 @@ namespace BigShop.Web.Controllers
                 TotalPages = totalPages
             };
             return PartialView(paginationSet);
+        }
+        public ActionResult GetListProductByName(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return null;
+            }
+            else
+            {
+                var model = _productService.GetListProductByName(search);
+                return Json(new
+                {
+                    data = model
+                }, JsonRequestBehavior.AllowGet);
+            }
+            
         }
     }
 }

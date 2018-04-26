@@ -61,7 +61,6 @@ namespace BigShop.Web.Controllers
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
         public ActionResult Navigation()
         {
             var model = _productCategoryService.GetAll();
