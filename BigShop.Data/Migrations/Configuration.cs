@@ -115,26 +115,26 @@
             }
         }
 
-        //private void CreateContactSample(BigShopDbContext context)
-        //{
-        //    if (context.ContactDetails.Count() == 0)
-        //    {
+        private void CreateContactSample(BigShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
 
-        //        var contact = new Contact()
-        //        {
-        //            ID = 1,
-        //            Name = "BigShop",
-        //            Address = "Số 8 Thương Kiều",
-        //            Email = "quachthanghg@gmail.com",
-        //            Phone = "+84 978 850 339",
-        //            Website = "http://BigShop.com.vn",
-        //            Lat = 22.2192672,
-        //            Lng = 104.7988248,
-        //            Status = true
-        //        };
-        //        context.Contacts.Add(contact);
-        //        context.SaveChanges();
-        //    }
-        //}
+                var contact = new ContactDetail()
+                {
+                    ID = 1,
+                    Name = "BigShop",
+                    Address = "Số 8 Thương Kiều",
+                    Email = "quachthanghg@gmail.com",
+                    PhoneNumber = "+84 978 850 339",
+                    Website = "http://BigShop.com.vn",
+                    Lat = 22.2192672,
+                    Lng = 104.7988248,
+                    Status = true
+                };
+                context.ContactDetails.Add(contact);
+                context.SaveChanges();
+            }
+        }
     }
 }

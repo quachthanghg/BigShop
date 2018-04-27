@@ -1,0 +1,73 @@
+﻿@model BigShop.Web.Models.ContactDetailViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="contact">
+    <div class="container">
+        <div class="contact-top heading">
+            <h2>CONTACT</h2>
+        </div>
+        <div class="contact-text">
+            <div class="col-md-3 contact-left">
+                <div class="address">
+                    <h5>@Model.Address</h5>
+                    <p>
+                        Tel:@Model.PhoneNumber
+                        <span>Fax:190-4509-494</span>
+                        Email: <a href="mailto:@Model.Email">@Model.Email</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-9 contact-right">
+                <input type="hidden" class="hidden" id="hidContact" name="name" value="" />
+                <div id="map" style="height: 500px;"></div>
+                <script>
+
+                    // This example displays a marker at the center of Australia.
+                    // When the user clicks the marker, an info window opens.
+
+                    function initMap() {
+                        var uluru = { lat: @Model.Lat, lng: @Model.Lng };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 16,
+                            center: uluru
+                        });
+
+                        var contentString = $('#hidContact');
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map,
+                            title: 'BigShop'
+                        });
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker);
+                        });
+                    }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7F3aBEWy0Smz0Xn7bJxDS7yF0fwTLBTw&callback=initMap">
+                </script>
+                <div class="clearfix"></div>
+                <hr />
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Phone">
+                    <input type="text" placeholder="Email">
+                    <textarea placeholder="Message" required=""></textarea>
+                    <div class="submit-btn">
+                        <input type="submit" value="SUBMIT">
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

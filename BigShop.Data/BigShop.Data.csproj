@@ -78,9 +78,13 @@
     <Compile Include="Migrations\201804250631257_ModifyProfile.Designer.cs">
       <DependentUpon>201804250631257_ModifyProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804270830211_AddContactDetailTable.cs" />
+    <Compile Include="Migrations\201804270830211_AddContactDetailTable.Designer.cs">
+      <DependentUpon>201804270830211_AddContactDetailTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ContactRepository.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804250631257_ModifyProfile.resx">
       <DependentUpon>201804250631257_ModifyProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270830211_AddContactDetailTable.resx">
+      <DependentUpon>201804270830211_AddContactDetailTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

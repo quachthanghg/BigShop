@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace BigShop.Web
@@ -12,7 +8,7 @@ namespace BigShop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
             routes.MapRoute(
                 name: "About",
                 url: "trang/{alias}",
@@ -33,6 +29,13 @@ namespace BigShop.Web
                 defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                 namespaces: new string[] { "BigShop.Web.Controllers" }
             );
+
+            routes.MapRoute(
+               name: "Contact",
+               url: "lien-he",
+               defaults: new { controller = "ContactDetail", action = "Index", id = UrlParameter.Optional },
+               namespaces: new string[] { "BigShop.Web.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "Product Category",
