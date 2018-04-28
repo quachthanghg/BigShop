@@ -234,6 +234,7 @@
     <Compile Include="Infrastructure\Extension\EntityExtension.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
@@ -8739,6 +8740,7 @@
     <Content Include="Assets\Client\js\memenu.js" />
     <Content Include="Assets\Client\js\responsiveslides.min.js" />
     <Content Include="Assets\Client\js\simpleCart.min.js" />
+    <Content Include="Assets\Client\template\ContactTemplate.html" />
     <Content Include="favicon.ico" />
     <Content Include="FileUploads\images\Banner\BannerIPhoneX.jpg" />
     <Content Include="FileUploads\images\Banner\BannerS9IphoneX.jpg" />

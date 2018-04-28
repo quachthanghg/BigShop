@@ -1,4 +1,8 @@
-﻿@model BigShop.Web.Models.ContactDetailViewModel
+﻿@using BigShop.Web.Models
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+@model FeedbackViewModel
+
 
 @{
     ViewBag.Title = "Index";
@@ -13,11 +17,11 @@
         <div class="contact-text">
             <div class="col-md-3 contact-left">
                 <div class="address">
-                    <h5>@Model.Address</h5>
+                    <h5>@Model.ContactDetailViewModels.Address</h5>
                     <p>
-                        Tel:@Model.PhoneNumber
+                        Tel:@Model.ContactDetailViewModels.PhoneNumber
                         <span>Fax:190-4509-494</span>
-                        Email: <a href="mailto:@Model.Email">@Model.Email</a>
+                        Email: <a href="mailto:@Model.Email">@Model.ContactDetailViewModels.Email</a>
                     </p>
                 </div>
             </div>
@@ -30,7 +34,7 @@
                     // When the user clicks the marker, an info window opens.
 
                     function initMap() {
-                        var uluru = { lat: @Model.Lat, lng: @Model.Lng };
+                        var uluru = { lat: @Model.ContactDetailViewModels.Lat, lng: @Model.ContactDetailViewModels.Lng };
                         var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 16,
                             center: uluru
@@ -57,15 +61,25 @@
                 </script>
                 <div class="clearfix"></div>
                 <hr />
-                <form>
-                    <input type="text" placeholder="Name">
-                    <input type="text" placeholder="Phone">
-                    <input type="text" placeholder="Email">
-                    <textarea placeholder="Message" required=""></textarea>
-                    <div class="submit-btn">
-                        <input type="submit" value="SUBMIT">
+                @if (ViewData["Notify"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <h4>Gửi phản hồi thành công</h4>
+                        <p>Chúng tôi sẽ gửi phản hồi lại cho bạn trong vòng 24h</p>
                     </div>
-                </form>
+                }
+                @using (Html.BeginForm("SendFeedback", "ContactDetail",FormMethod.Post))
+                {
+                    <input type="text" name="Name" placeholder="Họ tên">
+                    <input type="number" name="PhoneNumber" placeholder="Số điệnt thoại">
+                    <input type="email" name="Email" placeholder="Email">
+                    <textarea placeholder="Nội dung" name="Message" required=""></textarea>
+                    @Html.MathCaptcha();
+                    <div class="submit-btn">
+                        <input type="submit" value="Gửi phản hồi">
+                    </div>
+                }
+
             </div>
             <div class="clearfix"></div>
         </div>

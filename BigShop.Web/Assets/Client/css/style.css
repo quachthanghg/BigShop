@@ -1341,6 +1341,26 @@ a.mask {
 	border: 1px solid #000;
 	font-family: 'Lato-Regular';
 }
+.contact-right input[type="number"] {
+    width: 32.51%;
+    margin: 0px;
+    color: #000;
+    background: none;
+    padding: 15px 10px;
+    outline: none;
+    border: 1px solid #000;
+    font-family: 'Lato-Regular';
+}
+.contact-right input[type="email"] {
+    width: 32.51%;
+    margin: 0px;
+    color: #000;
+    background: none;
+    padding: 15px 10px;
+    outline: none;
+    border: 1px solid #000;
+    font-family: 'Lato-Regular';
+}
 .contact-right textarea {
 	width: 100%;
 	color: #000;

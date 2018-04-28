@@ -1,5 +1,6 @@
 ﻿using BigShop.Model.Models;
 using BigShop.Web.Models;
+using System;
 
 namespace BigShop.Web.Infrastructure.Extension
 {
@@ -72,6 +73,14 @@ namespace BigShop.Web.Infrastructure.Extension
             product.MetaKeyword = productViewModel.MetaKeyword;
             product.MetaDescription = productViewModel.MetaDescription;
             product.Status = productViewModel.Status;
+        }
+        public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
+        {
+            feedback.Name = feedbackViewModel.Name;
+            feedback.Email = feedbackViewModel.Email;
+            feedback.Message = feedbackViewModel.Message;
+            feedback.CreatedDate = DateTime.Now;
+            feedback.Status = feedbackViewModel.Status;
         }
     }
 }
