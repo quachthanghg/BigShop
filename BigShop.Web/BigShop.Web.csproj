@@ -8741,6 +8741,7 @@
     <Content Include="Assets\Client\js\responsiveslides.min.js" />
     <Content Include="Assets\Client\js\simpleCart.min.js" />
     <Content Include="Assets\Client\template\ContactTemplate.html" />
+    <Content Include="Assets\Client\template\NewUserTemplate.html" />
     <Content Include="favicon.ico" />
     <Content Include="FileUploads\images\Banner\BannerIPhoneX.jpg" />
     <Content Include="FileUploads\images\Banner\BannerS9IphoneX.jpg" />
