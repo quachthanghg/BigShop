@@ -1,0 +1,50 @@
+﻿@using BigShop.Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Account</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="account">
+    <div class="container">
+        <div class="account-top heading">
+            <h2>ACCOUNT</h2>
+        </div>
+        <div class="account-main">
+            <div class="col-md-6 account-left">
+                @using (Html.BeginForm("Login", "Account", new { @url = @ViewBag.Url }, FormMethod.Post))
+                {
+                    <h3>Đăng nhập</h3>
+                    <div class="account-bottom">
+                        <input placeholder="Username" name="UserName" type="text" tabindex="3" required>
+                        <input placeholder="Password" name="Password" type="password" tabindex="4" required>
+                        <br />
+                        <input type="checkbox" name="RememberMe" value="" /> Nhớ mật khẩu
+                        <div class="address">
+                            <a class="forgot" href="#">Quên mật khẩu?</a>
+                            <input type="submit" value="Login">
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-6 account-right account-left">
+                <h3>Bạn đã có tài khoản chưa?</h3>
+                <p>Đăng ký thành viên để nhận được những tin mới nhất và được giám giá 5% khi mua sản phẩm tại BigShop.</p>
+                <a href="/dang-ky">Đăng ký thành viên</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

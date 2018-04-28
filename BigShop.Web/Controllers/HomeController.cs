@@ -24,7 +24,7 @@ namespace BigShop.Web.Controllers
             _slideService = slideService;
         }
 
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Server)]
+        //[OutputCache(Duration = 3600, Location = OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var slide = _slideService.GetAll();
@@ -72,7 +72,7 @@ namespace BigShop.Web.Controllers
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
+        //[OutputCache(Duration = 3600, Location = OutputCacheLocation.Client)]
         public ActionResult Header()
         {
             return PartialView();

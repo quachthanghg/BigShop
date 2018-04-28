@@ -1,16 +1,15 @@
-﻿using BigShop.Model.Models;
+﻿using BigShop.Common;
+using BigShop.Model.Models;
 using BigShop.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CaptchaMvc.HtmlHelpers;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using static BigShop.Web.App_Start.IdentityConfig;
-using Microsoft.AspNet.Identity.Owin;
-using CaptchaMvc.HtmlHelpers;
-using CaptchaMvc;
-using BigShop.Common;
 
 namespace BigShop.Web.Controllers
 {
@@ -18,12 +17,13 @@ namespace BigShop.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
         public ApplicationSignInManager SignInManager
         {
             get
@@ -47,10 +47,52 @@ namespace BigShop.Web.Controllers
                 _userManager = value;
             }
         }
-        // GET: Account
+
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel, string url)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = await UserManager.FindAsync(loginViewModel.UserName, loginViewModel.Password);
+                if (user != null)
+                {
+                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    ClaimsIdentity claimsIdentity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationProperties authenticationProperties = new AuthenticationProperties();
+                    authenticationProperties.IsPersistent = loginViewModel.RememberMe;
+                    authenticationManager.SignIn(authenticationProperties, claimsIdentity);
+                    if (Url.IsLocalUrl(url))
+                    {
+                        return Redirect(url);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không chính xác");
+            }
+            ViewBag.Url = url;
+            return View(loginViewModel);
+        }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOut()
+        {
+            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -58,6 +100,7 @@ namespace BigShop.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel registerViewModel)
         {
@@ -100,9 +143,8 @@ namespace BigShop.Web.Controllers
                     string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/NewUserTemplate.html"));
                     content = content.Replace("{{UserName}}", adminUser.FullName);
                     content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink"));
-                    
-                    MailHelper.SendMail(adminUser.Email, "Đăng ký tài khoản thành công", content);
 
+                    MailHelper.SendMail(adminUser.Email, "Đăng ký tài khoản thành công", content);
                 }
                 return View();
             }
