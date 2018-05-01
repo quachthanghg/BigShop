@@ -35,12 +35,12 @@ namespace BigShop.Model.Models
         public decimal? Promotion { set; get; }
 
         public int? Warranty { set; get; }
-        
+        [MaxLength(5000)]
         public string Profile { get; set; }
 
-        
+        [MaxLength(5000)]
         public string Description { set; get; }
-
+        [MaxLength(5000)]
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }
@@ -54,7 +54,7 @@ namespace BigShop.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
-        
+
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }
 }

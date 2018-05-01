@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Checkout</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="ckeckout">
+    <div class="container">
+        <div class="ckeck-top heading">
+            <h2>GIỎ HÀNG</h2>
+        </div>
+        <div class="ckeckout-top">
+            <div class="cart-items">
+                <h3>My Shopping Bag (3)</h3>
+                <script>
+                    $(document).ready(function (c) {
+                        $('.close1').on('click', function (c) {
+                            $('.cart-header').fadeOut('slow', function (c) {
+                                $('.cart-header').remove();
+                            });
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function (c) {
+                        $('.close2').on('click', function (c) {
+                            $('.cart-header1').fadeOut('slow', function (c) {
+                                $('.cart-header1').remove();
+                            });
+                        });
+                    });
+                </script>
+                <script>
+                    $(document).ready(function (c) {
+                        $('.close3').on('click', function (c) {
+                            $('.cart-header2').fadeOut('slow', function (c) {
+                                $('.cart-header2').remove();
+                            });
+                        });
+                    });
+                </script>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="info">
+                            <th style="width: 20%">Hình ảnh</th>
+                            <th style="width: 20%">Sản phẩm</th>
+                            <th style="width: 20%">Giá</th>
+                            <th style="width: 20%">Số lượng</th>
+                            <th style="width: 20%">Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartBody"></tbody>
+                </table>
+                <div class="pull-right">
+                    Tổng tiền: <label id="lblTotalOrder"> VNĐ</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="templateCart" type="x-tmpl-mustache">
+    <tr>
+        <td><img src="{{ProductImage}}" class="img-responsive" alt="" height="80" width="50"></td>
+        <td>{{ProductName}}</td>
+        <td class="hidden">{{ProductPrice}}</td>
+        <td>{{ProductPriceF}} VNĐ</td>
+        <td><input type="number" class="txtQuantity form-control" data-price="{{ProductPrice}}" data-id="{{ProductID}}" value="{{ProductQuantity}}" /></td>
+        <td id="amount_{{ProductID}}">{{Amount}} VNĐ</td>
+        <td><button class="btn btn-xs btn-danger btnDeleteItem" data-id="{{ProductID}}">X</button></td>
+    </tr>
+</script>

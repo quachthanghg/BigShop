@@ -123,7 +123,7 @@
 
                             </div>
                         </div>
-                        <div class="item form-group">
+                        <!--<div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Danh mục cha <span class="required">*</span>
                             </label>
@@ -132,6 +132,17 @@
                                     <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
                                         <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
                                     </optgroup>
+                                </select>
+                                <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
+                            </div>
+                        </div>-->
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                                Danh mục cha <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
+                                    <option value="">Danh mục gốc</option>
                                 </select>
                                 <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
                             </div>

@@ -28,11 +28,13 @@ namespace BigShop.Service.Services
 
     public class PostService : IPostService
     {
+        private IErrorService _errorService;
         private IPostRepository _postRepository;
         private IUnitOfWork _unitOfWork;
 
-        public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
+        public PostService(IErrorService errorService, IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
+            this._errorService = errorService;
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
         }

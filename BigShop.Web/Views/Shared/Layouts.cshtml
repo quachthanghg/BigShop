@@ -25,12 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--start-menu-->
     <script src="~/Assets/Client/js/simpleCart.min.js"></script>
     <link href="~/Assets/Client/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="~/Assets/Client/js/memenu.js"></script>
-    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
-    <!--dropdown-->
-    <script src="~/Assets/Client/js/jquery.easydropdown.js"></script>
-    <script src="~/Assets/Client/js/bootstrap.min.js"></script>
-    <script src="~/Assets/Admin/libs/jquery-ui/jquery-ui.min.js"></script>
+
 </head>
 <body>
     <!--top-header-->
@@ -45,8 +40,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
         @RenderBody()
     </div>
+    @*<script src="~/Assets/Admin/libs/jquery/dist/jquery.min.js"></script>*@
+    <script type="text/javascript" src="~/Assets/Client/js/memenu.js"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <!--dropdown-->
+    <script src="~/Assets/Client/js/jquery.easydropdown.js"></script>
+    <script src="~/Assets/Client/js/bootstrap.min.js"></script>
+    <script src="~/Assets/Admin/libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Assets/Admin/libs/mustache/mustache.min.js"></script>
+    <script src="~/Assets/Admin/libs/numeral/numeral.js"></script>
+
     @{Html.RenderAction("Footer", "Home");}
     @RenderSection("FooterJS", required: false)
     <script src="~/Assets/Client/js/common.js"></script>
+    <script src="~/Assets/Client/js/shoppingCart.js"></script>
 </body>
 </html>

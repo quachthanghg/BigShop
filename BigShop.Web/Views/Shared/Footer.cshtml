@@ -2,7 +2,7 @@
 @model IEnumerable<FooterViewModel>
 
 <!--information-starts-->
- 
+
 <div class="information" style="padding-top: 3em;">
     <hr />
     <div class="container">
@@ -18,15 +18,16 @@
             <div class="col-md-3 infor-left">
                 <h3>Danh mục sản phẩm</h3>
                 <ul>
-                    <li><a href="#"><p>Specials</p></a></li>
-                    <li><a href="#"><p>New Products</p></a></li>
-                    <li><a href="#"><p>Our Stores</p></a></li>
-                    <li><a href="contact.html"><p>Contact Us</p></a></li>
-                    <li><a href="#"><p>Top Sellers</p></a></li>
+                    @foreach (var item in @ViewBag.ProductCategory)
+                    {
+                        var url = "/san-pham/" + item.Alias;
+                        <li><a href="@url"><p>@item.Name</p></a></li>
+                    }
+
                 </ul>
             </div>
             <div class="col-md-3 infor-left">
-                <h3>Thủ thuật @ViewBag.Time</h3>
+                <h3>Bài viết @ViewBag.Time</h3>
                 <ul>
                     <li><a href="account.html"><p>My Account</p></a></li>
                     <li><a href="#"><p>My Credit slips</p></a></li>
@@ -38,12 +39,14 @@
             <div class="col-md-3 infor-left">
                 <h3>Cơ sở</h3>
                 <h4>
-                    The company name,
-                    <span>Lorem ipsum dolor,</span>
-                    Glasglow Dr 40 Fe 72.
+                    @foreach (var item in ViewBag.Contact)
+                    {
+                        <span>@item.Name</span>
+                        <span>@item.Address</span>
+                        <span>@item.PhoneNumber</span>
+                        <a href="mailto:@item.Email">@item.Email</a>
+                    }
                 </h4>
-                <h5>+955 123 4567</h5>
-                <p><a href="mailto:example@email.com">contact@example.com</a></p>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -56,12 +59,12 @@
         <div class="footer-top">
             <div class="col-md-6 footer-left">
                 <form>
-                    <input type="text" value="Enter Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
-                    <input type="submit" value="Subscribe">
+                    <input type="text" value="Enter Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập email của bạn';}">
+                    <input type="submit" value="Đăng ký nhận thư">
                 </form>
             </div>
             <div class="col-md-6 footer-right">
-                <p>© 2015 Luxury Watches. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                <p>© 2018 BigShop. All Rights Reserved | Design by <a href="mailto:quachthanghg@gmail.com">quachthanghg@gmail.com</a> </p>
             </div>
             <div class="clearfix"></div>
         </div>

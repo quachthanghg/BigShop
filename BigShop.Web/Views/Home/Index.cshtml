@@ -54,7 +54,7 @@
             {
                 <div class="col-md-4 about-left">
                     <figure class="effect-bubba" style="width: 350px; height: 250px">
-                        <img class="img-responsive" src="@item.Image" alt="" style="width: 350px; height: 250px"/>
+                        <img class="img-responsive" src="@item.Image" alt="" style="width: 350px; height: 250px" />
                         <figcaption>
                             <h2>@item.Name</h2>
                             <p>@item.Price</p>
@@ -81,11 +81,15 @@
                         <div class="product-main simpleCart_shelfItem">
                             <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>@item.Name</h3>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                                <h3 class="text-center">@item.Name</h3>
+                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
                             </div>
                             <div class="srch">
-                                <span>-50%</span>
+                                @if (item.Status == true)
+                                {
+                                    <span>New</span>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -111,10 +115,13 @@
                             <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
                             <div class="product-bottom">
                                 <h3 class="text-center">@item.Name</h3>
-                                <h4 class="text-center"><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                                <h4 class="text-center"><a class="item_add btnAddToCart" data-id="@item.ID" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
                             </div>
                             <div class="srch">
-                                <span>-50%</span>
+                                @if (item.Status == true)
+                                {
+                                    <span>New</span>
+                                }
                             </div>
                         </div>
                     </div>

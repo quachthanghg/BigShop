@@ -23,6 +23,8 @@ namespace BigShop.Service.Services
 
         IEnumerable<ProductCategory> GetAllByParentId(int? parentId);
 
+        IEnumerable<ProductCategory> GetAllByParent();
+
         void SaveChanges();
     }
 
@@ -62,6 +64,11 @@ namespace BigShop.Service.Services
             {
                 return _productCategoryRepository.GetAll();
             }
+        }
+
+        public IEnumerable<ProductCategory> GetAllByParent()
+        {
+            return _productCategoryRepository.GetMulti(x => x.ParentID == null);
         }
 
         public IEnumerable<ProductCategory> GetAllByParentId(int? parentId)

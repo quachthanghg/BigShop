@@ -82,5 +82,36 @@ namespace BigShop.Web.Infrastructure.Extension
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackViewModel.Status;
         }
+        public static void UpdateSlide(this Slide slide, SlideViewModel slideViewModel)
+        {
+            slide.Name = slideViewModel.Name;
+            slide.Description = slideViewModel.Description;
+            slide.Content = slideViewModel.Content;
+            slide.DisplayOrder = slideViewModel.DisplayOrder;
+            slide.Image = slideViewModel.Image;
+            slide.URL = slideViewModel.URL;
+        }
+
+        public static void UpdatePost(this Post post, PostViewModel postViewModel)
+        {
+            post.ID = postViewModel.ID;
+            post.Name = postViewModel.Name;
+            post.Alias = postViewModel.Alias;
+            post.Description = postViewModel.Description;
+            post.CategoryID = postViewModel.CategoryID;
+            post.Content = postViewModel.Content;
+            post.Image = postViewModel.Image;
+            post.HomeFlag = postViewModel.HomeFlag;
+            post.HotFlag = postViewModel.HotFlag;
+            post.ViewCount = postViewModel.ViewCount;
+
+            post.CreatedDate = postViewModel.CreatedDate;
+            post.CreatedBy = postViewModel.CreatedBy;
+            post.UpdatedDate = postViewModel.UpdatedDate;
+            post.UpdatedBy = postViewModel.UpdatedBy;
+            post.MetaKeyword = postViewModel.MetaKeyword;
+            post.MetaDescription = postViewModel.MetaDescription;
+            post.Status = postViewModel.Status;
+        }
     }
 }

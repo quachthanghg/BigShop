@@ -66,7 +66,7 @@
                                     <li><a href="#"><i> </i></a></li>
                                 </ul>
                                 <div class="review">
-                                    <a href="#"> 1 customer review </a>
+                                    <a href="#">@Model.ViewCount Lượt xem </a>
 
                                 </div>
                                 <div class="clearfix"> </div>
@@ -76,7 +76,7 @@
                             <span>@Model.Quantity Sản phẩm</span>
                             <p>@Html.Raw(Model.Description)</p>
 
-                            <a href="#" class="add-cart item_add">THÊM VÀO GIỎ HÀNG</a>
+                            <button class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
 
                         </div>
                     </div>
@@ -122,8 +122,13 @@
                                     <div class="product-main simpleCart_shelfItem">
                                         <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
                                         <div class="product-bottom">
-                                            <h3>@item.Name</h3>
-                                            <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price</span></h4>
+                                            <h3 class="text-center">@item.Name</h3>
+                                            <h4 class="text-center">
+                                                <a class="item_add btnAddToCart" href="#">
+                                                    <i></i>
+                                                    <span class=" item_price">@item.Price.ToString("#,##")</span>
+                                                </a>
+                                            </h4>
                                         </div>
                                         <div class="srch">
                                             <span>-50%</span>
@@ -152,8 +157,8 @@
                             <div class="product-main simpleCart_shelfItem">
                                 <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
                                 <div class="product-bottom">
-                                    <h3>@item.Name</h3>
-                                    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>
+                                    <h3 class="text-center">@item.Name</h3>
+                                    <h4 class="text-center"><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -164,3 +169,4 @@
         </div>
     </div>
 </div>
+

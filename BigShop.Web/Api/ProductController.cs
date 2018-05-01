@@ -15,7 +15,6 @@ using System.Web.Script.Serialization;
 namespace BigShop.Web.Api
 {
     [RoutePrefix("Api/Product")]
-    [Authorize]
     public class ProductController : BaseApiController
     {
         private IErrorService _errorService;

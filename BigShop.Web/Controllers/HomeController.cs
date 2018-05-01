@@ -15,13 +15,15 @@ namespace BigShop.Web.Controllers
         private IProductCategoryService _productCategoryService;
         private IFooterService _footerService;
         private ISlideService _slideService;
+        private IContactDetailService _contactDetailService;
 
-        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IFooterService footerService, ISlideService slideService)
+        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IFooterService footerService, ISlideService slideService, IContactDetailService contactDetailService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
             _footerService = footerService;
             _slideService = slideService;
+            _contactDetailService = contactDetailService;
         }
 
         //[OutputCache(Duration = 3600, Location = OutputCacheLocation.Server)]
@@ -53,6 +55,11 @@ namespace BigShop.Web.Controllers
             var footer = _footerService.GetAll();
             var responseData = Mapper.Map<Footer, FooterViewModel>(footer);
             ViewBag.Time = DateTime.Now.ToString("T");
+            var productCategory = _productCategoryService.GetAllByParent();
+            ViewBag.ProductCategory = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(productCategory);
+
+            var contact = _contactDetailService.GetAll();
+            ViewBag.Contact = Mapper.Map<IEnumerable<ContactDetail>, IEnumerable<ContactDetailViewModel>>(contact);
             return PartialView(footer);
         }
 

@@ -71,16 +71,20 @@ body {
     border: 1px solid #73879C;
     border-radius: 10px;
     background: white;
-    padding: 20px;
+    padding: 25px;
 }
-
+ul.support li label {
+    background: url(../images/img-sprite.png)-2px -27px;
+ 
+    display: inline-block;
+    vertical-align: middle;
+}
 .login_content {
     margin: 0 auto;
-    padding: 25px 30px;
     position: relative;
     text-align: center;
     text-shadow: 0 1px 0 #fff;
-    min-width: 280px;
+    min-width: 260px;
 }
 
     .login_content h2 {
@@ -101,6 +105,9 @@ body {
     z-index: 999999999999;
     display: none;
     background-color: rgba(0,0,0,.5);
+}
+.fade .productContent img{
+    width: 800px;
 }
 
 .search-bar input[type="text"] {

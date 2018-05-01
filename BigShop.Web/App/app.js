@@ -1,6 +1,4 @@
-﻿/// <reference path="../scripts/plugins/angular/angular.js" />
-
-(function () {
+﻿(function () {
     angular.module('bigshop', ['bigshop.common', 'bigshop.products', 'bigshop.productcategories']).config(config).config(configAuthentication);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

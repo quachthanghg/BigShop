@@ -14,12 +14,18 @@
                 <div class="product-main simpleCart_shelfItem">
                     <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
                     <div class="product-bottom">
+                        <hr />
                         <h3 class="text-center">@item.Name</h3>
-                        <h4 class="text-center"><a class="item_add" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#,##")</span></h4>
+                        <center>
+                            <button style="margin-top: 10px; background: black; color: white" class="btnAddToCart btn btn-default" data-id="@item.ID">@item.Price.ToString("#,##")</button>
+                        </center>
                         <h6 class="text-center">@item.Quantity sản phẩm</h6>
                     </div>
                     <div class="srch srch1">
-                        <span>-50%</span>
+                        @if (item.Status == true)
+                        {
+                            <span>New</span>
+                        }
                     </div>
                 </div>
             </div>
@@ -62,7 +68,7 @@
                 }
                 else
                 {
-                    <li><a href="javascript:changePage(@i);" title="Trang @i" @*onclick="changePage(@i)"*@>@i</a></li>
+                    <li><a href="javascript:changePage(@i);" title="Trang @i">@i</a></li>
                 }
             }
             @if (Model.Page < Model.TotalPages)
