@@ -1,6 +1,9 @@
-﻿using BigShop.Model.Models;
+﻿using AutoMapper;
+using BigShop.Model.Models;
 using BigShop.Web.Models;
+using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace BigShop.Web.Infrastructure.Extension
 {
@@ -91,7 +94,6 @@ namespace BigShop.Web.Infrastructure.Extension
             slide.Image = slideViewModel.Image;
             slide.URL = slideViewModel.URL;
         }
-
         public static void UpdatePost(this Post post, PostViewModel postViewModel)
         {
             post.ID = postViewModel.ID;
@@ -112,6 +114,27 @@ namespace BigShop.Web.Infrastructure.Extension
             post.MetaKeyword = postViewModel.MetaKeyword;
             post.MetaDescription = postViewModel.MetaDescription;
             post.Status = postViewModel.Status;
+        }
+        public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
+        {
+            order.CustomerName = orderViewModel.CustomerName;
+            order.CustomerEmail = orderViewModel.CustomerEmail;
+            order.CustomerAddress = orderViewModel.CustomerAddress;
+            order.CustomerMessage = orderViewModel.CustomerMessage;
+            order.CustomerMobile = orderViewModel.CustomerMobile;
+            order.PaymentMethod = orderViewModel.PaymentMethod;
+            order.CreatedDate = DateTime.Now;
+            order.CreatedBy = orderViewModel.CreatedBy;
+            order.CustomerID = orderViewModel.CustomerID;
+            order.PaymentMethod = orderViewModel.PaymentMethod;
+            order.PaymentStatus = orderViewModel.PaymentStatus;
+            order.Status = orderViewModel.Status;
+        }
+        public static void UpdateOrderDetail(this OrderDetail orderDetail, OrderDetailViewModel orderDetailViewModel)
+        {
+            orderDetail.OrderID = orderDetailViewModel.OrderID;
+            orderDetail.ProductID = orderDetailViewModel.ProductID;
+            orderDetail.Quantity = orderDetailViewModel.Quantity;
         }
     }
 }

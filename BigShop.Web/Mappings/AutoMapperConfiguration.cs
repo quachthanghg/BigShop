@@ -21,6 +21,8 @@ namespace BigShop.Web.Mappings
                 config.CreateMap<SlideViewModel, Slide>();
                 config.CreateMap<PageViewModel, Page>();
                 config.CreateMap<ContactDetailViewModel, ContactDetail>();
+                config.CreateMap<OrderViewModel, Order>();
+                config.CreateMap<OrderDetailViewModel, OrderDetail>();
             });
         }
     }

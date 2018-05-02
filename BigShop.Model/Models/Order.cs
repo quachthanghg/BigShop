@@ -39,6 +39,11 @@ namespace BigShop.Model.Models
         public string CreatedBy { set; get; }
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }
+        [MaxLength(128)]
+        [Column(TypeName = "nvarchar")]
+        public string CustomerID { set; get; }
+        [ForeignKey("CustomerID")]
+        public virtual ApplicationUser User { set; get; }
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
     }
 }

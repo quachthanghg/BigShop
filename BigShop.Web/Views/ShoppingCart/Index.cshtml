@@ -22,7 +22,6 @@
         </div>
         <div class="ckeckout-top">
             <div class="cart-items">
-                <h3>My Shopping Bag (3)</h3>
                 <script>
                     $(document).ready(function (c) {
                         $('.close1').on('click', function (c) {
@@ -50,24 +49,66 @@
                         });
                     });
                 </script>
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr class="info">
-                            <th style="width: 20%">Hình ảnh</th>
-                            <th style="width: 20%">Sản phẩm</th>
-                            <th style="width: 20%">Giá</th>
-                            <th style="width: 20%">Số lượng</th>
-                            <th style="width: 20%">Thành tiền</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartBody"></tbody>
-                </table>
-                <div class="pull-right">
-                    Tổng tiền: <label id="lblTotalOrder"> VNĐ</label>
+                <div class="cartContent">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th style="width: 20%">Hình ảnh</th>
+                                <th style="width: 20%">Sản phẩm</th>
+                                <th style="width: 20%">Giá</th>
+                                <th style="width: 20%">Số lượng</th>
+                                <th style="width: 20%">Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartBody"></tbody>
+                    </table>
+                    <div class="pull-right">
+                        Tổng tiền: <label id="lblTotalOrder"> VNĐ</label>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" id="btnContinue">Tiếp tục mua hàng</button>
+                        <button class="btn btn-success" id="btnCheckOut">Thanh toán</button>
+                        <button class="btn btn-danger" id="btnDeleteAll">Xóa giỏ hàng</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+    </div>
+</div>
+
+<div id="checkout" style="display: none">
+    <div class="container">
+
+        <div class="register-top heading">
+            <h2 class="text-center">THANH TOÁN</h2>
+        </div>
+
+
+        <div class="register-main">
+            <div class="col-md-6 col-md-offset-3 account-left">
+                <form method="post" id="frmPayment">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <input type="checkbox" name="cbkUserLogin" id="cbkUserLogin" /> <lable>Sử dụng thông tin đăng nhập</lable>
+                    }
+
+                    <input placeholder="Họ tên" type="text" name="FullName" id="txtFullName" required>
+                    <input placeholder="Email" type="text" name="Email" id="txtEmail" required>
+                    <input placeholder="Địa chỉ" type="text" name="Address" id="txtAddress" required>
+                    <input placeholder="Số điện thoại" type="text" name="PhoneNumber" id="txtPhoneNumber" required>
+                    <textarea class="form-control" id="txtMessage"></textarea>
+                    <div class="address submit">
+                        <button class="btn btn-success" id="btnCreateOrder">Thanh toán</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+
     </div>
 </div>
 

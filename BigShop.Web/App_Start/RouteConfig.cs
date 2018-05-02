@@ -45,6 +45,13 @@ namespace BigShop.Web
            );
 
             routes.MapRoute(
+               name: "CheckOut",
+               url: "thanh-toan",
+               defaults: new { controller = "ShoppingCart", action = "CheckOut", id = UrlParameter.Optional },
+               namespaces: new string[] { "BigShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Product Category",
                 url: "san-pham/{alias}",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },

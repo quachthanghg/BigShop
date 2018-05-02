@@ -52,6 +52,7 @@
     <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\FooterService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\PostCategoryService.cs" />
     <Compile Include="Services\PostService.cs" />
