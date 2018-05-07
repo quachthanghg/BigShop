@@ -16,6 +16,8 @@ namespace BigShop.Model.Models
 
         public int Quantity { set; get; }
 
+        public decimal Price { get; set; }
+
         [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }
 

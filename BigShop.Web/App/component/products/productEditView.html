@@ -3,16 +3,7 @@
         <div class="title_left">
             <h3>Danh mục sản phẩm</h3>
         </div>
-        <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="clearfix"></div>
     <div class="row">
@@ -44,7 +35,7 @@
                 <div class="x_content">
                     <form class="form-horizontal form-label-left" novalidate name="frmProduct" role="form" ng-submit="UpdateProduct()">
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Tên danh mục <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -54,7 +45,7 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Tiêu đề SEO <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -66,7 +57,7 @@
                                 Cấu hình <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Profile" required="required">
+                                <textarea class="form-control" name="profile" ckeditor="ckeditorOptions" ng-model="product.Profile" required="required">
                                 </textarea>
                             </div>
                         </div>
@@ -81,52 +72,81 @@
                         </div>
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
-                                Tag <span class="required">*</span>
+                                Tag 
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" required="required" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" type="text">
                             </div>
                         </div>
+
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
-                                Giá <span class="required">*</span>
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Giá nhập <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Price" required="required" type="number">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="originalPrice" ng-model="product.OriginalPrice" required="required" type="number">
+
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Giá bán <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="price" ng-model="product.Price" required="required" type="number">
 
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Giá khuyến mãi<span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Promotion" required="required" type="number">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="promotion" ng-model="product.Promotion" type="number">
 
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Bảo hành<span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Warranty" type="number">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="warranty" ng-model="product.Warranty" type="number">
 
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Số lượng<span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Quantity" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="quantity" ng-model="product.Quantity" type="text">
 
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                        <!--<div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Danh mục cha <span class="required">*</span>
                             </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <select name="categoryID" ng-model="product.CategoryID" class="form-control">
+                                    <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
+                                        <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
+                                    </optgroup>
+                                </select>
+                                <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
+                            </div>
+                        </div>-->
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+
+
+                                Danh mục cha <span class="required">*</span>
+                                sp
+                            </label>
+
+
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
                                     <option value="">Danh mục gốc</option>
@@ -135,11 +155,14 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Hình ảnh
                             </label>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="image" ng-model="product.Image" type="text">
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <input id="name" class="form-control col-md-5 col-xs-12" name="image" ng-model="product.Image" type="text">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -160,12 +183,12 @@
                                 Mô tả nội dung <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="product.Content" required="required">
-                                </textarea>
+                                <textarea class="col-md-12 col-sm-12 col-xs-12" name="content" ckeditor="ckeditorOptions" ng-model="product.Content">
+                            </textarea>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Meta keyword <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -173,7 +196,7 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Meta description <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -181,7 +204,7 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Active
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -189,7 +212,7 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Hiển thị trang chủ
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -197,7 +220,7 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
                                 Sản phẩm HOT
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">

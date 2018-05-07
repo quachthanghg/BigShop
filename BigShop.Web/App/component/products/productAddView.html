@@ -3,16 +3,7 @@
         <div class="title_left">
             <h3>Danh mục sản phẩm</h3>
         </div>
-        <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <div class="clearfix"></div>
     <div class="row">
@@ -84,12 +75,23 @@
                                 Tag <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" required="required" type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" type="text">
                             </div>
                         </div>
+                        
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
-                                Giá <span class="required">*</span>
+                                Giá nhập <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.OriginalPrice" required="required" type="number">
+
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Giá bán <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Price" required="required" type="number">
@@ -124,22 +126,27 @@
                             </div>
                         </div>
                         <!--<div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12">
-                                Danh mục cha <span class="required">*</span>
-                            </label>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <select name="categoryID" ng-model="product.CategoryID" class="form-control">
-                                    <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
-                                        <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
-                                    </optgroup>
-                                </select>
-                                <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
-                            </div>
-                        </div>-->
+        <label class="col-md-3 col-sm-3 col-xs-12">
+            Danh mục cha <span class="required">*</span>
+        </label>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <select name="categoryID" ng-model="product.CategoryID" class="form-control">
+                <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
+                    <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
+                </optgroup>
+            </select>
+            <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
+        </div>
+    </div>-->
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12" for="name">
-                                Danh mục cha <span class="required">*</span>
+                                
+
+                                  Danh mục cha <span class="required">*</span>
+                                sp
                             </label>
+                            
+
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
                                     <option value="">Danh mục gốc</option>

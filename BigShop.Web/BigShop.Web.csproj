@@ -209,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ApplicationGroupController.cs" />
+    <Compile Include="Api\ApplicationRoleController.cs" />
+    <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
@@ -238,6 +241,9 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extension\EntityExtension.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\ApplicationGroupViewModel.cs" />
+    <Compile Include="Models\ApplicationRoleViewModel.cs" />
+    <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
@@ -260,11 +266,46 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\component\application_groups\applicationGroups.module.js" />
+    <Content Include="App\component\application_groups\applicationGroupAddController.js" />
+    <Content Include="App\component\application_groups\applicationGroupAddView.html" />
+    <Content Include="App\component\application_groups\applicationGroupEditController.js" />
+    <Content Include="App\component\application_groups\applicationGroupEditView.html" />
+    <Content Include="App\component\application_groups\applicationGroupListController.js" />
+    <Content Include="App\component\application_groups\applicationGroupListView.html" />
+    <Content Include="App\component\application_roles\applicationRoleAddController.js" />
+    <Content Include="App\component\application_roles\applicationRoleAddView.html" />
+    <Content Include="App\component\application_roles\applicationRoleEditController.js" />
+    <Content Include="App\component\application_roles\applicationRoleEditView.html" />
+    <Content Include="App\component\application_roles\applicationRoleListController.js" />
+    <Content Include="App\component\application_roles\applicationRoleListView.html" />
+    <Content Include="App\component\application_roles\applicationRoles.module.js" />
+    <Content Include="App\component\application_users\applicationUserAddController.js" />
+    <Content Include="App\component\application_users\applicationUserAddView.html" />
+    <Content Include="App\component\application_users\applicationUserEditController.js" />
+    <Content Include="App\component\application_users\applicationUserEditView.html" />
+    <Content Include="App\component\application_users\applicationUserListController.js" />
+    <Content Include="App\component\application_users\applicationUserListView.html" />
+    <Content Include="App\component\application_users\applicationUsers.module.js" />
     <Content Include="App\component\home\homeController.js" />
     <Content Include="App\component\home\homeView.html" />
     <Content Include="App\component\home\rootController.js" />
     <Content Include="App\component\login\loginController.js" />
     <Content Include="App\component\login\loginView.html" />
+    <Content Include="App\component\postcategories\productAddController.js" />
+    <Content Include="App\component\postcategories\productAddView.html" />
+    <Content Include="App\component\postcategories\productEditController.js" />
+    <Content Include="App\component\postcategories\productEditView.html" />
+    <Content Include="App\component\postcategories\productListController.js" />
+    <Content Include="App\component\postcategories\productListView.html" />
+    <Content Include="App\component\postcategories\products.module.js" />
+    <Content Include="App\component\posts\productAddController.js" />
+    <Content Include="App\component\posts\productAddView.html" />
+    <Content Include="App\component\posts\productEditController.js" />
+    <Content Include="App\component\posts\productEditView.html" />
+    <Content Include="App\component\posts\productListController.js" />
+    <Content Include="App\component\posts\productListView.html" />
+    <Content Include="App\component\posts\products.module.js" />
     <Content Include="App\component\productcategories\productCategories.module.js" />
     <Content Include="App\component\productcategories\productCategoryAddController.js" />
     <Content Include="App\component\productcategories\productCategoryAddView.html" />
@@ -279,6 +320,14 @@
     <Content Include="App\component\products\productEditView.html" />
     <Content Include="App\component\products\productListController.js" />
     <Content Include="App\component\products\productListView.html" />
+    <Content Include="App\component\slides\slideAddController.js" />
+    <Content Include="App\component\slides\slideAddView.html" />
+    <Content Include="App\component\slides\slideEditController.js" />
+    <Content Include="App\component\slides\slideEditView.html" />
+    <Content Include="App\component\slides\slideListController.js" />
+    <Content Include="App\component\slides\slideListView.html" />
+    <Content Include="App\component\slides\slides.module.js" />
+    <Content Include="App\shared\directives\asDateDirective.js" />
     <Content Include="App\shared\directives\pagerDirective.html" />
     <Content Include="App\shared\directives\pagerDirective.js" />
     <Content Include="App\shared\filters\statusFilter.js" />
@@ -542,6 +591,8 @@
     <Content Include="Assets\Admin\libs\bootstrap\_layouts\home.html" />
     <Content Include="Assets\Admin\libs\bootstrap\_layouts\redirect.html" />
     <Content Include="Assets\Admin\libs\bootstrap\_layouts\simple.html" />
+    <Content Include="Assets\Admin\libs\checklist-model\checklist-model.js" />
+    <Content Include="Assets\Admin\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\Admin\libs\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\Admin\libs\ckeditor\ckeditor.js" />
     <Content Include="Assets\Admin\libs\ckeditor\config.js" />
@@ -9171,6 +9222,7 @@
     <Folder Include="App\component\users\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
+    <Folder Include="Assets\Admin\libs\checklist-model\test\" />
     <Folder Include="FileUploads\files\" />
     <Folder Include="FileUploads\_thumbs\Images\" />
     <Folder Include="Scripts\Spa\" />
@@ -10675,6 +10727,11 @@
     <Content Include="Assets\Admin\libs\jquery-validation\package.json" />
     <Content Include="Assets\Admin\libs\jquery-validation\README.md" />
     <Content Include="Assets\Admin\libs\jquery-validation\validation.jquery.json" />
+    <Content Include="Assets\Admin\libs\checklist-model\.bower.json" />
+    <Content Include="Assets\Admin\libs\checklist-model\bower.json" />
+    <Content Include="Assets\Admin\libs\checklist-model\checklist-model.nuspec" />
+    <Content Include="Assets\Admin\libs\checklist-model\package-lock.json" />
+    <Content Include="Assets\Admin\libs\checklist-model\readme.md" />
     <None Include="packages.config" />
     <Content Include="Scripts\Plugins\angular\.bower.json" />
     <Content Include="Scripts\Plugins\angular\angular.min.js.gzip" />

@@ -19,17 +19,17 @@
                 txtMessage: 'required',
             },
             message: {
-                FullName: 'Tên người dùng không được để trống',
+                FullName: "Tên người dùng không được để trống",
                 Email: {
-                    required: 'Email không được để trống',
-                    email: 'Email cần phải đúng định dạng'
+                    required: "Email không được để trống",
+                    email: "Email cần phải đúng định dạng"
                 },
-                Address: 'Địa chỉ không được để trống',
+                Address: "Địa chỉ không được để trống",
                 PhoneNumber: {
-                    required: 'Số điện thoại không được để trống',
-                    number: 'Phải là số'
+                    required: "Số điện thoại không được để trống",
+                    number: "Phải là số"
                 },
-                txtMessage: 'Nội dung không được để trống',
+                txtMessage: "Nội dung không được để trống"
             }
         });
 

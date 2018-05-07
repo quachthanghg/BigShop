@@ -86,8 +86,28 @@
     <Compile Include="Migrations\201805011521159_AddCustomerID.Designer.cs">
       <DependentUpon>201805011521159_AddCustomerID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805030538532_RenameTableIdentity.cs" />
+    <Compile Include="Migrations\201805030538532_RenameTableIdentity.Designer.cs">
+      <DependentUpon>201805030538532_RenameTableIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805031121538_AddGroupUser.cs" />
+    <Compile Include="Migrations\201805031121538_AddGroupUser.Designer.cs">
+      <DependentUpon>201805031121538_AddGroupUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805051148456_addOriginalPriceForProduct.cs" />
+    <Compile Include="Migrations\201805051148456_addOriginalPriceForProduct.Designer.cs">
+      <DependentUpon>201805051148456_addOriginalPriceForProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070954396_ModifyDB.cs" />
+    <Compile Include="Migrations\201805070954396_ModifyDB.Designer.cs">
+      <DependentUpon>201805070954396_ModifyDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
@@ -141,6 +161,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805011521159_AddCustomerID.resx">
       <DependentUpon>201805011521159_AddCustomerID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805030538532_RenameTableIdentity.resx">
+      <DependentUpon>201805030538532_RenameTableIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031121538_AddGroupUser.resx">
+      <DependentUpon>201805031121538_AddGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805051148456_addOriginalPriceForProduct.resx">
+      <DependentUpon>201805051148456_addOriginalPriceForProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070954396_ModifyDB.resx">
+      <DependentUpon>201805070954396_ModifyDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

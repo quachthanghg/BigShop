@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using BigShop.Model.Models;
+﻿using BigShop.Model.Models;
 using BigShop.Web.Models;
-using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
 
 namespace BigShop.Web.Infrastructure.Extension
 {
@@ -68,6 +65,7 @@ namespace BigShop.Web.Infrastructure.Extension
             product.Tags = productViewModel.Tags;
             product.Quantity = productViewModel.Quantity;
             product.Profile = productViewModel.Profile;
+            product.OriginalPrice = productViewModel.OriginalPrice;
 
             product.CreatedDate = productViewModel.CreatedDate;
             product.CreatedBy = productViewModel.CreatedBy;
@@ -77,6 +75,7 @@ namespace BigShop.Web.Infrastructure.Extension
             product.MetaDescription = productViewModel.MetaDescription;
             product.Status = productViewModel.Status;
         }
+
         public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
         {
             feedback.Name = feedbackViewModel.Name;
@@ -85,6 +84,7 @@ namespace BigShop.Web.Infrastructure.Extension
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackViewModel.Status;
         }
+
         public static void UpdateSlide(this Slide slide, SlideViewModel slideViewModel)
         {
             slide.Name = slideViewModel.Name;
@@ -93,7 +93,9 @@ namespace BigShop.Web.Infrastructure.Extension
             slide.DisplayOrder = slideViewModel.DisplayOrder;
             slide.Image = slideViewModel.Image;
             slide.URL = slideViewModel.URL;
+            slide.Status = slideViewModel.Status;
         }
+
         public static void UpdatePost(this Post post, PostViewModel postViewModel)
         {
             post.ID = postViewModel.ID;
@@ -115,6 +117,7 @@ namespace BigShop.Web.Infrastructure.Extension
             post.MetaDescription = postViewModel.MetaDescription;
             post.Status = postViewModel.Status;
         }
+
         public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
         {
             order.CustomerName = orderViewModel.CustomerName;
@@ -130,11 +133,39 @@ namespace BigShop.Web.Infrastructure.Extension
             order.PaymentStatus = orderViewModel.PaymentStatus;
             order.Status = orderViewModel.Status;
         }
+
         public static void UpdateOrderDetail(this OrderDetail orderDetail, OrderDetailViewModel orderDetailViewModel)
         {
             orderDetail.OrderID = orderDetailViewModel.OrderID;
             orderDetail.ProductID = orderDetailViewModel.ProductID;
             orderDetail.Quantity = orderDetailViewModel.Quantity;
+        }
+
+        public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
+        {
+            appGroup.ID = appGroupViewModel.ID;
+            appGroup.Name = appGroupViewModel.Name;
+            appGroup.Description = appGroupViewModel.Description;
+        }
+
+        public static void UpdateApplicationRole(this ApplicationRole appRole, ApplicationRoleViewModel appRoleViewModel, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleViewModel.ID;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleViewModel.Name;
+            appRole.Description = appRoleViewModel.Description;
+        }
+
+        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
+        {
+            appUser.Id = appUserViewModel.Id;
+            appUser.FullName = appUserViewModel.FullName;
+            appUser.Birthday = appUserViewModel.Birthday;
+            appUser.Email = appUserViewModel.Email;
+            appUser.UserName = appUserViewModel.UserName;
+            appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
     }
 }

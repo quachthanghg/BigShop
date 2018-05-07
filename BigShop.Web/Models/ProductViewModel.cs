@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace BigShop.Web.Models
@@ -20,11 +21,14 @@ namespace BigShop.Web.Models
         [DataMember]
         public string MoreImage { set; get; }
         [DataMember]
+        public decimal OriginalPrice { get; set; }
+        [DataMember]
         public decimal Price { set; get; }
         [DataMember]
         public decimal? Promotion { set; get; }
         [DataMember]
         public int? Warranty { set; get; }
+        [DataMember]
         public string Profile { get; set; }
         [DataMember]
         public string Description { set; get; }
@@ -48,6 +52,7 @@ namespace BigShop.Web.Models
         public string MetaKeyword { set; get; }
         [DataMember]
         public string MetaDescription { set; get; }
+        [DataMember]
         public bool Status { set; get; }
         [DataMember]
         public string Tags { get; set; }
@@ -55,5 +60,7 @@ namespace BigShop.Web.Models
         public int? Quantity { get; set; }
         [DataMember]
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
+        [DataMember]
+        public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }
     }
 }

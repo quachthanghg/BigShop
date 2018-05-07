@@ -25,7 +25,7 @@
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
                 $state.go('products')
             }, function (error) {
-                notificationService.displayError("Thêm mới không được thêm mới");
+                notificationService.displayError("Thêm mới không thành công");
             });
         }
 

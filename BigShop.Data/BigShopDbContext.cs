@@ -33,6 +33,11 @@ namespace BigShop.Data
         public DbSet<ContactDetail> ContactDetails { set; get; }
         public DbSet<Feedback> Feedbacks { set; get; }
 
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+
         public static BigShopDbContext Create()
         {
             return new BigShopDbContext();
@@ -41,8 +46,10 @@ namespace BigShop.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(p => new { p.UserId, p.RoleId });
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(p => p.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(p => new { p.UserId, p.RoleId }).ToTable("ApplicationUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(p => p.UserId).ToTable("ApplicationUserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().HasKey(p => p.UserId).ToTable("ApplicationUserClaims");
+            modelBuilder.Entity<IdentityRole>().ToTable("ApplicationRoles");
         }
     }
 }

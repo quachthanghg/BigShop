@@ -23,6 +23,11 @@ namespace BigShop.Web.Mappings
                 config.CreateMap<ContactDetailViewModel, ContactDetail>();
                 config.CreateMap<OrderViewModel, Order>();
                 config.CreateMap<OrderDetailViewModel, OrderDetail>();
+
+                config.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+
+                config.CreateMap<ApplicationGroup, ApplicationGroupViewModel> ();
+                config.CreateMap<ApplicationRole, ApplicationRoleViewModel> ();
             });
         }
     }

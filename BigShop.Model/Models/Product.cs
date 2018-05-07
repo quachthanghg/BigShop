@@ -30,17 +30,17 @@ namespace BigShop.Model.Models
         [Column(TypeName = "xml")]
         public string MoreImage { set; get; }
 
+        public decimal OriginalPrice { get; set; }
+
         public decimal Price { set; get; }
 
         public decimal? Promotion { set; get; }
 
         public int? Warranty { set; get; }
-        [MaxLength(5000)]
         public string Profile { get; set; }
-
-        [MaxLength(5000)]
+        
         public string Description { set; get; }
-        [MaxLength(5000)]
+     
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }
@@ -54,6 +54,7 @@ namespace BigShop.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
+        [ForeignKey("Tags")]
 
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }

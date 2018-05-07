@@ -43,7 +43,7 @@ namespace BigShop.Web.Infrastructure.Core
                 responseMessage = func.Invoke();
             }
             catch (DbEntityValidationException ex)
-            {
+                {
                 foreach (var eve in ex.EntityValidationErrors)
                 {
                     Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");

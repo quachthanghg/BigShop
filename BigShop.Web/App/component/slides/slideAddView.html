@@ -1,0 +1,122 @@
+﻿<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Danh mục Banner</h3>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Admin <small>Thêm Banner quảng cáo</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form class="form-horizontal form-label-left" novalidate name="frmSlide" role="form" ng-submit="AddSlide()">
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Tên slide <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="5" autofocus name="name" ng-model="slide.Name" required type="text">
+                                <span ng-show="frmSlide.name.$error.minlength" class="">Tên danh mục phải lớn hơn 5 ký tự</span>
+                                <span ng-show="frmSlide.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Nội dung <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="slide.Content" required="required">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Mô tả ngắn <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="form-control" name="description" ckeditor="ckeditorOptions" ng-model="slide.Description" required="required">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                URL <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="slide.URL" required="required" type="url">
+                            </div>
+                        </div>
+                       
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Hình ảnh
+                            </label>
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <input id="name" class="form-control col-md-5 col-xs-12" name="image" ng-model="slide.Image" type="text">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Thứ tự 
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" name="metaDescription" ng-model="slide.DisplayOrder" type="number">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Active
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="checkbox" name="status" ng-model="slide.Status" ng-checked="slide.Status">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-md-offset-3">
+                                <button ui-sref="slides" class="btn btn-default">Cancel</button>
+                                <button id="send" type="submit" class="btn btn-success" ng-disabled="frmSlide.$invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

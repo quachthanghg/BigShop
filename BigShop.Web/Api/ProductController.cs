@@ -146,7 +146,8 @@ namespace BigShop.Web.Api
                     var product = _productService.GetSigleById(productViewModel.ID);
                     product.UpdateProduct(productViewModel);
                     product.UpdatedDate = DateTime.Now;
-                    product.CreatedBy = User.Identity.Name;
+                    //product.CreatedBy = User.Identity.Name;
+                    product.UpdatedBy = User.Identity.Name;
                     _productService.Update(product);
                     _productService.SaveChanges();
                     var responseData = Mapper.Map<Product, ProductViewModel>(product);

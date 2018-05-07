@@ -47,7 +47,8 @@ namespace BigShop.Service.Services
 
         public IEnumerable<Slide> GetAll()
         {
-            return _slideRepository.GetMulti(x => x.Status == true);
+            //return _slideRepository.GetMulti(x => x.Status == true)
+            return _slideRepository.GetAll();
         }
 
         public Slide GetSigleById(int id)

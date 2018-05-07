@@ -255,27 +255,27 @@ namespace BigShop.Service.Services
         public void Update(Product product)
         {
             _productRepository.Update(product);
-            if (!string.IsNullOrEmpty(product.Tags))
-            {
-                string[] tags = product.Tags.Split(',');
-                for (var i = 0; i < tags.Length; i++)
-                {
-                    var tagId = StringHelper.ToUnsignString(tags[i]);
-                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
-                    {
-                        Tag tag = new Tag();
-                        tag.ID = tagId;
-                        tag.Name = tags[i];
-                        tag.Type = CommonConstants.productTag;
-                        _tagRepository.Add(tag);
-                    }
-                    _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
-                    ProductTag productTag = new ProductTag();
-                    productTag.ProductID = product.ID;
-                    productTag.TagID = tagId;
-                    _productTagRepository.Add(productTag);
-                }
-            }
+            //if (!string.IsNullOrEmpty(product.Tags))
+            //{
+            //    string[] tags = product.Tags.Split(',');
+            //    for (var i = 0; i < tags.Length; i++)
+            //    {
+            //        var tagId = StringHelper.ToUnsignString(tags[i]);
+            //        if (_tagRepository.Count(x => x.ID == tagId) == 0)
+            //        {
+            //            Tag tag = new Tag();
+            //            tag.ID = tagId;
+            //            tag.Name = tags[i];
+            //            tag.Type = CommonConstants.productTag;
+            //            _tagRepository.Add(tag);
+            //        }
+            //        _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
+            //        ProductTag productTag = new ProductTag();
+            //        productTag.ProductID = product.ID;
+            //        productTag.TagID = tagId;
+            //        _productTagRepository.Add(productTag);
+            //    }
+            //}
             _unitOfWork.Commit();
         }
 
