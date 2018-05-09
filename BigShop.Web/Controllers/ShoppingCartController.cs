@@ -81,27 +81,39 @@ namespace BigShop.Web.Controllers
         public JsonResult Add(int productID)
         {
             var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+            var product = _productService.GetSigleById(productID);
             if (cartSession == null)
             {
                 cartSession = new List<ShoppingCartViewModel>();
             }
-            var quantityProduct = _productService.GetSigleById(productID);
-            if (quantityProduct.Quantity < 0)
+            if (product.Quantity == 0)
             {
                 return Json(new
                 {
                     status = false,
+                    message = "Hết hàng !!!"
                 });
             }
             else
             {
+                bool isEnough = true;
                 if (cartSession.Any(x => x.ProductID == productID))
                 {
                     foreach (var item in cartSession)
                     {
                         if (item.ProductID == productID)
                         {
-                            item.Quantity += 1;
+                            isEnough = _productService.SellProduct(item.ProductID, item.Quantity);
+                            if (isEnough == true)
+                            {
+                                item.Quantity += 1;
+                                continue;
+                            }
+                            else
+                            {
+                                break;
+                            }
+
                         }
                     }
                 }
@@ -109,7 +121,6 @@ namespace BigShop.Web.Controllers
                 {
                     ShoppingCartViewModel shoppingCartViewModel = new ShoppingCartViewModel();
                     shoppingCartViewModel.ProductID = productID;
-                    var product = _productService.GetSigleById(productID);
                     shoppingCartViewModel.Product = Mapper.Map<Product, ProductViewModel>(product);
                     shoppingCartViewModel.Quantity = 1;
                     cartSession.Add(shoppingCartViewModel);
@@ -189,18 +200,43 @@ namespace BigShop.Web.Controllers
 
             var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
             List<OrderDetail> lstOrderDetail = new List<OrderDetail>();
+            bool isEnough = true;
             foreach (var item in cartSession)
             {
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.ProductID = item.ProductID;
                 orderDetail.Quantity = item.Quantity;
+                orderDetail.Price = item.Product.Price;
                 lstOrderDetail.Add(orderDetail);
+                isEnough = _productService.SellProduct(item.ProductID, item.Quantity);
+                if (isEnough == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
             }
-            _orderService.Create(orderNew, lstOrderDetail);
-            return Json(new
+            if (isEnough)
             {
-                status = true
-            });
+                _orderService.Create(orderNew, lstOrderDetail);
+                _productService.SaveChanges();
+
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    status = false,
+                    message = "Số lượng hàng trong kho không đủ"
+                });
+            }
+
         }
     }
 }

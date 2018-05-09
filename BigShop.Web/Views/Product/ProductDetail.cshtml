@@ -96,7 +96,7 @@
                             <div id="home" class="tab-pane fade in active">
                                 <h3>CẤU HÌNH</h3>
                                 <div class="profileProduct">
-
+                                    @Html.Raw(Model.Profile)
                                 </div>
                             </div>
                             <div id="menu1" class="tab-pane fade">
@@ -118,9 +118,10 @@
                         <div class="product-one">
                             @foreach (var item in ViewBag.RelatedProducts)
                             {
+                                var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
                                 <div class="col-md-4 product-left p-left">
                                     <div class="product-main simpleCart_shelfItem">
-                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
+                                        <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
                                         <div class="product-bottom">
                                             <h3 class="text-center">@item.Name</h3>
                                             <h4 class="text-center">

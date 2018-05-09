@@ -37,8 +37,12 @@
             e.preventDefault();
             var productID = parseInt($(this).data('id'));
             cart.addItem(productID);
+            var quatity = $('.totalQuantity').val();
+            quatity++;
+            $('.totalQuantity').val(quatity);
+            $('.totalQuantity').text(quatity);
             var cart1 = $('.simpleCart_empty');
-            var imgtodrag = $(this).parent('.simpleCart_shelfItem').find("img").eq(0);
+            var imgtodrag = $(this).parent('.simpleCart_shelfItem').find(".mask").find("img").eq(0);
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                     .offset({
@@ -238,7 +242,7 @@
             dataType: "Json",
             success: function (res) {
                 if (res.status) {
-                    if (callback != undefined) {
+                    if (response.status) {
                         cart.loadData();
                     }
                 }

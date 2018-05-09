@@ -68,15 +68,7 @@
                     </div>
                 }
 
-                <div class="cart box_1" style="margin-left: 20px;">
-                    <a href="/gio-hang" class="simpleCart_empty">
-                        <div class="total">
-                            <span class="" id="totalProduct" value="0"></span>
-                        </div>
-                        <img src="~/Assets/Client/images/cart-1.png" alt="" />
-                    <p>Giỏ hàng</p></a>
-                    <div class="clearfix"> </div>
-                </div>
+                @Html.Partial("~/Views/ShoppingCart/Cart.cshtml");
             </div>
             <div class="clearfix"></div>
         </div>

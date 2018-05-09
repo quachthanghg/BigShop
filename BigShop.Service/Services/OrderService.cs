@@ -39,7 +39,6 @@ namespace BigShop.Service.Services
                     item.OrderID = order.ID;
                     _orderDetailRepository.Add(item);
                 }
-                _unitOfWork.Commit();
                 return true;
 
             }

@@ -67,6 +67,7 @@
     <Compile Include="Services\ProductCategoryService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\SlideService.cs" />
+    <Compile Include="Services\StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

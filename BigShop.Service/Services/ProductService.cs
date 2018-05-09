@@ -46,6 +46,7 @@ namespace BigShop.Service.Services
         Tag GetTag(string tagID);
 
         IEnumerable<Product> GetListProductByTag(string tagID, int page, int pageSize, out int totalRow);
+        bool SellProduct(int id, int quantity);
         void SaveChanges();
     }
 
@@ -325,6 +326,21 @@ namespace BigShop.Service.Services
             decimal maxPrice = product.Price + 2000000;
             decimal minPrice = product.Price - 2000000;
             return _productRepository.GetMulti(x => x.ID != id && (x.CategoryID == product.CategoryID || x.CategoryID != product.CategoryID) && x.Price > minPrice && x.Price < maxPrice).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public bool SellProduct(int id, int quantity)
+        {
+            var product = _productRepository.GetSignleById(id);
+            if (product.Quantity < quantity)
+            {
+                return false;
+            }
+            else
+            {
+                product.Quantity -= quantity;
+                return true;
+            }
+
         }
     }
 }

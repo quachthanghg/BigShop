@@ -7,7 +7,8 @@
         public int ProductID { set; get; }
 
         public int Quantity { set; get; }
-        
+        public decimal Price { get; set; }
+
         public virtual OrderViewModel Order { set; get; }
         
         public virtual ProductViewModel Product { set; get; }

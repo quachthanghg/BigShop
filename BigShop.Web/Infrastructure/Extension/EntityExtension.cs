@@ -139,6 +139,7 @@ namespace BigShop.Web.Infrastructure.Extension
             orderDetail.OrderID = orderDetailViewModel.OrderID;
             orderDetail.ProductID = orderDetailViewModel.ProductID;
             orderDetail.Quantity = orderDetailViewModel.Quantity;
+            orderDetail.Price = orderDetailViewModel.Price;
         }
 
         public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
