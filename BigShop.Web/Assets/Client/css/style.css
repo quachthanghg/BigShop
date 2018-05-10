@@ -106,6 +106,14 @@ ul.support li label {
     display: none;
     background-color: rgba(0,0,0,.5);
 }
+.profileProduct ul li {
+    display: table;
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+
 .fade .productContent img{
     width: 800px;
 }
