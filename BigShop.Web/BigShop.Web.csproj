@@ -300,13 +300,13 @@
     <Content Include="App\component\postcategories\productListController.js" />
     <Content Include="App\component\postcategories\productListView.html" />
     <Content Include="App\component\postcategories\products.module.js" />
-    <Content Include="App\component\posts\productAddController.js" />
-    <Content Include="App\component\posts\productAddView.html" />
-    <Content Include="App\component\posts\productEditController.js" />
-    <Content Include="App\component\posts\productEditView.html" />
-    <Content Include="App\component\posts\productListController.js" />
-    <Content Include="App\component\posts\productListView.html" />
-    <Content Include="App\component\posts\products.module.js" />
+    <Content Include="App\component\posts\postAddController.js" />
+    <Content Include="App\component\posts\postAddView.html" />
+    <Content Include="App\component\posts\postEditController.js" />
+    <Content Include="App\component\posts\postEditView.html" />
+    <Content Include="App\component\posts\postListController.js" />
+    <Content Include="App\component\posts\postListView.html" />
+    <Content Include="App\component\posts\posts.module.js" />
     <Content Include="App\component\productcategories\productCategories.module.js" />
     <Content Include="App\component\productcategories\productCategoryAddController.js" />
     <Content Include="App\component\productcategories\productCategoryAddView.html" />
@@ -11003,6 +11003,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Cart.cshtml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">

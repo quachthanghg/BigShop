@@ -1,15 +1,12 @@
 ﻿(function (app) {
-    app.controller('productAddController', productAddController)
-    productAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
-    function productAddController($scope, apiService, notificationService, $state, commonService) {
+    app.controller('postAddController', postAddController)
+    postAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
+    function postAddController($scope, apiService, notificationService, $state, commonService) {
         // Load combobox
-        $scope.product = {
-            CreatedDate: new Date(),
-            Status: true
-        }
+        $scope.post = {}
         $scope.parentCategories = [];
         function loadParentCategories() {
-            apiService.get('/Api/Product/GetAllParents', null, function (result) {
+            apiService.get('/Api/Post/GetAllParents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log("Load fail !");
@@ -18,12 +15,11 @@
         loadParentCategories();
 
         // Create data
-        $scope.AddProduct = AddProduct;
-        function AddProduct() {
-            $scope.product.MoreImage = JSON.stringify($scope.lstImages);
-            apiService.post('/Api/Product/Create', $scope.product, function (result) {
+        $scope.AddPost = AddPost;
+        function AddPost() {
+            apiService.post('/Api/Post/Create', $scope.post, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
-                $state.go('products')
+                $state.go('Posts')
             }, function (error) {
                 notificationService.displayError("Thêm mới không được thêm mới");
             });
@@ -32,7 +28,7 @@
         // GetSEOTitle
         $scope.getSeoTitle = getSeoTitle;
         function getSeoTitle() {
-            $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
+            $scope.post.Alias = commonService.getSeoTitle($scope.post.Name);
         }
 
         $scope.ckeditorOptions = {
@@ -44,7 +40,7 @@
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
-                    $scope.product.Image = fileUrl;
+                    $scope.post.Image = fileUrl;
                 });
             }
             finder.popup();
@@ -61,4 +57,4 @@
             finder.popup();
         }
     }
-})(angular.module('bigshop.products'));
+})(angular.module('bigshop.Posts'));

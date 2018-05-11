@@ -10,22 +10,21 @@
         function UpdateApplicationGroup() {
             apiService.put('/Api/ApplicationGroup/Update', $scope.applicationGroup, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được cập nhật");
-                $state.go('products')
+                $state.go('applicationGroups')
             }, function (error) {
                 notificationService.displayError("Cập nhật không được thành công !");
             });
         }
 
         // Load detail
-        $scope.DetailApplicationGroup = DetailApplicationGroup;
-        function DetailApplicationGroup() {
+        $scope.GetById = GetById;
+        function GetById() {
             apiService.get('/Api/ApplicationGroup/GetById/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
-                $scope.lstImages = JSON.parse($scope.product.MoreImage);
             }, function (error) {
                 notificationService.displayError("Không lấy được dữ liệu !");
             });
         }
-        DetailApplicationGroup();
+        GetById();
     }
 })(angular.module('bigshop.applicationGroups'));
