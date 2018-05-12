@@ -42,7 +42,7 @@
         </div>
         <div class="x_content">
             <button id="send" ui-sref="add_product_category" class="btn btn-success">Create</button>
-            <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled >Delete</button>
+            <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled>Delete</button>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -59,7 +59,7 @@
                 <tbody>
                     <tr ng-repeat="item in lstProductCategory">
                         <td class="a-center ">
-                            <input type="checkbox" ng-model="item.checked" name="all" class="flat"/>
+                            <input type="checkbox" ng-model="item.checked" name="all" class="flat" />
                         </td>
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.Name}}</td>
@@ -72,6 +72,15 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div ng-if="loading">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa-4x fa fa-spinner">Loading . . .</i>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+
             <div class="box-footer">
                 <!--<span style="color: red">Trang: {{page+1}} / {{total}}</span>-->
                 <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="getListProductCategory(page)"></pager-directive>

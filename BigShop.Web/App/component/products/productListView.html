@@ -74,6 +74,13 @@
                     </tr>
                 </tbody>
             </table>
+            <div ng-if="loading">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa-4x fa fa-spinner">Loading . . .</i>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
             <div class="box-footer">
                 <!--<span style="color: red">Trang: {{page+1}} / {{total}}</span>-->
                 <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="getListProduct(page)"></pager-directive>

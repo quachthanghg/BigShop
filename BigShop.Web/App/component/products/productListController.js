@@ -8,6 +8,7 @@
         $scope.lstProduct = [];
         $scope.page = 0;
         $scope.pageCount = 0;
+        
         $scope.getListProduct = getListProduct;
         function getListProduct(page) {
             page = page || 0;
@@ -17,12 +18,14 @@
                     pageSize: 10
                 }
             };
+            $scope.loading = true;
             apiService.get('/Api/Product/GetAll', config, function (result) {
                 $scope.lstProduct = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pageCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
                 $scope.TotalPages = Math.ceil($scope.totalCount / $scope.pageCount);
+                $scope.loading = false;
             }, function () {
                 console.log("Error !");
             });
