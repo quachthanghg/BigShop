@@ -45,6 +45,9 @@ namespace BigShop.Web.Controllers
             List<string> lstImages = new JavaScriptSerializer().Deserialize<List<string>>(responseData.MoreImage);
             ViewBag.MoreImages = lstImages;
 
+            // SEO
+            ViewBag.Category = Mapper.Map<Product, ProductViewModel>(model);
+
             // tag
             var tag = _productService.GetListTagByProductID(id);
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tag);

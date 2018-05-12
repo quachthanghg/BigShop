@@ -14,6 +14,6 @@ namespace BigShop.Web.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public List<ApplicationGroupViewModel> ApplicationGroups { set; get; }
+        public IEnumerable<ApplicationGroupViewModel> ApplicationGroups { set; get; }
     }
 }

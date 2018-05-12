@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Luxury Watches A Ecommerce Category Flat Bootstrap Resposive Website Template | Home :: w3layouts</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Assets/Client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
     <script src="~/Assets/Client/js/jquery-1.11.0.min.js"></script>
@@ -19,8 +19,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="~/Assets/Admin/libs/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="@ViewBag.MetaKeyword" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--start-menu-->
     <script src="~/Assets/Client/js/simpleCart.min.js"></script>
@@ -40,19 +40,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
         @RenderBody()
     </div>
-    @*<script src="~/Assets/Admin/libs/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/Assets/Admin/libs/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/Assets/Client/js/memenu.js"></script>
-    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
-    <!--dropdown-->
+        <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+
     <script src="~/Assets/Client/js/jquery.easydropdown.js"></script>
-    <script src="~/Assets/Client/js/bootstrap.min.js"></script>
-    <script src="~/Assets/Admin/libs/jquery-ui/jquery-ui.min.js"></script>
-    <script src="~/Assets/Admin/libs/mustache/mustache.min.js"></script>
-    <script src="~/Assets/Admin/libs/numeral/numeral.js"></script>
-    <script src="~/Assets/Admin/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/Assets/Client/js/bootstrap.min.js"></script>
+        <script src="~/Assets/Admin/libs/jquery-ui/jquery-ui.min.js"></script>
+        <script src="~/Assets/Admin/libs/mustache/mustache.min.js"></script>
+        <script src="~/Assets/Admin/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/Assets/Client/js/common.js"></script>
+        <script src="~/Assets/Client/js/shoppingCart.js"></script>
+    @Scripts.Render("~/js/core")
+
+
     @{Html.RenderAction("Footer", "Home");}
     @RenderSection("FooterJS", required: false)
-    <script src="~/Assets/Client/js/common.js"></script>
-    <script src="~/Assets/Client/js/shoppingCart.js"></script>
+
 </body>
 </html>

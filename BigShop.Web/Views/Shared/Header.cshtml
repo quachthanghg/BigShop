@@ -7,7 +7,7 @@
                     <div class="box" style="width:140px;">
                         <ul class="support">
                             <li>
-                                <img src="~/Assets/Client/images/iconSP.jpg" style="width: 30px; height: 20px"/>
+                                <img src="~/Assets/Client/images/iconSP.jpg" style="width: 30px; height: 20px" />
                                 <a href="#" style="color: white">Hỗ trợ<span class="live"> 24/7</span></a>
                             </li>
                         </ul>
@@ -15,7 +15,7 @@
                     <div class="box1">
                         <ul class="support" style="width: 250px;">
                             <li>
-                                <img src="~/Assets/Client/images/iconXT.png" style="width: 30px; height: 30px"/>
+                                <img src="~/Assets/Client/images/iconXT.png" style="width: 30px; height: 30px" />
                                 <a href="#" style="color: white">Free shipping với tất cả đơn hàng <span class="live"></span></a>
                             </li>
                         </ul>
@@ -40,7 +40,7 @@
                         <div class="cart box_1">
                             <div class="drop">
                                 <div class="box" style="width: 80px;">
-                                    <button  style="color: white"  type="submit">Thoát</button>
+                                    <button style="color: white" type="submit">Thoát</button>
                                 </div>
                             </div>
                             <div class="clearfix"> </div>
@@ -53,7 +53,7 @@
                     <div class="cart box_1">
                         <div class="drop">
                             <div class="box" style="width: 80px;">
-                                <a  style="color: white"  href="/dang-nhap" id="btnLogin">Đăng nhập</a>
+                                <a style="color: white" href="/dang-nhap" id="btnLogin">Đăng nhập</a>
                             </div>
                         </div>
                         <div class="clearfix"> </div>
@@ -61,14 +61,23 @@
                     <div class="cart box_1" style="margin-left: 30px;">
                         <div class="drop">
                             <div class="box" style="width: 60px;">
-                                <a style="color: white"  href="/dang-ky">Đăng ký |</a>
+                                <a style="color: white" href="/dang-ky">Đăng ký |</a>
                             </div>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
                 }
+                <div class="cart box_1" style="margin-left: 20px;">
+                    <a href="/gio-hang" class="simpleCart_empty">
+                        <div class="total">
+                            <span class="totalQuantity" value="0">0</span>
+                        </div>
+                        <img src="~/Assets/Client/images/cart-1.png" alt="" />
+                        <p>Giỏ hàng</p>
+                    </a>
+                    <div class="clearfix"> </div>
+                </div>
 
-                @Html.Partial("~/Views/ShoppingCart/Cart.cshtml");
             </div>
             <div class="clearfix"></div>
         </div>
@@ -76,45 +85,45 @@
 </div>
 
 <div class="container">
-        <center>
-            <div class="popup_login">
-                <div class="login_wrapper">
-                    <button class="btn btn-danger pull-right" id="btnClose_form" type="button">X</button>
-                    <section class="login_content">
-                        <div class="form-horizontal">
-                            @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "notify" }))
-                            {
+    <center>
+        <div class="popup_login">
+            <div class="login_wrapper">
+                <button class="btn btn-danger pull-right" id="btnClose_form" type="button">X</button>
+                <section class="login_content">
+                    <div class="form-horizontal">
+                        @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "notify" }))
+                        {
 
-                                <h2>Login form</h2>
-                                <div class="form-group">
-                                    <input type="text" name="UserName" class="form-control" placeholder="Username" required="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="Password" class="form-control" placeholder="password" required="">
-                                </div>
-                                <div class="notify">
-                                    <p id="notify" style="color:red"></p>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary">Login</button>
-                                </div>
-                                <div class="form-group">
-                                    <a href="#">Forgot password</a>
-                                </div>
-                                <div class="form-group">
-                                    <a href="#">Create Account</a>
-                                </div>
-                            }
+                            <h2>Login form</h2>
+                            <div class="form-group">
+                                <input type="text" name="UserName" class="form-control" placeholder="Username" required="">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="Password" class="form-control" placeholder="password" required="">
+                            </div>
+                            <div class="notify">
+                                <p id="notify" style="color:red"></p>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Login</button>
+                            </div>
+                            <div class="form-group">
+                                <a href="#">Forgot password</a>
+                            </div>
+                            <div class="form-group">
+                                <a href="#">Create Account</a>
+                            </div>
+                        }
 
-                        </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
+        </div>
 
-        </center>
-    </div>
+    </center>
+</div>
 
-    @*<script>
+@*<script>
         $("#btnLogin").click(function () {
             $(".popup_login").show();
         });

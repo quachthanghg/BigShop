@@ -26,6 +26,11 @@ namespace BigShop.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/js/core").Include(
+                        "~/Assets/Admin/libs/numeral/numeral.js"
+                        ));
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿@using BigShop.Web.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng nhập BigShop";
+    ViewBag.MetaKeyword = "Đăng nhập";
+    ViewBag.MetaDescription = "Đăng nhập với tài khoản BigShop";
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 <div class="breadcrumbs">
@@ -36,6 +38,7 @@
                         </div>
                     </div>
                 }
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
 
             </div>
             <div class="col-md-6 account-right account-left">

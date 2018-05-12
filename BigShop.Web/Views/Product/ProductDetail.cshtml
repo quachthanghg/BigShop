@@ -2,7 +2,10 @@
 @model ProductViewModel
 
 @{
-    ViewBag.Title = "ProductDetail";
+    var category = ViewBag.Category as ProductViewModel;
+    ViewBag.Title = "BigShop.com - " + category.Name;
+    ViewBag.MetaKeyword = category.MetaKeyword;
+    ViewBag.MetaDescription = category.MetaDescription;
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 

@@ -66,13 +66,9 @@ namespace BigShop.Web.Api
                 var model = _applicationGroupService.GetAll().ToList();
                 totalRow = model.Count();
                 var responseData = Mapper.Map<ICollection<ApplicationGroup>, ICollection<ApplicationGroupViewModel>>(model);
-                var pagination = new PaginationSet<ApplicationGroupViewModel>()
-                {
-                    Items = responseData,
-                    TotalCount = totalRow
-                };
+                
 
-                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, pagination);
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
         }

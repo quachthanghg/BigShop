@@ -25,7 +25,6 @@ namespace BigShop.Data.Repositories
                         select g;
 
             return query;
-            throw new System.NotImplementedException();
         }
     }
 }

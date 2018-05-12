@@ -3,13 +3,10 @@
     applicationUserEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams','commonService']
     function applicationUserEditController($scope, apiService, notificationService, $state, $stateParams, commonService) {
         // Load combobox
-        $scope.product = {
-            CreatedDate: new Date(),
-            Status: true
-        }
+        $scope.applicationUser = {}
         $scope.parentCategories = [];
         function loadParentCategories() {
-            apiService.get('/Api/Product/GetAllParents', null, function (result) {
+            apiService.get('/Api/ApplicationUser/GetAllParents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log("Load fail !");
@@ -18,9 +15,9 @@
         loadParentCategories();
 
         // Update data
-        $scope.UpdateProduct = UpdateProduct;
-        function UpdateProduct() {
-            apiService.put('/Api/Product/Update', $scope.product, function (result) {
+        $scope.UpdateApplicationUser = UpdateApplicationUser;
+        function UpdateApplicationUser() {
+            apiService.put('/Api/ApplicationUser/Update', $scope.applicationUser, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được cập nhật");
                 $state.go('products')
             }, function (error) {
@@ -29,43 +26,15 @@
         }
 
         // Load detail
-        $scope.DetailProduct = DetailProduct;
-        function DetailProduct() {
-            apiService.get('/Api/Product/GetById/' + $stateParams.id, null, function (result) {
-                $scope.product = result.data;
-                $scope.lstImages = JSON.parse($scope.product.MoreImage);
+        $scope.GetByID = GetByID;
+        function GetByID() {
+            apiService.get('/Api/ApplicationUser/GetById/' + $stateParams.id, null, function (result) {
+                $scope.applicationUser = result.data;
             }, function (error) {
                 notificationService.displayError("Không lấy được dữ liệu !");
             });
         }
-        DetailProduct();
+        GetByID();
         
-        // GetSEOTitle
-        $scope.getSeoTitle = getSeoTitle;
-        function getSeoTitle() {
-            $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
-        }
-
-        $scope.ChooseImage = function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.$apply(function () {
-                    $scope.product.Image = fileUrl;
-                });
-                $scope.product.Image = fileUrl;
-            }
-            finder.popup();
-        }
-
-        $scope.lstImages = [];
-        $scope.ChooseMoreImages = function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.$apply(function () {
-                    $scope.lstImages.push(fileUrl);
-                });
-            }
-            finder.popup();
-        }
     }
 })(angular.module('bigshop.applicationUsers'));

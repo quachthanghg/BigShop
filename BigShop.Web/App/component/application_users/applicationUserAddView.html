@@ -33,15 +33,15 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form class="form-horizontal form-label-left" novalidate name="frmProduct" role="form" ng-submit="AddProduct()">
+                    <form class="form-horizontal form-label-left" novalidate name="frmApplicationUser" role="form" ng-submit="AddApplicationUser()">
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Họ tên <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="3" autofocus name="name" ng-model="product.Name" required type="text">
-                                <span ng-show="frmProduct.name.$error.minlength" class="">Tên danh mục phải lớn hơn 3 ký tự</span>
-                                <span ng-show="frmProduct.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
+                                <input class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="3" autofocus name="name" ng-model="applicationUser.Name" required type="text">
+                                <span ng-show="frmApplicationUser.name.$error.minlength" class="">Tên danh mục phải lớn hơn 3 ký tự</span>
+                                <span ng-show="frmApplicationUser.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -49,7 +49,7 @@
                                 Tài khoản <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="alias" ng-model="product.UserName" required="required" type="text">
+                                <input class="form-control col-md-7 col-xs-12" name="alias" ng-model="applicationUser.UserName" required="required" type="text">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -57,7 +57,7 @@
                                 Mật khẩu <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Password" required="required" type="password">
+                                <input  class="form-control col-md-7 col-xs-12" name="tags" ng-model="applicationUser.Password" required="required" type="password">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -65,7 +65,7 @@
                                 Email <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="description" ng-model="product.Email" required="required" type="email">
+                                <input class="form-control col-md-7 col-xs-12" name="description" ng-model="applicationUser.Email" required="required" type="email">
 
                             </div>
                         </div>
@@ -74,26 +74,27 @@
                                 Số điện thoại <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" name="metaKeyword" ng-model="product.PhoneNumber" type="tel">
+                                <input class="form-control col-md-7 col-xs-12" name="metaKeyword" ng-model="applicationUser.PhoneNumber" type="tel">
                             </div>
                         </div>
 
-                        <!--<div class="item form-group">
+                        <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Nhóm quyền <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <label ng-repeat="item in groups">
-                                    <input type="checkbox" checklist-model="product.ApplicationGroups" checklist-value="item"> {{item.Name}}
+                                <label ng-repeat="item in applicationGroups">
+                                    <input type="checkbox" checklist-model="applicationUser.Groups" checklist-value="item"> {{item.Name}}
                                 </label>
+                                <span style="margin-left: 20px;"></span>
                             </div>
-                        </div>-->
+                        </div>
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 col-md-offset-3">
                                 <button ui-sref="applicationUsers" class="btn btn-default">Cancel</button>
-                                <button id="send" type="submit" class="btn btn-success" ng-disabled="frmProduct.$invalid">Save</button>
+                                <button id="send" type="submit" class="btn btn-success" ng-disabled="frmApplicationUser.$invalid">Save</button>
                             </div>
                         </div>
                     </form>
