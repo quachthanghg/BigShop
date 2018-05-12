@@ -9209,6 +9209,9 @@
     <Content Include="Assets\Client\images\cart-3.png" />
     <Content Include="Assets\Client\images\close.png" />
     <Content Include="Assets\Client\images\crossword.png" />
+    <Content Include="Assets\Client\images\free-shipping.png" />
+    <Content Include="Assets\Client\images\free-shipping1.png" />
+    <Content Include="Assets\Client\images\free-shipping2.png" />
     <Content Include="Assets\Client\images\iconSP.jpg" />
     <Content Include="Assets\Client\images\iconXT.png" />
     <Content Include="Assets\Client\images\p-1.png" />

@@ -9,19 +9,30 @@
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 <!--banner-starts-->
-<div class="bnr" id="home" style="height:548px">
-    <div id="top" class="callbacks_container">
-        <ul class="rslides" id="slider4" style="height:548px">
-            @foreach (var item in Model.Slides)
-            {
-                <li>
-                    <img src="@item.Image" alt="Slide" height="548" />
-                </li>
-            }
-        </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="bnr" id="home" style="height:348px">
+                <div id="top" class="callbacks_container">
+                    <ul class="rslides" id="slider4" style="height:348px">
+                        @foreach (var item in Model.Slides)
+                        {
+                            <li>
+                                <img src="@item.Image" alt="Slide" height="548" />
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3>BẢN TIN CÔNG NGHỆ</h3>
+            
+        </div>
     </div>
-    <div class="clearfix"> </div>
 </div>
+
 <!--banner-ends-->
 <!--Slider-Starts-Here-->
 @section FooterJS{
