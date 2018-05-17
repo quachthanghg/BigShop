@@ -51,21 +51,21 @@ namespace BigShop.Web.Api
             });
         }
 
-        //[Route("GetAll")]
-        //[HttpGet]
-        //public HttpResponseMessage GetAll(HttpRequestMessage request)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        var model = _applicationRoleService.GetAll();
-        //        IEnumerable<ApplicationRoleViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationRole>, IEnumerable<ApplicationRoleViewModel>>(model);
+        [Route("GetListAll")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var model = _applicationRoleService.GetAll();
+                IEnumerable<ApplicationRoleViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationRole>, IEnumerable<ApplicationRoleViewModel>>(model);
 
-        //        response = request.CreateResponse(HttpStatusCode.OK, modelVm);
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
 
         [Route("GetById/{id}")]
         [HttpGet]

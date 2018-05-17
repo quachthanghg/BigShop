@@ -21,7 +21,7 @@
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
                 $state.go('Posts')
             }, function (error) {
-                notificationService.displayError("Thêm mới không được thêm mới");
+                notificationService.displayError("Thêm mới không thành công");
             });
         }
 
@@ -57,4 +57,4 @@
             finder.popup();
         }
     }
-})(angular.module('bigshop.Posts'));
+})(angular.module('bigshop.posts'));

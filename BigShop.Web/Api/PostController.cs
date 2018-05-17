@@ -19,11 +19,13 @@ namespace BigShop.Web.Api
     {
         private IErrorService _errorService;
         private IPostService _postService;
+        private IPostCategoryService _postCategoryService;
 
-        public PostController(IErrorService errorService, IPostService postService) : base(errorService)
+        public PostController(IErrorService errorService, IPostService postService, IPostCategoryService postCategoryService) : base(errorService)
         {
             this._errorService = errorService;
             this._postService = postService;
+            this._postCategoryService = postCategoryService;
         }
 
         [HttpGet]
@@ -46,6 +48,20 @@ namespace BigShop.Web.Api
                 };
 
                 HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, pagination);
+                return response;
+            });
+        }
+
+
+        [HttpGet]
+        [Route("GetAllParents")]
+        public HttpResponseMessage GetAllParent(HttpRequestMessage requestMessage)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _postCategoryService.GetAll();
+                var responseData = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(model);
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
         }

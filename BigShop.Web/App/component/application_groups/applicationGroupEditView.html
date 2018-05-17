@@ -1,16 +1,18 @@
-﻿<div class="">
+﻿
+
+<div class="">
     <div class="page-title">
         <div class="title_left">
             <h3>Danh mục Nhóm người dùng</h3>
         </div>
-        
+
     </div>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Admin <small>Cập nhật Nhóm người dùng</small></h2>
+                    <h2>Admin <small>Thêm danh mục Nhóm người dùng</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -42,6 +44,17 @@
                                 <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="3" autofocus name="name" ng-model="applicationGroup.Name" required type="text">
                                 <span ng-show="frmApplicationGroup.name.$error.minlength" class="">Tên nhóm</span>
                                 <span ng-show="frmApplicationGroup.name.$error.maxlength" class="">Tên nhóm phải nhỏ hơn 25 ký tự</span>
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Nhóm quyền <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label ng-repeat="item in applicationRoles" style="margin-left: 20px;">
+                                    <input type="checkbox" checklist-model="applicationGroup.applicationRoles" checklist-value="item"> {{item.Description}}
+                                </label>
                             </div>
                         </div>
 

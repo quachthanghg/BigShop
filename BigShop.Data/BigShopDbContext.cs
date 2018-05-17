@@ -14,8 +14,6 @@ namespace BigShop.Data
 
         public DbSet<Error> Errors { set; get; }
         public DbSet<Footer> Footers { set; get; }
-        public DbSet<Menu> Menus { set; get; }
-        public DbSet<MenuGroup> MenuGroups { set; get; }
         public DbSet<Order> Orders { set; get; }
         public DbSet<OrderDetail> OrderDetails { set; get; }
         public DbSet<Page> Pages { set; get; }

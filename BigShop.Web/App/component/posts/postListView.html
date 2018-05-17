@@ -41,7 +41,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <button id="send" ui-sref="add_products" class="btn btn-success">Create</button>
+            <button id="send" ui-sref="add_post" class="btn btn-success">Create</button>
             <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled>Delete</button>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -51,24 +51,22 @@
                         </th>
                         <th style="width: 5%">ID</th>
                         <th style="width: 50%">Tên danh mục</th>
-                        <th style="width: 10%">Giá bán</th>
                         <th style="width: 17%">Ngày tạo</th>
                         <th style="width: 10%">Trạng thái</th>
                         <th style="width: 8%">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in lstProduct">
+                    <tr ng-repeat="item in lstPost">
                         <td class="a-center ">
                             <input type="checkbox" ng-model="item.checked" name="all" class="flat" />
                         </td>
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.Name}}</td>
-                        <td>{{item.Price}}</td>
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                         <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                         <td>
-                            <button ui-sref="edit_products({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                            <button ui-sref="edit_post({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
                             <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                         </td>
                     </tr>

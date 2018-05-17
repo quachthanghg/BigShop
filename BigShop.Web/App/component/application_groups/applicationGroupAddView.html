@@ -44,7 +44,18 @@
                                 <span ng-show="frmApplicationGroup.name.$error.maxlength" class="">Tên nhóm phải nhỏ hơn 25 ký tự</span>
                             </div>
                         </div>
-                        
+
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Nhóm quyền <span class="required">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label ng-repeat="item in applicationRoles" style="margin-left: 20px;">
+                                    <input type="checkbox" checklist-model="applicationGroup.applicationRoles" checklist-value="item"> {{item.Description}}
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-12 col-md-offset-3">

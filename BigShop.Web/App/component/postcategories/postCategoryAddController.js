@@ -1,15 +1,15 @@
 ﻿(function (app) {
-    app.controller('postAddController', postAddController)
-    postAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
-    function postAddController($scope, apiService, notificationService, $state, commonService) {
+    app.controller('postCategoryAddController', postCategoryAddController)
+    postCategoryAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
+    function postCategoryAddController($scope, apiService, notificationService, $state, commonService) {
         // Load combobox
-        $scope.post = {
+        $scope.postCategory = {
             CreatedDate: new Date(),
             Status: true
         }
         $scope.parentCategories = [];
         function loadParentCategories() {
-            apiService.get('/Api/post/GetAllParents', null, function (result) {
+            apiService.get('/Api/PostCategory/GetAllParents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log("Load fail !");
@@ -18,12 +18,12 @@
         loadParentCategories();
 
         // Create data
-        $scope.Addpost = Addpost;
-        function Addpost() {
-            $scope.post.MoreImage = JSON.stringify($scope.lstImages);
-            apiService.post('/Api/post/Create', $scope.post, function (result) {
+        $scope.AddPostCategory = AddPostCategory;
+        function AddPostCategory() {
+            $scope.postCategory.MoreImage = JSON.stringify($scope.lstImages);
+            apiService.post('/Api/PostCategory/Create', $scope.postCategory, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
-                $state.go('posts')
+                $state.go('postCategories')
             }, function (error) {
                 notificationService.displayError("Thêm mới không được thêm mới");
             });
@@ -32,7 +32,7 @@
         // GetSEOTitle
         $scope.getSeoTitle = getSeoTitle;
         function getSeoTitle() {
-            $scope.post.Alias = commonService.getSeoTitle($scope.post.Name);
+            $scope.postCategory.Alias = commonService.getSeoTitle($scope.postCategory.Name);
         }
 
         $scope.ckeditorOptions = {
@@ -44,21 +44,10 @@
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
-                    $scope.post.Image = fileUrl;
-                });
-            }
-            finder.popup();
-        }
-
-        $scope.lstImages = [];
-        $scope.ChooseMoreImages = function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.$apply(function () {
-                    $scope.lstImages.push(fileUrl);
+                    $scope.postCategory.Image = fileUrl;
                 });
             }
             finder.popup();
         }
     }
-})(angular.module('bigshop.posts'));
+})(angular.module('bigshop.postCategories'));

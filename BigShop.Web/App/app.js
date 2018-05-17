@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('bigshop', ['bigshop.common', 'bigshop.products', 'bigshop.productcategories', 'bigshop.slides', 'bigshop.applicationGroups', 'bigshop.applicationUsers', 'bigshop.applicationRoles', 'bigshop.statistics']).config(config).config(configAuthentication);
+    angular.module('bigshop', ['bigshop.common', 'bigshop.products', 'bigshop.productcategories', 'bigshop.slides', 'bigshop.applicationGroups', 'bigshop.applicationUsers', 'bigshop.applicationRoles', 'bigshop.statistics', 'bigshop.postCategories', 'bigshop.posts']).config(config).config(configAuthentication);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

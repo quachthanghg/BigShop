@@ -87,17 +87,17 @@ namespace BigShop.Web.Api
                     _applicationGroupService.SaveChanges();
 
                     //save group
-                    //var listRoleGroup = new List<ApplicationRoleGroup>();
-                    //foreach (var role in appGroupViewModel.ApplicationRoles)
-                    //{
-                    //    listRoleGroup.Add(new ApplicationRoleGroup()
-                    //    {
-                    //        GroupID = appGroup.ID,
-                    //        RoleID = role.ID
-                    //    });
-                    //}
-                    //_applicationRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-                    //_applicationRoleService.SaveChanges();
+                    var listRoleGroup = new List<ApplicationRoleGroup>();
+                    foreach (var role in appGroupViewModel.ApplicationRoles)
+                    {
+                        listRoleGroup.Add(new ApplicationRoleGroup()
+                        {
+                            GroupID = appGroup.ID,
+                            RoleID = role.ID
+                        });
+                    }
+                    _applicationRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+                    _applicationRoleService.SaveChanges();
 
                     return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
                 }

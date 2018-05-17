@@ -3,7 +3,10 @@
     applicationGroupEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams', 'commonService']
     function applicationGroupEditController($scope, apiService, notificationService, $state, $stateParams, commonService) {
         // Load combobox
-        $scope.applicationGroup = {}
+        $scope.applicationGroup = {
+            applicationRoles: []
+        }
+        $scope.roles = [];
 
         // Update data
         $scope.UpdateApplicationGroup = UpdateApplicationGroup;
@@ -16,11 +19,23 @@
             });
         }
 
+        function loadRoles() {
+            apiService.get('/Api/ApplicationRole/GetListAll',
+                null,
+                function (res) {
+                    $scope.applicationRoles = res.data;
+                    console.log(res.data);
+                }, function (res) {
+                    notificationService.displayError('Không tải được danh sách nhóm.');
+                });
+        }
+        loadRoles();
+
         // Load detail
         $scope.GetById = GetById;
         function GetById() {
             apiService.get('/Api/ApplicationGroup/GetById/' + $stateParams.id, null, function (result) {
-                $scope.product = result.data;
+                $scope.applicationGroup = result.data;
             }, function (error) {
                 notificationService.displayError("Không lấy được dữ liệu !");
             });

@@ -30,6 +30,7 @@ namespace BigShop.Web.Api
 
         [HttpGet]
         [Route("GetAll")]
+        [Authorize(Roles ="AddProduct")]
         public HttpResponseMessage Get(HttpRequestMessage requestMessage, int page, int pageSize)
         {
             return CreateHttpResponse(requestMessage, () =>

@@ -39,7 +39,7 @@
                                 Họ tên <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="3" autofocus name="name" ng-model="applicationUser.Name" required type="text">
+                                <input class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="3" autofocus name="name" ng-model="applicationUser.FullName" required type="text">
                                 <span ng-show="frmApplicationUser.name.$error.minlength" class="">Tên danh mục phải lớn hơn 3 ký tự</span>
                                 <span ng-show="frmApplicationUser.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
                             </div>
@@ -83,10 +83,9 @@
                                 Nhóm quyền <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <label ng-repeat="item in applicationGroups">
-                                    <input type="checkbox" checklist-model="applicationUser.Groups" checklist-value="item"> {{item.Name}}
+                                <label ng-repeat="item in applicationGroups" style="margin-left: 20px;">
+                                    <input type="checkbox" checklist-model="applicationUser.applicationGroups" checklist-value="item"> {{item.Name}}
                                 </label>
-                                <span style="margin-left: 20px;"></span>
                             </div>
                         </div>
 

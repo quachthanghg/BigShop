@@ -63,7 +63,6 @@ namespace BigShop.Web.Api
 
         [Route("GetById/{id}")]
         [HttpGet]
-        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -79,7 +78,7 @@ namespace BigShop.Web.Api
             {
                 var applicationUserViewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user.Result);
                 var listGroup = _appGroupService.GetListGroupByUserId(applicationUserViewModel.Id).ToList();
-                applicationUserViewModel.ApplicationGroups = Mapper.Map<List<ApplicationGroup>,List<ApplicationGroupViewModel>>(listGroup);
+                applicationUserViewModel.ApplicationGroups = Mapper.Map<List<ApplicationGroup>, List<ApplicationGroupViewModel>>(listGroup);
                 return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
             }
         }

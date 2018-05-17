@@ -4,24 +4,16 @@
     function applicationUserAddController($scope, apiService, notificationService, $state, commonService) {
         // Load combobox
         $scope.applicationUser = {
-            Groups: []
+            applicationGroups: []
         }
         $scope.applicationGroups = [];
-        //$scope.parentCategories = [];
-        //function loadParentCategories() {
-        //    apiService.get('/Api/AddApplicationUser/GetAllParents', null, function (result) {
-        //        $scope.parentCategories = result.data;
-        //    }, function () {
-        //        console.log("Load fail !");
-        //    });
-        //}
-        //loadParentCategories();
 
         // Create data
         $scope.AddApplicationUser = AddApplicationUser;
         function AddApplicationUser() {
             apiService.post('/Api/ApplicationUser/Create', $scope.applicationUser, function (result) {
-                notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
+                console.log($scope.applicationUser);
+                notificationService.displaySuccess(result.data.FullName + " đã được thêm thành công");
                 $state.go('applicationUsers')
             }, function (error) {
                 notificationService.displayError("Thêm mới không được thêm mới");

@@ -68,4 +68,4 @@
             finder.popup();
         }
     }
-})(angular.module('bigshop.Posts'));
+})(angular.module('bigshop.posts'));

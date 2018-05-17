@@ -52,7 +52,7 @@ namespace BigShop.Web.Controllers
             var tag = _productService.GetListTagByProductID(id);
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tag);
 
-            model.ViewCount = (model.ViewCount == null ? 1 : model.ViewCount++);
+            _productService.InCreaseView(id);
             return View(responseData);
         }
 

@@ -3,7 +3,10 @@
     applicationGroupAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService']
     function applicationGroupAddController($scope, apiService, notificationService, $state, commonService) {
         
-        $scope.applicationGroup = {}
+        $scope.applicationGroup = {
+            applicationRoles: []
+        }
+        $scope.roles = [];
 
         // Create data
         $scope.AddApplicationGroup = AddApplicationGroup;
@@ -15,6 +18,18 @@
                 notificationService.displayError("Thêm mới không thành công");
             });
         }
+
+        function loadRoles() {
+            apiService.get('/Api/ApplicationRole/GetListAll',
+                null,
+                function (res) {
+                    $scope.applicationRoles = res.data;
+                    console.log(res.data);
+                }, function (res) {
+                    notificationService.displayError('Không tải được danh sách nhóm.');
+                });
+        }
+        loadRoles();
         
     }
 })(angular.module('bigshop.applicationGroups'));
