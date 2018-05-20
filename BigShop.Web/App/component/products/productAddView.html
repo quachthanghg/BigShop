@@ -3,7 +3,7 @@
         <div class="title_left">
             <h3>Danh mục sản phẩm</h3>
         </div>
-        
+
     </div>
     <div class="clearfix"></div>
     <div class="row">
@@ -39,9 +39,9 @@
                                 Tên danh mục <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="5" autofocus name="name" ng-change="getSeoTitle()" ng-model="product.Name" required type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="50" ng-minlength="5" autofocus name="name" ng-change="getSeoTitle()" ng-model="product.Name" required type="text">
                                 <span ng-show="frmProduct.name.$error.minlength" class="">Tên danh mục phải lớn hơn 5 ký tự</span>
-                                <span ng-show="frmProduct.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
+                                <span ng-show="frmProduct.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 50 ký tự</span>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -78,7 +78,7 @@
                                 <input id="name" class="form-control col-md-7 col-xs-12" name="tags" ng-model="product.Tags" type="text">
                             </div>
                         </div>
-                        
+
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Giá nhập <span class="required">*</span>
@@ -125,35 +125,30 @@
 
                             </div>
                         </div>
-                        <!--<div class="item form-group">
-        <label class="col-md-3 col-sm-3 col-xs-12">
-            Danh mục cha <span class="required">*</span>
-        </label>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <select name="categoryID" ng-model="product.CategoryID" class="form-control">
-                <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
-                    <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
-                </optgroup>
-            </select>
-            <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
-        </div>
-    </div>-->
                         <div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
-                                
-
-                                  Danh mục cha <span class="required">*</span>
-                                sp
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Danh mục cha <span class="required">*</span>
                             </label>
-                            
-
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <select name="categoryID" ng-model="product.CategoryID" class="form-control">
+                                    <optgroup ng-repeat="item in parentCategories | filter:{ ParentID: null }" label="{{item.Name}}">
+                                        <option value="{{child.ID}}" ng-repeat="child in parentCategories | filter:{ ParentID: item.ID }">{{child.Name}}</option>
+                                    </optgroup>
+                                </select>
+                                <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
+                            </div>
+                        </div>
+                        <!--<div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+                                  Danh mục cha <span class="required">*</span>
+                            </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
                                     <option value="">Danh mục gốc</option>
                                 </select>
                                 <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
                             </div>
-                        </div>
+                        </div>-->
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Hình ảnh

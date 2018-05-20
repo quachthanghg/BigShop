@@ -70,17 +70,18 @@
                         <p>Chúng tôi sẽ gửi phản hồi lại cho bạn trong vòng 24h</p>
                     </div>
                 }
-                @using (Html.BeginForm("SendFeedback", "ContactDetail",FormMethod.Post))
+                @using (Html.BeginForm("SendFeedback", "ContactDetail", FormMethod.Post, new { @id = "submitFormDetail" }))
                 {
                     <input type="text" name="Name" placeholder="Họ tên">
-                    <input type="number" name="PhoneNumber" placeholder="Số điệnt thoại">
-                    <input type="email" name="Email" placeholder="Email">
+                    <input type="number" name="PhoneNumber" placeholder="Số điệnt thoại" id="checkPhoneDetail">
+                    <input type="email" name="Email" placeholder="Email" id="checkEmailDetail">
                     <textarea placeholder="Nội dung" name="Message" required=""></textarea>
                     @Html.MathCaptcha();
-                    <div class="submit-btn">
-                        <input type="submit" value="Gửi phản hồi">
-                    </div>
                 }
+                <div class="submit-btn">
+                    <input type="submit" value="Gửi phản hồi" id="submitFormFeedback">
+                </div>
+
 
             </div>
             <div class="clearfix"></div>

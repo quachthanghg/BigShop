@@ -32,7 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @{Html.RenderAction("Header", "Home");}
     <!--top-header-->
     <!--start-logo-->
-    @{Html.RenderAction("Logo", "Home");}
+    @*@{Html.RenderAction("Logo", "Home");}*@
     <!--start-logo-->
     <!--bottom-header-->
     @{Html.RenderAction("Navigation", "Home");}
@@ -51,6 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="~/Assets/Admin/libs/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/Assets/Client/js/common.js"></script>
     <script src="~/Assets/Client/js/shoppingCart.js"></script>
+    <script src="~/Assets/Client/js/validateCommon.js"></script>>
     @Scripts.Render("~/js/core")
 
 

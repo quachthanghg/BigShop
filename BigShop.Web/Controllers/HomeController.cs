@@ -17,14 +17,18 @@ namespace BigShop.Web.Controllers
         private IFooterService _footerService;
         private ISlideService _slideService;
         private IContactDetailService _contactDetailService;
+        private IPostService _postService;
+        private IPostCategoryService _postCategoryService;
 
-        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IFooterService footerService, ISlideService slideService, IContactDetailService contactDetailService)
+        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IFooterService footerService, ISlideService slideService, IContactDetailService contactDetailService, IPostService postService, IPostCategoryService postCategoryService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
             _footerService = footerService;
             _slideService = slideService;
             _contactDetailService = contactDetailService;
+            _postService = postService;
+            _postCategoryService = postCategoryService;
         }
 
         //[OutputCache(Duration = 3600, Location = OutputCacheLocation.Server)]
@@ -40,6 +44,9 @@ namespace BigShop.Web.Controllers
             var about = _productService.GetHotProduct(3);
             ViewBag.Top = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(about);
 
+            var newPost = _postService.GetAll().OrderByDescending(x=>x.CreatedDate).Take(2);
+            ViewBag.Post = newPost;
+
             HomeViewModel homeViewModel = new HomeViewModel()
             {
                 Slides = slideViewModel,
@@ -54,13 +61,19 @@ namespace BigShop.Web.Controllers
         public ActionResult Footer()
         {
             var footer = _footerService.GetAll();
+
             var responseData = Mapper.Map<Footer, FooterViewModel>(footer);
             ViewBag.Time = DateTime.Now.ToString("T");
+
             var productCategory = _productCategoryService.GetAllByParent();
             ViewBag.ProductCategory = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(productCategory);
 
             var contact = _contactDetailService.GetAll();
             ViewBag.Contact = Mapper.Map<IEnumerable<ContactDetail>, IEnumerable<ContactDetailViewModel>>(contact);
+
+            var postCategory = _postCategoryService.GetAll();
+            ViewBag.ProductCategory = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategory>>(postCategory);
+
             return PartialView(footer);
         }
 

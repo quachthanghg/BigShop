@@ -15,11 +15,15 @@ namespace BigShop.Web.Controllers
     {
         private IProductService _productService;
         private IProductCategoryService _productCategoryService;
+        private IPolicyService _policyService;
+        private ISaleService _saleService;
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IPolicyService policyService, ISaleService saleService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _policyService = policyService;
+            _saleService = saleService;
         }
 
         // GET: Product
@@ -47,6 +51,12 @@ namespace BigShop.Web.Controllers
 
             // SEO
             ViewBag.Category = Mapper.Map<Product, ProductViewModel>(model);
+
+            var policy = _policyService.GetAll();
+            ViewBag.Policy = Mapper.Map<IEnumerable<Policy>, IEnumerable<PolicyViewModel>>(policy);
+
+            var sale = _saleService.GetSaleProduct(id);
+            ViewBag.Sale = sale;
 
             // tag
             var tag = _productService.GetListTagByProductID(id);

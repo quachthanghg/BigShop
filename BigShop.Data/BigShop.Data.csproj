@@ -110,6 +110,18 @@
     <Compile Include="Migrations\201805131031140_DeleteMenuTable.Designer.cs">
       <DependentUpon>201805131031140_DeleteMenuTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805171729098_addNewTable.cs" />
+    <Compile Include="Migrations\201805171729098_addNewTable.Designer.cs">
+      <DependentUpon>201805171729098_addNewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805190714257_ModifyDB1.cs" />
+    <Compile Include="Migrations\201805190714257_ModifyDB1.Designer.cs">
+      <DependentUpon>201805190714257_ModifyDB1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805191415520_DeleteNameInSaleTable.cs" />
+    <Compile Include="Migrations\201805191415520_DeleteNameInSaleTable.Designer.cs">
+      <DependentUpon>201805191415520_DeleteNameInSaleTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -123,12 +135,14 @@
     <Compile Include="Repositories\OrderDetailRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\PolicyRepository.cs" />
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTagRepository.cs" />
     <Compile Include="Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ProductTagRepository.cs" />
+    <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Repositories\SlideRepository.cs" />
     <Compile Include="Repositories\SupportOnlineRepository.cs" />
     <Compile Include="Repositories\SystemConfigRepository.cs" />
@@ -187,6 +201,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805131031140_DeleteMenuTable.resx">
       <DependentUpon>201805131031140_DeleteMenuTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171729098_addNewTable.resx">
+      <DependentUpon>201805171729098_addNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805190714257_ModifyDB1.resx">
+      <DependentUpon>201805190714257_ModifyDB1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805191415520_DeleteNameInSaleTable.resx">
+      <DependentUpon>201805191415520_DeleteNameInSaleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

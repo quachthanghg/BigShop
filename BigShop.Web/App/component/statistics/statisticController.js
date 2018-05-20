@@ -7,7 +7,7 @@
             var config = {
                 params: {
                     fromDate: '01/05/2018',
-                    toDate: new Date()
+                    toDate: '12/12/2018'
                 }
             };
             apiService.get('/Api/Statistic/GetRevenueStatistic', config, function (result) {

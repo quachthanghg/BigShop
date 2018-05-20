@@ -36,12 +36,12 @@
                     <form class="form-horizontal form-label-left" novalidate name="frmPost" role="form" ng-submit="AddPost()">
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
-                                Tên danh mục <span class="required">*</span>
+                                Tiêu đề bài viết <span class="required">*</span>
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="25" ng-minlength="5" autofocus name="name" ng-change="getSeoTitle()" ng-model="post.Name" required type="text">
+                                <input id="name" class="form-control col-md-7 col-xs-12" ng-maxlength="100" ng-minlength="5" autofocus name="name" ng-change="getSeoTitle()" ng-model="post.Name" required type="text">
                                 <span ng-show="frmPost.name.$error.minlength" class="">Tên danh mục phải lớn hơn 5 ký tự</span>
-                                <span ng-show="frmPost.name.$error.maxlength" class="">Tên danh mục phải nhỏ hơn 25 ký tự</span>
+                                <span ng-show="frmPost.name.$error.maxlength" class="">Tên danh mục phải nhỏ 50ký tự</span>
                             </div>
                         </div>
                         <div class="item form-group">

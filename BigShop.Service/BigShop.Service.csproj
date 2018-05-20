@@ -60,12 +60,15 @@
     <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\FooterService.cs" />
+    <Compile Include="Services\OrderDetailService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\PolicyService.cs" />
     <Compile Include="Services\PostCategoryService.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\ProductCategoryService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\SaleService.cs" />
     <Compile Include="Services\SlideService.cs" />
     <Compile Include="Services\StatisticService.cs" />
   </ItemGroup>

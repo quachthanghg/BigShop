@@ -1,0 +1,123 @@
+﻿<div class="page-title">
+    <div class="title_left">
+        <h3>Admin <small>Quản lý đơn đặt hàng</small></h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="filter" placeholder="Nhập từ khóa">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="Search();">Search</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Sản phẩm</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#">Settings 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <!--<button id="send" ui-sref="add_products" class="btn btn-success">Create</button>
+            <button id="btnDelete" ng-click="delMulti()" class="btn btn-danger" disabled>Delete</button>-->
+
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">CHƯA THANH TOÁN</a></li>
+                    <li><a data-toggle="tab" href="#menu1">ĐÃ THANH TOÁN</a></li>
+                    <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
+                    <li><a data-toggle="tab" href="#menu3">SO SÁNH SẢN PHẨM</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active" style="background: white">
+                        <div class="profileProduct" style="margin-top:15px;">
+                            <div class="container">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15%">Tên người mua</th>
+                                            <th style="width: 15%">Số điện thoại</th>
+                                            <th style="width: 20%">Sản phẩm</th>
+                                            <th style="width: 10%">Giá bán</th>
+                                            <th style="width: 2%">Số lượng</th>
+                                            <th style="width: 10%">Ngày tạo</th>
+                                            <th style="width: 25%">Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in lstOrderDetail">
+                                            <td class="a-center ">
+                                                ABC
+                                            </td>
+                                            <th scope="row">{{item.ID}} 0988</th>
+                                            <td>{{item.Name}}UPohone</td>
+                                            <td>{{item.Price | currency : symbol : fractionsize }}</td>
+                                            <td>{{ 10 + 20 }}</td>
+                                            <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                                            <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
+                                            <td>
+                                                <button ui-sref="edit_products({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                                                <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade" style="background: white">
+                        <div class="container">
+                            
+                        </div>
+                    </div>
+                    <div id="menu2" class="tab-pane fade" style="background: white">
+                        <div class="container">
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                    </div>
+                    <div id="menu3" class="tab-pane fade" style="background: white">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div ng-if="loading">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa-4x fa fa-spinner">Loading . . .</i>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+            <div class="box-footer">
+                <!--<span style="color: red">Trang: {{page+1}} / {{total}}</span>-->
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pageCount}}" total-count="{{totalCount}}" search-func="getListProduct(page)"></pager-directive>
+            </div>
+        </div>
+    </div>
+</div>

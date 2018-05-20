@@ -7,13 +7,12 @@
                     <div class="box" style="width:140px;">
                         <ul class="support">
                             <li>
-                                <img src="~/Assets/Client/images/iconSP.jpg" style="width: 30px; height: 20px" />
-                                <a href="#" style="color: white">Hỗ trợ<span class="live"> 24/7</span></a>
+                                <a style="color: white; font-size: 28px;">BIGSHOP</a>
                             </li>
                         </ul>
                     </div>
                     <div class="box1">
-                        <ul class="support" style="width: 250px;">
+                        <ul class="support" style="width: 250px; margin-top: 7px;">
                             <li>
                                 <img src="~/Assets/Client/images/free-shipping2.png" style="width: 30px; height: 30px" />
                                 <a href="#" style="color: white">Free shipping với tất cả đơn hàng <span class="live"></span></a>
@@ -23,7 +22,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="col-md-6 top-header-left">
+            <div class="col-md-6 top-header-left" style="margin-top: 10px;">
                 @if (Request.IsAuthenticated)
                 {
                     using (Html.BeginForm("LogOut", "Account", FormMethod.Post))

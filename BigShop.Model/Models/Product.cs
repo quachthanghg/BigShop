@@ -57,5 +57,6 @@ namespace BigShop.Model.Models
         [ForeignKey("Tags")]
 
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+        public virtual IEnumerable<Sale> Sales { set; get; }
     }
 }

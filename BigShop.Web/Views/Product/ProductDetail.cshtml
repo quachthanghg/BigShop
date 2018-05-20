@@ -3,227 +3,291 @@
 
 @{
     var category = ViewBag.Category as ProductViewModel;
-    ViewBag.Title = "BigShop.com - " + category.Name;
+    ViewBag.Title = "BigShop.com - " + Model.Name;
     ViewBag.MetaKeyword = category.MetaKeyword;
     ViewBag.MetaDescription = category.MetaDescription;
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="breadcrumbs-main">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li class="active">Sản phẩm</li>
-                <li class="active">@Model.Name</li>
-            </ol>
-        </div>
-    </div>
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Sản phẩm</li>
+        <li class="active">@Model.Name</li>
+    </ol>
 </div>
+
 
 <div class="single contact">
     <div class="container">
         <div class="single-main">
-            <div class="col-md-9 single-main-left">
-                <div class="sngl-top">
-                    <div class="col-md-5 single-top-left">
-                        <div class="flexslider">
-                            <ul class="slides">
-                                @{
-                                    var moreImages = (List<string>)ViewBag.MoreImages;
-                                }
-                                @if (moreImages.Count > 0)
-                                {
-                                    foreach (var item in moreImages)
-                                    {
-                                        <li data-thumb="@item">
-                                            <div class="thumb-image"> <img src="@item" data-imagezoom="true" class="img-responsive" alt="" /> </div>
-                                        </li>
+            <div class="row">
+                <div class="col-md-9 single-main-left">
+                    <div class="sngl-top">
+                        <div class="col-md-5 single-top-left">
+                            <div class="flexslider">
+                                <ul class="slides">
+                                    @{
+                                        var moreImages = (List<string>)ViewBag.MoreImages;
                                     }
-                                }
-                            </ul>
-                        </div>
-                        <!-- FlexSlider -->
-                        <script src="~/Assets/Client/js/imagezoom.js"></script>
-                        <script defer src="~/Assets/Client/js/jquery.flexslider.js"></script>
-                        <link rel="stylesheet" href="~/Assets/Client/css/flexslider.css" type="text/css" media="screen" />
-
-                        <script>
-                            // Can also be used with $(document).ready()
-                            $(window).load(function () {
-                                $('.flexslider').flexslider({
-                                    animation: "slide",
-                                    controlNav: "thumbnails"
-                                });
-                            });
-                        </script>
-                    </div>
-                    <div class="col-md-7 single-top-right">
-                        <div class="single-para simpleCart_shelfItem">
-                            <h2>@Model.Name</h2>
-                            <div class="star-on">
-                                <ul class="star-footer">
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
+                                    @if (moreImages.Count > 0)
+                                    {
+                                        foreach (var item in moreImages)
+                                        {
+                                            <li data-thumb="@item">
+                                                <div class="thumb-image"> <img src="@item" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
-                                <div class="review">
-                                    @if (Model.ViewCount != null)
-                                    {
-                                        <h6 href="#">@Model.ViewCount Lượt xem </h6>
-                                    }
-
-                                    <h6>  <span>@Model.Quantity Sản phẩm</span></h6>
-                                </div>
-
-                                <div class="clearfix"> </div>
                             </div>
+                            <!-- FlexSlider -->
+                            <script src="~/Assets/Client/js/imagezoom.js"></script>
+                            <script defer src="~/Assets/Client/js/jquery.flexslider.js"></script>
+                            <link rel="stylesheet" href="~/Assets/Client/css/flexslider.css" type="text/css" media="screen" />
 
-                            <h5 class="item_price">
-                                @Model.Price.ToString("#,##") VNĐ
-                                <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-                                <g:plusone size="medium"></g:plusone>
-                            </h5>
-                            <div class="promotionInfomation" style="border-style: dotted; height: 200px">
-                                <div style="margin-left: 20px;">
-                                    <p style="font-size: 24px">Khuyến mãi đặc biệt</p>
-                                    <ul>
-                                        <li>
-                                            <p class="fa fa-check">Trả góp 0%</p>
-                                        </li>
-                                        <li>
-                                            <p class="fa fa-check">Tặng gói bảo hành vàng</p>
-                                        </li>
-                                        <li>
-                                            <p class="fa fa-check">Giảm thêm 1 triệu đồng khi mua từ 2 sản phẩm</p>
-                                        </li>
+                            <script>
+                                // Can also be used with $(document).ready()
+                                $(window).load(function () {
+                                    $('.flexslider').flexslider({
+                                        animation: "slide",
+                                        controlNav: "thumbnails"
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="col-md-7 single-top-right">
+                            <div class="single-para simpleCart_shelfItem">
+                                <h2>@Model.Name</h2>
+                                <div class="star-on">
+                                    <ul class="star-footer">
+                                        <li><a href="#"><i> </i></a></li>
+                                        <li><a href="#"><i> </i></a></li>
+                                        <li><a href="#"><i> </i></a></li>
+                                        <li><a href="#"><i> </i></a></li>
+                                        <li><a href="#"><i> </i></a></li>
                                     </ul>
+                                    <div class="review">
+                                        @if (Model.ViewCount != null)
+                                        {
+                                            <h6 href="#">@Model.ViewCount Lượt xem </h6>
+                                        }
+
+                                        <h6>  <span>@Model.Quantity Sản phẩm</span></h6>
+                                    </div>
+
+                                    <div class="clearfix"> </div>
+                                </div>
+
+                                <h5 class="item_price">
+                                    @Model.Price.ToString("#,##") VNĐ
+                                    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                                    <g:plusone size="medium"></g:plusone>
+                                </h5>
+                                <div class="promotionInfomation" style="border-style: dotted; height: 200px">
+                                    <div style="margin-left: 20px;">
+                                        <p style="font-size: 24px">Khuyến mãi đặc biệt</p>
+                                        <ul>
+                                            @foreach (var item in ViewBag.Sale)
+                                            {
+                                                <span>@Html.Raw(item.Description)</span>
+                                            }
+                                            @*<li>
+                                                    <p class="fa fa-check">Trả góp 0%</p>
+                                                </li>
+                                                <li>
+                                                    <p class="fa fa-check">Tặng gói bảo hành vàng</p>
+                                                </li>
+                                                <li>
+                                                    <p class="fa fa-check">Giảm thêm 1 triệu đồng khi mua từ 2 sản phẩm</p>
+                                                </li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button style="margin-top: 15px;" class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
+
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <hr />
+                    <div class="details">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <ul class="nav nav-tabs" style="width: 820px">
+                                        <li class="active"><a data-toggle="tab" href="#home">CẤU HÌNH</a></li>
+                                        <li><a data-toggle="tab" href="#menu1">CHI TIẾT SẢN PHẨM</a></li>
+                                        <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
+                                        <li><a data-toggle="tab" href="#menu3">SO SÁNH SẢN PHẨM</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active" style="background: white">
+                                            <div class="profileProduct">
+                                                <div class="container">
+                                                    @Html.Raw(Model.Profile)
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div id="menu1" class="tab-pane fade" style="background: white">
+                                            <div class="container">
+                                                <div class="productContent" style="width: 820px">
+                                                    <style>
+                                                        .productContent img {
+                                                            width: 820px !important;
+                                                        }
+                                                    </style>
+                                                    @Html.Raw(Model.Content)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="menu2" class="tab-pane fade" style="background: white">
+                                            <div class="container">
+                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                            </div>
+                                        </div>
+                                        <div id="menu3" class="tab-pane fade" style="background: white">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="search-bar">
+                                                        <form method="GET" role="form">
+                                                            <input type="text" placeholder="Nhập tên sản phẩm" name="search" id="txtName1">
+                                                            <input type="submit" value="">
+                                                        </form>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="search-bar">
+                                                        <form method="GET" role="form">
+                                                            <input type="text" placeholder="Nhập tên sản phẩm" name="search" id="txtName2">
+                                                            <input type="submit" value="">
+                                                        </form>
+                                                    </div>
+                                                    <hr />
+
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="product-main simpleCart_shelfItem">
+                                                        <a href="/san-pham/oppo/oppo-a831/29" class="mask"><img class="img-responsive zoom-img" src="/FileUploads/images/DienThoai/OPPO/OPPOA83.jpg" alt=""></a>
+                                                        <div class="product-bottom">
+                                                            <hr>
+                                                            <h3 class="text-center">OPPO A831</h3>
+                                                            <center>
+                                                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="29"><i></i></a> <span class="item_price">4,890,0 00 VNĐ</span></h4>
+                                                            </center>
+                                                            <h6 class="text-center">19 sản phẩm</h6>
+                                                        </div>
+                                                        <hr />
+                                                        <h4>Cấu hình</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="product-main simpleCart_shelfItem">
+                                                        <a href="/san-pham/oppo/oppo-a831/29" class="mask"><img class="img-responsive zoom-img" src="/FileUploads/images/DienThoai/OPPO/OPPOA83.jpg" alt=""></a>
+                                                        <div class="product-bottom">
+                                                            <hr>
+                                                            <h3 class="text-center">OPPO A831</h3>
+                                                            <center>
+                                                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="29"><i></i></a> <span class="item_price">4,890,0 00 VNĐ</span></h4>
+                                                            </center>
+                                                            <h6 class="text-center">19 sản phẩm</h6>
+                                                        </div>
+                                                        <hr />
+                                                        <h4>Cấu hình</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    @{
+                                        var equivalentProducts = (IEnumerable<ProductViewModel>)ViewBag.EquivalentProducts;
+                                    }
+                                    @if (equivalentProducts.Count() > 0)
+                                    {
+                                        <h4 class="font-italic text-center">SẢN PHẨM TƯƠNG ĐƯƠNG</h4>
+                                        foreach (var item in equivalentProducts)
+                                        {
+                                            var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
+                                            <div class="col-md-12 product-left">
+                                                <div class="product-main simpleCart_shelfItem">
+                                                    <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
+                                                    <div class="product-bottom">
+                                                        <h3 class="text-center">@item.Name</h3>
+                                                        <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
                                 </div>
                             </div>
-                            <button style="margin-top: 15px;" class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
 
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="relatedProduct">
+                        <h3>SẢN PHẨM LIÊN QUAN</h3>
+                        <div class="latestproducts">
+                            <div class="product-one">
+                                @foreach (var item in ViewBag.RelatedProducts)
+                                {
+                                    var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
+                                    <div class="col-md-4 product-left p-left">
+                                        <div class="product-main simpleCart_shelfItem">
+                                            <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
+                                            <div class="product-bottom">
+                                                <h3 class="text-center">@item.Name</h3>
+                                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <hr />
-                <div class="details">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <ul class="nav nav-tabs" style="width: 820px">
-                                    <li class="active"><a data-toggle="tab" href="#home">CẤU HÌNH</a></li>
-                                    <li><a data-toggle="tab" href="#menu1">CHI TIẾT SẢN PHẨM</a></li>
-                                    <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
-                                </ul>
-
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade in active">
-                                        <h3>CẤU HÌNH</h3>
-                                        <div class="profileProduct">
-                                            @Html.Raw(Model.Profile)
-                                        </div>
-                                    </div>
-                                    <div id="menu1" class="tab-pane fade">
-                                        <div class="productContent" style="width: 820px">
-                                            <style>
-                                                .productContent img{
-                                                    width: 820px !important;
-                                                }
-                                            </style>
-                                            @Html.Raw(Model.Content)
-                                        </div>
-                                    </div>
-                                    <div id="menu2" class="tab-pane fade">
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                @{
-                                    var equivalentProducts = (IEnumerable<ProductViewModel>)ViewBag.EquivalentProducts;
-                                }
-                                @if (equivalentProducts.Count() > 0)
+                <div class="col-md-3">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> <h5 class="text-center">BigShop cam kết</h5></div>
+                        <div class="panel-body">
+                            <ul>
+                                @foreach (var item in ViewBag.Policy)
                                 {
-                                    <h4 class="font-italic">SẢN PHẨM TƯƠNG ĐƯƠNG</h4>
-                                    foreach (var item in equivalentProducts)
-                                    {
-                                        var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                                        <div class="col-md-12 product-left">
-                                            <div class="product-main simpleCart_shelfItem">
-                                                <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
-                                                <div class="product-bottom">
-                                                    <h3 class="text-center">@item.Name</h3>
-                                                    <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+                                    <p>@Html.Raw(item.Description)</p>
                                 }
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <hr />
-                <div class="relatedProduct">
-                    <h3>SẢN PHẨM LIÊN QUAN</h3>
-                    <div class="latestproducts">
-                        <div class="product-one">
-                            @foreach (var item in ViewBag.RelatedProducts)
-                            {
-                                var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                                <div class="col-md-4 product-left p-left">
-                                    <div class="product-main simpleCart_shelfItem">
-                                        <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
-                                        <div class="product-bottom">
-                                            <h3 class="text-center">@item.Name</h3>
-                                            <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
-                                        </div>
-                                        <div class="srch">
-                                            <span>-50%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            <div class="clearfix"></div>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-3 prdt-right">
-                <div class="panel panel-info">
-                    <div class="panel-heading"> <h5>BigShop cam kết</h5></div>
-                    <div class="panel-body">
-                        <ul>
-                            <li><p class="fa fa-check"> Hàng chính hãng</p></li>
-                            <li><p class="fa fa-check"> Bảo hành 12 tháng chính hãng</p></li>
-                            <li><p class="fa fa-check"> Giao hàng miễn phí trên toàn quốc</p></li>
-                            <li><p class="fa fa-check"> Bảo hành nhanh chóng</p></li>
-                            <li><p class="fa fa-check"> Đổi trả thoải mái theo nhu cầu</p></li>
-                        </ul>
+                    <div class="panel panel-info">
+                        <div class="panel-heading"> <h5 class="text-center">BigShop hỗ trợ thanh toán</h5></div>
+                        <div class="panel-body">
+                            <ul>
+                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
+                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
+                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
+                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
+                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="panel panel-info">
-                    <div class="panel-heading"> <h5>BigShop hỗ trợ thanh toán</h5></div>
-                    <div class="panel-body">
-                        <ul>
-                            <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                            <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                            <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                            <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                            <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                        </ul>
-                    </div>
-                </div>
 
+                    <div class="clearfix"></div>
+                </div>
                 <div class="clearfix"></div>
             </div>
+
         </div>
     </div>
 </div>

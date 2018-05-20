@@ -168,5 +168,17 @@ namespace BigShop.Web.Infrastructure.Extension
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
+
+        public static void UpdateSale(this Sale sale, SaleViewModel saleViewModel)
+        {
+            sale.Description = saleViewModel.Description;
+            sale.ProductID = saleViewModel.ProductID;
+        }
+
+        public static void UpdatePolicy(this Policy policy, PolicyViewModel policyViewModel)
+        {
+            policy.Name = policyViewModel.Name;
+            policy.Description = policyViewModel.Description;
+        }
     }
 }

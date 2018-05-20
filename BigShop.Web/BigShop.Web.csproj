@@ -219,10 +219,13 @@
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\OrderDetailController.cs" />
+    <Compile Include="Api\PolicyController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\SaleController.cs" />
     <Compile Include="Api\SlideController.cs" />
     <Compile Include="Api\StatisticController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -260,6 +263,7 @@
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\PolicyViewModel.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
@@ -267,6 +271,7 @@
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\SaleViewModel.cs" />
     <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
@@ -300,6 +305,20 @@
     <Content Include="App\component\home\rootController.js" />
     <Content Include="App\component\login\loginController.js" />
     <Content Include="App\component\login\loginView.html" />
+    <Content Include="App\component\orderdetails\orderDetailAddController.js" />
+    <Content Include="App\component\orderdetails\orderDetailAddView.html" />
+    <Content Include="App\component\orderdetails\orderDetailEditController.js" />
+    <Content Include="App\component\orderdetails\orderDetailEditView.html" />
+    <Content Include="App\component\orderdetails\orderDetailListController.js" />
+    <Content Include="App\component\orderdetails\orderDetailListView.html" />
+    <Content Include="App\component\orderdetails\orderDetails.module.js" />
+    <Content Include="App\component\policies\policies.module.js" />
+    <Content Include="App\component\policies\policyAddController.js" />
+    <Content Include="App\component\policies\policyAddView.html" />
+    <Content Include="App\component\policies\policyEditController.js" />
+    <Content Include="App\component\policies\policyEditView.html" />
+    <Content Include="App\component\policies\policyListController.js" />
+    <Content Include="App\component\policies\policyListView.html" />
     <Content Include="App\component\postcategories\postCategoryAddController.js" />
     <Content Include="App\component\postcategories\postCategoryAddView.html" />
     <Content Include="App\component\postcategories\postCategoryEditController.js" />
@@ -328,6 +347,13 @@
     <Content Include="App\component\products\productEditView.html" />
     <Content Include="App\component\products\productListController.js" />
     <Content Include="App\component\products\productListView.html" />
+    <Content Include="App\component\sales\sales.module.js" />
+    <Content Include="App\component\sales\saleAddController.js" />
+    <Content Include="App\component\sales\saleAddView.html" />
+    <Content Include="App\component\sales\saleEditController.js" />
+    <Content Include="App\component\sales\saleEditView.html" />
+    <Content Include="App\component\sales\saleListController.js" />
+    <Content Include="App\component\sales\saleListView.html" />
     <Content Include="App\component\slides\slideAddController.js" />
     <Content Include="App\component\slides\slideAddView.html" />
     <Content Include="App\component\slides\slideEditController.js" />
@@ -400,6 +426,9 @@
     <Content Include="Assets\Admin\libs\angular-local-storage\dist\angular-local-storage.js" />
     <Content Include="Assets\Admin\libs\angular-local-storage\dist\angular-local-storage.min.js" />
     <Content Include="Assets\Admin\libs\angular-local-storage\index.js" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\index.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\karma.conf.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\release\angular-ui-router.min.js" />
@@ -9194,10 +9223,14 @@
     <Content Include="Assets\Client\FortAwesome\src\_layouts\icon.html" />
     <Content Include="Assets\Client\FortAwesome\src\_layouts\survey.html" />
     <Content Include="Assets\Client\images\11.png" />
+    <Content Include="Assets\Client\images\636617465393112946_Banner-J7-Pro-H2.png" />
+    <Content Include="Assets\Client\images\636620846228594178_fa.jpg" />
     <Content Include="Assets\Client\images\abt-1.jpg" />
     <Content Include="Assets\Client\images\abt-2.jpg" />
     <Content Include="Assets\Client\images\abt-3.jpg" />
+    <Content Include="Assets\Client\images\ad.png" />
     <Content Include="Assets\Client\images\arrow.png" />
+    <Content Include="Assets\Client\images\bannerIP.png" />
     <Content Include="Assets\Client\images\bnr-1.jpg" />
     <Content Include="Assets\Client\images\bnr-2.jpg" />
     <Content Include="Assets\Client\images\bnr-3.jpg" />
@@ -9214,6 +9247,8 @@
     <Content Include="Assets\Client\images\free-shipping2.png" />
     <Content Include="Assets\Client\images\iconSP.jpg" />
     <Content Include="Assets\Client\images\iconXT.png" />
+    <Content Include="Assets\Client\images\lt.jpeg" />
+    <Content Include="Assets\Client\images\note8.png" />
     <Content Include="Assets\Client\images\p-1.png" />
     <Content Include="Assets\Client\images\p-2.png" />
     <Content Include="Assets\Client\images\p-3.png" />
@@ -9224,6 +9259,7 @@
     <Content Include="Assets\Client\images\p-8.png" />
     <Content Include="Assets\Client\images\pr-1.jpg" />
     <Content Include="Assets\Client\images\pr-2.jpg" />
+    <Content Include="Assets\Client\images\reminot5.jpg" />
     <Content Include="Assets\Client\images\s-1.jpg" />
     <Content Include="Assets\Client\images\s-2.jpg" />
     <Content Include="Assets\Client\images\s-3.jpg" />
@@ -9242,6 +9278,7 @@
     <Content Include="Assets\Client\js\responsiveslides.min.js" />
     <Content Include="Assets\Client\js\shoppingCart.js" />
     <Content Include="Assets\Client\js\simpleCart.min.js" />
+    <Content Include="Assets\Client\js\validateCommon.js" />
     <Content Include="Assets\Client\template\ContactTemplate.html" />
     <Content Include="Assets\Client\template\NewUserTemplate.html" />
     <Content Include="favicon.ico" />
@@ -9377,9 +9414,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\component\orders\" />
-    <Folder Include="App\component\roles\" />
-    <Folder Include="App\component\users\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
     <Folder Include="Assets\Admin\libs\checklist-model\test\" />
@@ -11008,6 +11042,12 @@
     <Content Include="Assets\Admin\libs\angular-ui-select\LICENSE" />
     <Content Include="Assets\Admin\libs\angular-ui-select\package.json" />
     <Content Include="Assets\Admin\libs\angular-ui-select\README.md" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\.bower.json" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\bower.json" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\LICENSE.md" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\package.json" />
+    <Content Include="Assets\Admin\libs\angular-sanitize\README.md" />
     <None Include="packages.config" />
     <Content Include="Scripts\Plugins\angular\.bower.json" />
     <Content Include="Scripts\Plugins\angular\angular.min.js.gzip" />

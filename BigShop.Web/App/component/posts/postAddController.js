@@ -19,7 +19,7 @@
         function AddPost() {
             apiService.post('/Api/Post/Create', $scope.post, function (result) {
                 notificationService.displaySuccess(result.data.Name + " đã được thêm thành công");
-                $state.go('Posts')
+                $state.go('posts')
             }, function (error) {
                 notificationService.displayError("Thêm mới không thành công");
             });
