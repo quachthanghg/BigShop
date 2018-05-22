@@ -18,11 +18,33 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin chi tiết</h4>
+            </div>
+            <div class="modal-body">
+                <p>@Html.Raw(Model.Profile)</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="single contact">
     <div class="container">
         <div class="single-main">
             <div class="row">
-                <div class="col-md-9 single-main-left">
+                <div class="col-md-9 single-main-left" style="background: white; padding: 20px;">
                     <div class="sngl-top">
                         <div class="col-md-5 single-top-left">
                             <div class="flexslider">
@@ -56,27 +78,35 @@
                                 });
                             </script>
                         </div>
-                        <div class="col-md-7 single-top-right">
+                        <div class="col-md-7 single-top-right" style="background: white; padding: 5px">
                             <div class="single-para simpleCart_shelfItem">
                                 <h2>@Model.Name</h2>
                                 <div class="star-on">
-                                    <ul class="star-footer">
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                        <li><a href="#"><i> </i></a></li>
-                                    </ul>
-                                    <div class="review">
-                                        @if (Model.ViewCount != null)
-                                        {
-                                            <h6 href="#">@Model.ViewCount Lượt xem </h6>
-                                        }
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="star-footer">
+                                                <li><a href="#"><i> </i></a></li>
+                                                <li><a href="#"><i> </i></a></li>
+                                                <li><a href="#"><i> </i></a></li>
+                                                <li><a href="#"><i> </i></a></li>
+                                                <li><a href="#"><i> </i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="review">
+                                                @if (Model.ViewCount != null)
+                                                {
+                                                    <h6 href="#">@Model.ViewCount Lượt xem </h6>
+                                                }
 
-                                        <h6>  <span>@Model.Quantity Sản phẩm</span></h6>
+                                                <h6>  <span>@Model.Quantity Sản phẩm</span></h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Xem cấu hình chi tiết</button>
+                                            <div class="clearfix"> </div>
+                                        </div>
                                     </div>
-
-                                    <div class="clearfix"> </div>
                                 </div>
 
                                 <h5 class="item_price">
@@ -84,23 +114,14 @@
                                     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
                                     <g:plusone size="medium"></g:plusone>
                                 </h5>
-                                <div class="promotionInfomation" style="border-style: dotted; height: 200px">
+                                <div class="promotionInfomation" style="border-style: dotted;">
                                     <div style="margin-left: 20px;">
-                                        <p style="font-size: 24px">Khuyến mãi đặc biệt</p>
+                                        <p style="font-size: 24px; color: red;">Khuyến mãi đặc biệt</p>
                                         <ul>
                                             @foreach (var item in ViewBag.Sale)
                                             {
                                                 <span>@Html.Raw(item.Description)</span>
                                             }
-                                            @*<li>
-                                                    <p class="fa fa-check">Trả góp 0%</p>
-                                                </li>
-                                                <li>
-                                                    <p class="fa fa-check">Tặng gói bảo hành vàng</p>
-                                                </li>
-                                                <li>
-                                                    <p class="fa fa-check">Giảm thêm 1 triệu đồng khi mua từ 2 sản phẩm</p>
-                                                </li>*@
                                         </ul>
                                     </div>
                                 </div>
@@ -172,35 +193,15 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="product-main simpleCart_shelfItem">
-                                                        <a href="/san-pham/oppo/oppo-a831/29" class="mask"><img class="img-responsive zoom-img" src="/FileUploads/images/DienThoai/OPPO/OPPOA83.jpg" alt=""></a>
-                                                        <div class="product-bottom">
-                                                            <hr>
-                                                            <h3 class="text-center">OPPO A831</h3>
-                                                            <center>
-                                                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="29"><i></i></a> <span class="item_price">4,890,0 00 VNĐ</span></h4>
-                                                            </center>
-                                                            <h6 class="text-center">19 sản phẩm</h6>
-                                                        </div>
-                                                        <hr />
-                                                        <h4>Cấu hình</h4>
-                                                    </div>
+                                                <div class="col-md-6" id="compareproduct1">
+                                                    @{
+                                                        Html.RenderAction("CompareProduct1", Model);
+                                                    }
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="product-main simpleCart_shelfItem">
-                                                        <a href="/san-pham/oppo/oppo-a831/29" class="mask"><img class="img-responsive zoom-img" src="/FileUploads/images/DienThoai/OPPO/OPPOA83.jpg" alt=""></a>
-                                                        <div class="product-bottom">
-                                                            <hr>
-                                                            <h3 class="text-center">OPPO A831</h3>
-                                                            <center>
-                                                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="29"><i></i></a> <span class="item_price">4,890,0 00 VNĐ</span></h4>
-                                                            </center>
-                                                            <h6 class="text-center">19 sản phẩm</h6>
-                                                        </div>
-                                                        <hr />
-                                                        <h4>Cấu hình</h4>
-                                                    </div>
+                                                <div class="col-md-6" id="compareproduct2">
+                                                    @{
+                                                        Html.RenderAction("CompareProduct2", Model);
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -265,7 +266,7 @@
                             <ul>
                                 @foreach (var item in ViewBag.Policy)
                                 {
-                                    <p>@Html.Raw(item.Description)</p>
+                                    <span>@Html.Raw(item.Description)</span>
                                 }
                             </ul>
                         </div>
@@ -273,13 +274,8 @@
                     <div class="panel panel-info">
                         <div class="panel-heading"> <h5 class="text-center">BigShop hỗ trợ thanh toán</h5></div>
                         <div class="panel-body">
-                            <ul>
-                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                                <li><img src="#" alt="Alternate Text" style="width: 50px; height: 36px;" /></li>
-                            </ul>
+
+                            <img src="~/Assets/Client/images/bank.PNG" class="img-responsive" />
                         </div>
                     </div>
 

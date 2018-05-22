@@ -59,28 +59,28 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th style="width: 5%">OrderID</th>
                                             <th style="width: 15%">Tên người mua</th>
-                                            <th style="width: 15%">Số điện thoại</th>
-                                            <th style="width: 20%">Sản phẩm</th>
-                                            <th style="width: 10%">Giá bán</th>
+                                            <th style="width: 8%">Số điện thoại</th>
+                                            <th style="width: 15%">Sản phẩm</th>
+                                            <th style="width: 8%">Giá bán</th>
                                             <th style="width: 2%">Số lượng</th>
-                                            <th style="width: 10%">Ngày tạo</th>
-                                            <th style="width: 25%">Thao tác</th>
+                                            <th style="width: 5%">Ngày tạo</th>
+                                            <th style="width: 5%">Trạng thái</th>
+                                            <th style="width: 8%">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in lstOrderDetail">
-                                            <td class="a-center ">
-                                                ABC
-                                            </td>
-                                            <th scope="row">{{item.ID}} 0988</th>
-                                            <td>{{item.Name}}UPohone</td>
-                                            <td>{{item.Price | currency : symbol : fractionsize }}</td>
-                                            <td>{{ 10 + 20 }}</td>
-                                            <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                                            <td>{{item.Order.CustomerName}}</td>
+                                            <td>{{item.Order.CustomerMobile}}</td>
+                                            <td>{{item.Product.Name}}</td>
+                                            <td>{{item.Price | currency}}</td>
+                                            <td>{{item.Quantity}}</td>
+                                            <td>{{item.Order.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                                             <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                                             <td>
-                                                <button ui-sref="edit_products({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                                                <button ui-sref="edit_products({id:item.ID})" class="fa fa-check btn btn-sm btn-info"></button>
                                                 <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                                             </td>
                                         </tr>

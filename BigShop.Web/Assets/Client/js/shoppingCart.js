@@ -35,6 +35,7 @@
             quatity++;
             $('.totalQuantity').val(quatity);
             $('.totalQuantity').text(quatity);
+            
             var cart1 = $('.simpleCart_empty');
             var imgtodrag = $(this).parent('.simpleCart_shelfItem').find(".mask").find("img").eq(0);
             if (imgtodrag) {
@@ -182,6 +183,8 @@
             success: function (res) {
                 if (res.status == true) {
                     console.log("them thanh cong");
+                    $('#totalQuantity').text(res.quantity);
+                    console.log(res)
                 }
             }
 

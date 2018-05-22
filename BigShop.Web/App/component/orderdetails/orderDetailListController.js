@@ -8,6 +8,8 @@
         $scope.lstOrderDetail = [];
         $scope.page = 0;
         $scope.pageCount = 0;
+
+        $scope.orderDetailID = 0;
         
         $scope.getListOrderDetail = getListOrderDetail;
         function getListOrderDetail(page) {

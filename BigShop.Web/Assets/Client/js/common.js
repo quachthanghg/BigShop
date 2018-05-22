@@ -62,7 +62,16 @@ var common2 = {
             },
             select: function (event, ui) {
                 $("#txtName1").val(ui.item.Name);
-                window.location.href = "/san-pham/" + ui.item.ProductCategory.Alias + "/" + ui.item.Alias + "/" + ui.item.ID;
+               $.ajax({
+                    type: "GET",
+                    url: "/Product/CompareProduct1",
+                    data: {
+                        id: ui.item.ID
+                    },
+                    success: function (res) {
+                        $("#compareproduct1").html(res);
+                    }
+                });
                 return false;
             }
         }).autocomplete("instance")._renderItem = function (ul, item) {
@@ -100,7 +109,16 @@ var common3 = {
             },
             select: function (event, ui) {
                 $("#txtName2").val(ui.item.Name);
-                window.location.href = "/san-pham/" + ui.item.ProductCategory.Alias + "/" + ui.item.Alias + "/" + ui.item.ID;
+                $.ajax({
+                    type: "GET",
+                    url: "/Product/CompareProduct2",
+                    data: {
+                        id: ui.item.ID
+                    },
+                    success: function (res) {
+                        $("#compareproduct2").html(res);
+                    }
+                });
                 return false;
             }
         }).autocomplete("instance")._renderItem = function (ul, item) {

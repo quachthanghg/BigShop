@@ -126,9 +126,11 @@ namespace BigShop.Web.Controllers
                     cartSession.Add(shoppingCartViewModel);
                 }
                 Session[CommonConstants.SessionCart] = cartSession;
+                var _quantity = cartSession.Count();
                 return Json(new
                 {
                     status = true,
+                    quantity = _quantity,
                 });
             }
         }

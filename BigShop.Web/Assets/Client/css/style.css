@@ -11,7 +11,7 @@ body {
 
     body a {
         transition: 0.5s all;
-        -webkit-transition: 0.5s all;
+        product-left -webkit-transition: 0.5s all;
         -o-transition: 0.5s all;
         -moz-transition: 0.5s all;
         -ms-transition: 0.5s all;
@@ -42,15 +42,18 @@ body {
     padding: 25px 0 20px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
-
-    .logo a h1 {
-        font-size: 32px;
-        color: #000000;
-        margin: 0;
-        font-family: 'Lora-Regular';
-        text-transform: uppercase;
-        display: inline-block;
-    }
+.promotionInfomation {
+    height: 240px;
+    overflow: scroll;
+} 
+.logo a h1 {
+    font-size: 32px;
+    color: #000000;
+    margin: 0;
+    font-family: 'Lora-Regular';
+    text-transform: uppercase;
+    display: inline-block;
+}
 
     .logo a:hover {
         text-decoration: none;
@@ -767,6 +770,7 @@ figure.effect-bubba {
 /*--product-starts--*/
 .product-left {
     text-align: center;
+    height: 420px;
 }
 
 .product-main {

@@ -144,5 +144,19 @@ namespace BigShop.Web.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult CompareProduct1(int id)
+        {
+            var model = _productService.GetSigleById(id);
+            var responseData = Mapper.Map<Product, ProductViewModel>(model);
+            return PartialView(responseData);
+        }
+
+        public ActionResult CompareProduct2(int id)
+        {
+            var model = _productService.GetSigleById(id);
+            var responseData = Mapper.Map<Product, ProductViewModel>(model);
+            return PartialView(responseData);
+        }
     }
 }

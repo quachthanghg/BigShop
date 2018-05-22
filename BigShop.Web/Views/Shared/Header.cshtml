@@ -1,4 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
+@using BigShop.Common
+
+
+
 <div class="top-header">
     <div class="container">
         <div class="top-header-main">
@@ -68,8 +72,10 @@
                 }
                 <div class="cart box_1" style="margin-left: 20px;">
                     <a href="/gio-hang" class="simpleCart_empty">
-                        <div class="total">
-                            <span class="totalQuantity" value="0">0</span>
+                        <div class="total" >
+                            <span id="totalQuantity" style="color: white">
+                              
+                            </span>
                         </div>
                         <img src="~/Assets/Client/images/cart-1.png" alt="" />
                         <p>Giỏ hàng</p>

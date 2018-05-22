@@ -11,6 +11,7 @@ namespace BigShop.Service.Services
 {
     public interface IOrderService
     {
+        IEnumerable<Order> GetAll();
         bool Create(Order order, List<OrderDetail> lstOrderDetail);
         void SaveChanges();
     }
@@ -46,6 +47,11 @@ namespace BigShop.Service.Services
             {
                 throw;
             }
+        }
+
+        public IEnumerable<Order> GetAll()
+        {
+            return _orderRepository.GetMulti(x => x.Status == false || x.PaymentStatus == "Chua thanh toan");
         }
 
         public void SaveChanges()

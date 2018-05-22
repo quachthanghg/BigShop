@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BigShop.Common;
 using BigShop.Model.Models;
 using BigShop.Service.Services;
 using BigShop.Web.Infrastructure.Core;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mail;
 
 namespace BigShop.Web.Api
 {
@@ -41,7 +43,7 @@ namespace BigShop.Web.Api
                 var responseData = Mapper.Map<IEnumerable<OrderDetail>, IEnumerable<OrderDetailViewModel >> (query);
                 var pagination = new PaginationSet<OrderDetailViewModel>
                 {
-                    Items = responseData,
+                    Items = responseData.OrderBy(x => x.OrderID),
                     Page = page,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
@@ -51,5 +53,7 @@ namespace BigShop.Web.Api
                 return response;
             });
         }
+
+        
     }
 }

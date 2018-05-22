@@ -219,6 +219,7 @@
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\OrderDetailController.cs" />
     <Compile Include="Api\PolicyController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
@@ -312,6 +313,9 @@
     <Content Include="App\component\orderdetails\orderDetailListController.js" />
     <Content Include="App\component\orderdetails\orderDetailListView.html" />
     <Content Include="App\component\orderdetails\orderDetails.module.js" />
+    <Content Include="App\component\orders\orderListController.js" />
+    <Content Include="App\component\orders\orderListView.html" />
+    <Content Include="App\component\orders\orders.module.js" />
     <Content Include="App\component\policies\policies.module.js" />
     <Content Include="App\component\policies\policyAddController.js" />
     <Content Include="App\component\policies\policyAddView.html" />
@@ -9230,6 +9234,7 @@
     <Content Include="Assets\Client\images\abt-3.jpg" />
     <Content Include="Assets\Client\images\ad.png" />
     <Content Include="Assets\Client\images\arrow.png" />
+    <Content Include="Assets\Client\images\bank.PNG" />
     <Content Include="Assets\Client\images\bannerIP.png" />
     <Content Include="Assets\Client\images\bnr-1.jpg" />
     <Content Include="Assets\Client\images\bnr-2.jpg" />
@@ -9247,6 +9252,7 @@
     <Content Include="Assets\Client\images\free-shipping2.png" />
     <Content Include="Assets\Client\images\iconSP.jpg" />
     <Content Include="Assets\Client\images\iconXT.png" />
+    <Content Include="Assets\Client\images\IP8.png" />
     <Content Include="Assets\Client\images\lt.jpeg" />
     <Content Include="Assets\Client\images\note8.png" />
     <Content Include="Assets\Client\images\p-1.png" />
@@ -9267,6 +9273,7 @@
     <Content Include="Assets\Client\images\search.png" />
     <Content Include="Assets\Client\images\star.png" />
     <Content Include="Assets\Client\images\supporter.png" />
+    <Content Include="Assets\Client\images\test.png" />
     <Content Include="Assets\Client\images\tick.png" />
     <Content Include="Assets\Client\js\bootstrap.min.js" />
     <Content Include="Assets\Client\js\common.js" />
@@ -11079,6 +11086,8 @@
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Product\CompareProduct1.cshtml" />
+    <Content Include="Views\Product\CompareProduct2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">
