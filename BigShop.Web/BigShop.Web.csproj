@@ -4084,6 +4084,9 @@
     <Content Include="Assets\Admin\libs\ckfinder\skins\v1\skin.js" />
     <Content Include="Assets\Admin\libs\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Assets\Admin\libs\ckfinder\translations.txt" />
+    <Content Include="Assets\Admin\libs\hightchart\export-data.js" />
+    <Content Include="Assets\Admin\libs\hightchart\exporting.js" />
+    <Content Include="Assets\Admin\libs\hightchart\highcharts.js" />
     <Content Include="Assets\Admin\libs\jquery-ui\.gitignore" />
     <Content Include="Assets\Admin\libs\jquery-ui\jquery-ui.js" />
     <Content Include="Assets\Admin\libs\jquery-ui\jquery-ui.min.js" />

@@ -24,5 +24,10 @@ namespace BigShop.Data.Repositories
             };
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameters);
         }
+        public IEnumerable<Product> TopSale() 
+        {
+            var parameters = new SqlParameter[]{};
+            return DbContext.Database.SqlQuery<Product>("TopSale", parameters);
+        }
     }
 }

@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col-md-3" style="background: white">
-            <div class="advertising">
+            <div class="advertising1">
                 <ul>
                     <li>
                         <a href="#">
@@ -52,7 +52,7 @@
 
             </div>
             <hr />
-            <h5>BẢN TIN CÔNG NGHỆ</h5>
+            <h6>BẢN TIN CÔNG NGHỆ</h6>
             <ul>
                 @foreach (var item in ViewBag.Post)
                 {
@@ -63,7 +63,7 @@
                                     <img src="@item.Image" alt="Nokia X6" style="width: 70px; height: 40px; margin-right: 5px;" />
                                 </div>
                                 <div class="col-xs-9 ellipsis overflow">
-                                    <p>@item.Name</p>
+                                    <p style="margin-left: 12px;">@item.Name</p>
                                 </div>
                             </div>
                         </a>
@@ -106,65 +106,20 @@
     <div class="container">
         <div class="about-top grid-1">
             <div class="row" style="padding: 10px;">
-                <div class="col-md-4">
-                    <div style="background:#fff;">
-                        <h4>Iphone 8 Plus 32GB</h4>
-                        <h6>20.990.000</h6>
-                        <div>
-                            <img src="~/Assets/Client/images/IP8.png" class="img-responsive" style="width: 360px" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div style="background:#fff;">
-                        <h4>Iphone 8 Plus 32GB</h4>
-                        <h6>20.990.000</h6>
-                        <div>
-                            <img src="~/Assets/Client/images/IP8.png" class="img-responsive" style="width: 360px" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div style="background:#fff;">
-                        <h4>Iphone 8 Plus 32GB</h4>
-                        <h6>20.990.000</h6>
-                        <div>
-                            <img src="~/Assets/Client/images/IP8.png" class="img-responsive" style="width: 360px" />
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            @*<div class="row">
-                    <div class="col-md-12">
-                        <h4>Iphone 8 Plus 32GB</h4>
-                        <h6>20.990.000</h6>
-                    </div>
-                    <div>
-                        <img src="~/Assets/Client/images/IP8.png" class="img-responsive" />
+            </div>
+            @foreach (var item in ViewBag.Top)
+            {
+                <div class="col-md-4">
+                    <div style="background:#fff; padding: 10px;">
+                        <h4>@item.Name</h4>
+                        <h6>Giá: @item.Price.ToString("#,##") VNĐ</h6>
+                        <div>
+                            <img src="@item.ImageHome" class="img-responsive" style="width: 360px" />
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4>Iphone 8 Plus 32GB</h4>
-                        <h6>20.990.000</h6>
-                    </div>
-                    <div>
-                        <img src="~/Assets/Client/images/IP8.png" class="img-responsive" />
-                    </div>
-                </div>*@
-            @*@foreach (var item in ViewBag.Top)
-                {
-                    <div class="col-md-4 about-left">
-                        <figure class="effect-bubba" style="width: 350px; height: 250px">
-                            <img class="img-responsive" src="@item.Image" alt="" style="width: 350px; height: 250px" />
-                            <figcaption>
-                                <h2>@item.Name</h2>
-                                <p>@item.Price</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                }*@
+            }
 
             <div class="clearfix"></div>
         </div>

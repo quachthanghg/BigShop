@@ -11,5 +11,9 @@
         <h6 class="text-center">@Model.Quantity sản phẩm</h6>
     </div>
     <hr />
-    <h4>Cấu hình</h4>
+    
+    <div class="compareProduct" style="padding: 5px;">
+        <h4 class="text-center" style="color:red">Thông số kỹ thuật</h4>
+        @Html.Raw(Model.Profile)
+    </div>
 </div>

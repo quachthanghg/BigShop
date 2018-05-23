@@ -64,8 +64,13 @@ body {
     background: #000;
     padding: 10px 0px;
 }
-
-.login_wrapper {
+.compareProduct ul li {
+    display: table;
+    width: 400px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ebebeb;
+}
+    .login_wrapper {
     right: 0px;
     margin: 0px auto;
     margin-top: 7%;
@@ -498,6 +503,7 @@ span.simpleCart_total {
 
 .product-main {
     background: white;
+    height: 438px;
 }
 
 .callbacks {

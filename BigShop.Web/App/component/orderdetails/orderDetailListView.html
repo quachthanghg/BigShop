@@ -59,7 +59,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th style="width: 5%">OrderID</th>
+                                            <!--<th style="width: 5%">OrderID</th>-->
                                             <th style="width: 15%">Tên người mua</th>
                                             <th style="width: 8%">Số điện thoại</th>
                                             <th style="width: 15%">Sản phẩm</th>
@@ -72,6 +72,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in lstOrderDetail">
+                                            <!--<td>{{item.OrderID}}</td>-->
                                             <td>{{item.Order.CustomerName}}</td>
                                             <td>{{item.Order.CustomerMobile}}</td>
                                             <td>{{item.Product.Name}}</td>
@@ -80,7 +81,7 @@
                                             <td>{{item.Order.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                                             <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                                             <td>
-                                                <button ui-sref="edit_products({id:item.ID})" class="fa fa-check btn btn-sm btn-info"></button>
+                                                <button type="button" ng-click="alertTaoDay(item)" class="fa fa-check btn btn-sm btn-info btnDuyet"></button>
                                                 <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                                             </td>
                                         </tr>
@@ -89,19 +90,6 @@
                             </div>
 
                         </div>
-                    </div>
-                    <div id="menu1" class="tab-pane fade" style="background: white">
-                        <div class="container">
-                            
-                        </div>
-                    </div>
-                    <div id="menu2" class="tab-pane fade" style="background: white">
-                        <div class="container">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                        </div>
-                    </div>
-                    <div id="menu3" class="tab-pane fade" style="background: white">
-                        
                     </div>
                 </div>
             </div>
@@ -121,3 +109,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(".btnDuyet").click(function () {
+        alert("OK");
+        var content = "<table>" + $("#table").html() + "<table>";
+        InDonHang(content);
+    });
+    function InDonHang(content) {
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>Hóa đơn thanh toán</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>

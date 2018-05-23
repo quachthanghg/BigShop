@@ -139,16 +139,16 @@
                             </div>
                         </div>
                         <!--<div class="item form-group">
-                            <label class="col-md-3 col-sm-3 col-xs-12" for="name">
-                                  Danh mục cha <span class="required">*</span>
-                            </label>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
-                                    <option value="">Danh mục gốc</option>
-                                </select>
-                                <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
-                            </div>
-                        </div>-->
+        <label class="col-md-3 col-sm-3 col-xs-12" for="name">
+              Danh mục cha <span class="required">*</span>
+        </label>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <select name="categoryID" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in parentCategories" class="form-control">
+                <option value="">Danh mục gốc</option>
+            </select>
+            <input type="hidden" name="categoryID" ng-model="product.CategoryID" />
+        </div>
+    </div>-->
                         <div class="item form-group">
                             <label class="col-md-3 col-sm-3 col-xs-12">
                                 Hình ảnh
@@ -158,6 +158,17 @@
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-2">
                                 <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12">
+                                Hình ảnh trang chủ
+                            </label>
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <input id="name" class="form-control col-md-5 col-xs-12" name="imageHome" ng-model="product.ImageHome" type="text">
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-default" type="button" ng-click="ChooseImageHome()">Chọn ảnh</button>
                             </div>
                         </div>
                         <div class="item form-group">

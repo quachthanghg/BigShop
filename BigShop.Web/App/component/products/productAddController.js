@@ -49,6 +49,16 @@
             }
             finder.popup();
         }
+        
+        $scope.ChooseImageHome = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.ImageHome = fileUrl;
+                });
+            }
+            finder.popup();
+        }
 
         $scope.lstImages = [];
         $scope.ChooseMoreImages = function () {

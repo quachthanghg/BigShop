@@ -66,6 +66,7 @@ namespace BigShop.Web.Infrastructure.Extension
             product.Quantity = productViewModel.Quantity;
             product.Profile = productViewModel.Profile;
             product.OriginalPrice = productViewModel.OriginalPrice;
+            product.ImageHome = productViewModel.ImageHome;
 
             product.CreatedDate = productViewModel.CreatedDate;
             product.CreatedBy = productViewModel.CreatedBy;

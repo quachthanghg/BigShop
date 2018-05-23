@@ -59,6 +59,8 @@ namespace BigShop.Web.Models
         [DataMember]
         public int? Quantity { get; set; }
         [DataMember]
+        public string ImageHome { set; get; }
+        [DataMember]
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
         [DataMember]
         public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }

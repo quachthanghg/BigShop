@@ -51,6 +51,8 @@ namespace BigShop.Model.Models
 
         public string Tags { set; get; }
         public int? Quantity { get; set; }
+        [MaxLength(256)]
+        public string ImageHome { set; get; }
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }

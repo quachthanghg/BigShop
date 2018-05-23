@@ -122,6 +122,14 @@
     <Compile Include="Migrations\201805191415520_DeleteNameInSaleTable.Designer.cs">
       <DependentUpon>201805191415520_DeleteNameInSaleTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805230003102_AddFieldImageHome.cs" />
+    <Compile Include="Migrations\201805230003102_AddFieldImageHome.Designer.cs">
+      <DependentUpon>201805230003102_AddFieldImageHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805231003311_AddSPTopSale.cs" />
+    <Compile Include="Migrations\201805231003311_AddSPTopSale.Designer.cs">
+      <DependentUpon>201805231003311_AddSPTopSale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -210,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805191415520_DeleteNameInSaleTable.resx">
       <DependentUpon>201805191415520_DeleteNameInSaleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230003102_AddFieldImageHome.resx">
+      <DependentUpon>201805230003102_AddFieldImageHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805231003311_AddSPTopSale.resx">
+      <DependentUpon>201805231003311_AddSPTopSale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

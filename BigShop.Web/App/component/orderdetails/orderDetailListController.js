@@ -126,6 +126,55 @@
                 notificationService.displayError('xóa không thành công');
             });
         }
+        $scope.alertTaoDay = function (item) {
+            console.log(item);
+            //var content = "<table>" + $("#table").html() + item.Order.CustomerName + "<table>";
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html>');
+            printWindow.document.write('<head>');
+            printWindow.document.write('<title>Hóa đơn thanh toán</title>');
+            printWindow.document.write('</head>');
+            printWindow.document.write('<body >');
+            printWindow.document.write('<p>');
+            printWindow.document.write('Họ và tên: ');
+            printWindow.document.write(item.Order.CustomerName);
+            printWindow.document.write('</p>');
+            printWindow.document.write('<p>');
+            printWindow.document.write('Email: ');
+            printWindow.document.write(item.Order.CustomerEmail);
+            printWindow.document.write('</p>');
+            printWindow.document.write('<p>');
+            printWindow.document.write('Địa chỉ: ');
+            printWindow.document.write(item.Order.CustomerAddress);
+            printWindow.document.write('</p>');
+            printWindow.document.write('<p>');
+            printWindow.document.write('Số điện thoại: ');
+            printWindow.document.write(item.Order.CustomerMobile);
+            printWindow.document.write('</p>');
+            printWindow.document.write('<table style="border: 1px solid black">');
+            printWindow.document.write('<tr style="border: 1px solid black">');
+            printWindow.document.write('<th>');
+            printWindow.document.write('<td>Sản phẩm</td>');
+            printWindow.document.write('<td>Giá</td>');
+            printWindow.document.write('<td>Số lượng</td>');
+            printWindow.document.write('<td>Tổng tiền</td>');
+            printWindow.document.write('</th>');
+            printWindow.document.write('</tr>');
+            printWindow.document.write('<tr style="border: 1px solid black">');
+            printWindow.document.write('<th>');
+            printWindow.document.write('<td>' + item.Product.Name +'</td>');
+            printWindow.document.write('<td>' + item.Product.Price +'</td>');
+            printWindow.document.write('<td>' + item.Order.Quantity + '</td>');
+            printWindow.document.write('<td>' + item.Product.Price * item.Order.Quantity+ '</td>');
+            printWindow.document.write('</th>');
+            printWindow.document.write('</tr>');
+            printWindow.document.write('</table>');
+           // printWindow.document.write(content);
+            printWindow.document.write('</body>');
+            printWindow.document.write('</html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
 
     }
 })(angular.module('bigshop.orderdetails'));

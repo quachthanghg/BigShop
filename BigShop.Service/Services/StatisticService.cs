@@ -1,5 +1,6 @@
 ﻿using BigShop.Common.ViewModels;
 using BigShop.Data.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BigShop.Service.Services
     {
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate, string toDate);
     }
-    public class StatisticService: IStatisticService
+    public class StatisticService : IStatisticService
     {
         private IOrderRepository _orderRepository;
         private IErrorService _errorService;
@@ -24,6 +25,12 @@ namespace BigShop.Service.Services
         public IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate, string toDate)
         {
             return _orderRepository.GetRevenueStatistic(fromDate, toDate);
+        }
+        
+        public int SumAccountOfWebsite()
+        {
+            var model = 1;
+            return model;
         }
     }
 }
