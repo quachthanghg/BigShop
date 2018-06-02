@@ -16,6 +16,23 @@ namespace BigShop.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //Application["PageView"] = 0;
+            //Application["Online"] = 0;
         }
+        //// Số lượt truy cập
+        //protected void Session_Start()
+        //{
+        //    Application.Lock(); // dùng để đồng bộ hóa
+        //    Application["PageView"] = (int)Application["SoLuotTruyCap"] + 1;
+        //    Application["Online"] = (int)Application["Online"] + 1;
+        //    Application.UnLock();
+        //}
+        //// Số người đang onlne
+        //protected void Session_End()
+        //{
+        //    Application.Lock();
+        //    Application["Online"] = (int)Application["Online"] - 1;
+        //    Application.UnLock();
+        //}
     }
 }

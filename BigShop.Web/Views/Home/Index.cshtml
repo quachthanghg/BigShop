@@ -33,8 +33,8 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
-        <div class="col-md-3" style="background: white">
-            <div class="advertising1">
+        <div class="col-md-3">
+            <div class="advertising1" style="background: white;">
                 <ul>
                     <li>
                         <a href="#">
@@ -51,26 +51,28 @@
                 </ul>
 
             </div>
-            <hr />
-            <h6>BẢN TIN CÔNG NGHỆ</h6>
-            <ul>
-                @foreach (var item in ViewBag.Post)
-                {
-                    <li>
-                        <a href="/">
-                            <div class="row" style="padding: 10px;">
-                                <div class="col-xs-3">
-                                    <img src="@item.Image" alt="Nokia X6" style="width: 70px; height: 40px; margin-right: 5px;" />
+            <div style="background: white;">
+                <h5 class="text-center" style="background: white">BẢN TIN CÔNG NGHỆ</h5>
+                <ul>
+                    @foreach (var item in ViewBag.Post)
+                    {
+                        <li style="background: white">
+                            <a href="/">
+                                <div class="row" style="padding: 10px;">
+                                    <div class="col-xs-3">
+                                        <img src="@item.Image" alt="Nokia X6" style="width: 70px; height: 50px; margin-right: 5px;" />
+                                    </div>
+                                    <div class="col-xs-9 ellipsis overflow">
+                                        <p style="margin-left: 12px;">@item.Name</p>
+                                    </div>
                                 </div>
-                                <div class="col-xs-9 ellipsis overflow">
-                                    <p style="margin-left: 12px;">@item.Name</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                }
+                            </a>
+                        </li>
+                    }
 
-            </ul>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>
@@ -103,21 +105,37 @@
 <!--End-slider-script-->
 <!--about-starts-->
 <div class="about">
+
     <div class="container">
+        <h2>Sản phẩm HOT trên thị trường</h2>
         <div class="about-top grid-1">
             <div class="row" style="padding: 10px;">
 
             </div>
             @foreach (var item in ViewBag.Top)
             {
+                var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
                 <div class="col-md-4">
-                    <div style="background:#fff; padding: 10px;">
-                        <h4>@item.Name</h4>
-                        <h6>Giá: @item.Price.ToString("#,##") VNĐ</h6>
-                        <div>
-                            <img src="@item.ImageHome" class="img-responsive" style="width: 360px" />
+
+                    <a href="@url">
+                        <div style="background:#fff; padding: 10px;">
+                            <div class="row">
+                                <div col-md-8>
+                                    <h4>@item.Name</h4>
+                                    <h6>Giá: @item.Price.ToString("#,##") VNĐ</h6>
+                                </div>
+                                @*<div col-md-4>
+                                    @if (item.Quantity == 0)
+                                    {
+                                        <h5 class="pull-right" style="color: red">Hết hàng</h5>
+                                    }
+                                </div>*@
+                            </div>
+                            <div>
+                                <img src="@item.ImageHome" class="img-responsive" style="width: 360px" />
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
 
@@ -135,15 +153,25 @@
                 @foreach (var item in Model.LastestProducts)
                 {
                     var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                    <div class="col-md-3 product-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3 class="text-center">@item.Name</h3>
-                                <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="@item.ID"><i></i></a> <span class="item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                    <div class="col-md-4">
+
+                        <a href="@url">
+                            <div style="background:#fff; padding: 10px;">
+                                <h4>@item.Name</h4>
+                                <h6>Giá: @item.Price.ToString("#,##") VNĐ</h6>
+                                <div>
+                                    <img src="@item.ImageHome" class="img-responsive" style="width: 360px" />
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
+
+                    if (item.Quantity == 0)
+                    {
+                        <div class="srch srch1">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                    }
                 }
 
                 <div class="clearfix"></div>
@@ -161,15 +189,24 @@
                 {
 
                     var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
-                    <div class="col-md-3 product-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3 class="text-center">@item.Name</h3>
-                                <h4 class="text-center"><a class="item_add btnAddToCart" data-id="@item.ID" href="#"><i></i></a> <span class=" item_price">@item.Price.ToString("#, ##") VNĐ</span></h4>
+                    <div class="col-md-4">
+
+                        <a href="@url">
+                            <div style="background:#fff; padding: 10px;">
+                                <h4>@item.Name</h4>
+                                <h6>Giá: @item.Price.ToString("#,##") VNĐ</h6>
+                                <div>
+                                    <img src="@item.ImageHome" class="img-responsive" style="width: 360px" />
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
+                    if (item.Quantity == 0)
+                    {
+                        <div class="srch srch1">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                    }
                 }
 
                 <div class="clearfix"></div>

@@ -36,13 +36,18 @@ namespace BigShop.Web.Controllers
         {
             var slide = _slideService.GetAll();
             var slideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slide);
-            var lastestProducts = _productService.GetLastest(4);
+            var lastestProducts = _productService.GetLastest(3);
             var lastestProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProducts);
-            var topProducts = _productService.GetHotProduct(4);
+            var topProducts = _productService.GetHotProduct(3);
             var topProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topProducts);
 
             var about = _productService.GetHotProduct(3);
             ViewBag.Top = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(about);
+
+            //var topSale = _productService.GetTopSale(3);
+            //ViewBag.TopSale = topSale;
+
+
 
             var newPost = _postService.GetAll().OrderByDescending(x=>x.CreatedDate).Take(2);
             ViewBag.Post = newPost;

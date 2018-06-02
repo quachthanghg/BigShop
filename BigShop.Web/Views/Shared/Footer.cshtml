@@ -3,14 +3,27 @@
 
 <!--information-starts-->
 
-<div class="information" style="padding-top: 3em;">
+<div class="information">
     <hr />
     <div class="container">
-        <div class="infor-top">
+        <div class="infor-top" style="background: white; padding: 10px;">
             <div class="col-md-3 infor-left">
+                <div id="fb-root"></div>
+                <script>
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=185965845388898&autoLogAppEvents=1';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                
                 <h3>Follow Us</h3>
                 <ul>
-                    <li><a href="#"><span class="fb"></span><h6>Facebook</h6></a></li>
+                    <li>
+                        <span class="fb"></span><h6> <div class="fb-share-button" data-href="https://bigshops.xyz" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbigshops.xyz%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div></h6>
+                       
+                    </li>
                     <li><a href="#"><span class="twit"></span><h6>Twitter</h6></a></li>
                     <li><a href="#"><span class="google"></span><h6>Google+</h6></a></li>
                 </ul>
@@ -60,7 +73,7 @@
         <div class="footer-top">
             <div class="col-md-6 col-xs-12 footer-left">
                 <form>
-                    <input type="text" value="Enter Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập email của bạn';}">
+                    <input type="text" value="Nhập email của bạn" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập email của bạn';}">
                     <input type="submit" value="Đăng ký">
                 </form>
             </div>

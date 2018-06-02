@@ -47,7 +47,9 @@
     <Compile Include="MailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="ViewModels\CommonViewModel.cs" />
     <Compile Include="ViewModels\RevenueStatisticViewModel.cs" />
+    <Compile Include="ViewModels\TopSaleViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,9 @@ namespace BigShop.Service.Services
     public interface IOrderService
     {
         IEnumerable<Order> GetAll();
-        bool Create(Order order, List<OrderDetail> lstOrderDetail);
+        Order Create(Order order, List<OrderDetail> lstOrderDetail);
+        Order GetOrderById(int id);
+        void UpdateStatus(int orderId);
         void SaveChanges();
     }
     public class OrderService: IOrderService
@@ -29,7 +31,7 @@ namespace BigShop.Service.Services
             this._orderDetailRepository = orderDetailRepository;
         }
 
-        public bool Create(Order order, List<OrderDetail> lstOrderDetail)
+        public Order Create(Order order, List<OrderDetail> lstOrderDetail)
         {
             try
             {
@@ -40,23 +42,37 @@ namespace BigShop.Service.Services
                     item.OrderID = order.ID;
                     _orderDetailRepository.Add(item);
                 }
-                return true;
+                return order;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
         }
+        
 
         public IEnumerable<Order> GetAll()
         {
             return _orderRepository.GetMulti(x => x.Status == false || x.PaymentStatus == "Chua thanh toan");
         }
 
+        public Order GetOrderById(int id)
+        {
+            var model = _orderRepository.GetSignleById(id);
+            return model;
+        }
+
         public void SaveChanges()
         {
             _unitOfWork.Commit();
+        }
+
+        public void UpdateStatus(int orderId)
+        {
+            var order = _orderRepository.GetSignleById(orderId);
+            order.Status = true;
+            _orderRepository.Update(order);
         }
     }
 }

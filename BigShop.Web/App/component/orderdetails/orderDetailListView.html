@@ -59,7 +59,7 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <!--<th style="width: 5%">OrderID</th>-->
+                                            <th style="width: 5%">OrderID</th>
                                             <th style="width: 15%">Tên người mua</th>
                                             <th style="width: 8%">Số điện thoại</th>
                                             <th style="width: 15%">Sản phẩm</th>
@@ -70,17 +70,18 @@
                                             <th style="width: 8%">Thao tác</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr ng-repeat="item in lstOrderDetail">
-                                            <!--<td>{{item.OrderID}}</td>-->
-                                            <td>{{item.Order.CustomerName}}</td>
-                                            <td>{{item.Order.CustomerMobile}}</td>
+                                   
+                                    <tbody >
+                                        <tr  ng-repeat="item in ListOrderDetailMerge">
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay">{{item.OrderID}}</td>
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay">{{item.Order.CustomerName}}</td>
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay">{{item.Order.CustomerMobile}}</td>
                                             <td>{{item.Product.Name}}</td>
                                             <td>{{item.Price | currency}}</td>
                                             <td>{{item.Quantity}}</td>
-                                            <td>{{item.Order.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
-                                            <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
-                                            <td>
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay">{{item.Order.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay"><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
+                                            <td rowspan="{{item.rowspan}}" ng-if="item.IsDisplay">
                                                 <button type="button" ng-click="alertTaoDay(item)" class="fa fa-check btn btn-sm btn-info btnDuyet"></button>
                                                 <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                                             </td>

@@ -31,10 +31,6 @@
             e.preventDefault();
             var productID = parseInt($(this).data('id'));
             cart.addItem(productID);
-            var quatity = $('.totalQuantity').val();
-            quatity++;
-            $('.totalQuantity').val(quatity);
-            $('.totalQuantity').text(quatity);
             
             var cart1 = $('.simpleCart_empty');
             var imgtodrag = $(this).parent('.simpleCart_shelfItem').find(".mask").find("img").eq(0);
@@ -74,7 +70,7 @@
             }
         });
 
-        $(".btnDeleteItem").click(function (e) {
+        $(".btnDeleteItem").off('click').on('click', function (e) {
             e.preventDefault();
             var productID = parseInt($(this).data('id'));
             cart.deleteItem(productID);
@@ -125,8 +121,9 @@
             e.preventDefault();
             cart.deleteAll();
         })
+        
 
-        $('#btnCreateOrder').click(function () {
+        $('#btnCreateOrder').off('click').on('click', function () {
             if (!checkPhoneNumber()) {
                 $("#checkPhoneDetail").css({
                     border: '1px solid red !important'
@@ -136,8 +133,30 @@
             else {
                 cart.createOrder();
             }
-            
+
         })
+
+        $('input[name="paymentMethod"]').off('click').on('click', function () {
+            if ($(this).val() == 'NL') {
+                $('.boxContent').hide();
+                $('#nganluongContent').show();
+            }
+            else if ($(this).val() == 'ATM_ONLINE') {
+                $('.boxContent').hide();
+                $('#bankContent').show();
+            }
+            else if ($(this).val() == 'BANK') {
+                //$('.boxContent').hide();
+                $('#bankContent').show();
+            }
+            else if ($(this).val() == 'TG') {
+                //$('.boxContent').hide();
+                alert("Vui lòng đến cửa hàng để làm thủ tục thanh toán. Xin cảm ơn! ")
+            }
+            else {
+                $('.boxContent').hide();
+            }
+        });
     },
     loadData: function () {
         $.ajax({
@@ -145,7 +164,6 @@
             type: "GET",
             dataType: "json",
             success: function (res) {
-                console.log(res.status)
                 if (res.status == true) {
                     var template = $('#templateCart').html();
                     var tem = '';
@@ -272,7 +290,8 @@
             CustomerAddress: $('#txtAddress').val(),
             CustomerMessage: $('#txtMessage').val(),
             CustomerMobile: $('#txtPhoneNumber').val(),
-            PaymentMethod: 'Thanh toán tiền mặt',
+            PaymentMethod: $('input[name="paymentMethod"]:checked').val(),
+            BankCode: $('input[groupName="bankcode"]:checked').prop('id'),
             Status: false
         }
         $.ajax({
@@ -284,11 +303,18 @@
             },
             success: function (res) {
                 if (res.status) {
-                    $('.ckeckout').hide();
-                    cart.deleteAll();
-                    setTimeout(function () {
+                    if (res.urlCheckout != '' && res.urlCheckout != undefined) {
+                        window.location.href = res.urlCheckout;
+                    }
+                    else {
+                        $('.ckeckout').hide();
+                        cart.deleteAll();
                         $('.cartContent').html('Đặt hàng thành công! chúng tôi sẽ liên hệ lại để xác nhận đơn đặt hàng');
-                    }, 1000);
+                    }
+                }
+                else {
+                    $('#notifycationFail').text(res.message);
+                    $('#notifycationFail').show();
                 }
             }
         });

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "OrderConfirm";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="contact">
+    <div class="container">
+        <div class="contact-top heading">
+            <h1 class="text-center">KẾT QUẢ GIAO DỊCH</h1>
+            @{
+                var success = (bool)ViewBag.IsSuccess;
+                if (success == true)
+                {
+                    <h2 style="color: green">@ViewBag.Result</h2>;
+                    <a href="/"> VÀO ĐÂY </a> <span>để quay lại trang chủ</span>
+                }
+                else
+                {
+                    <h2 style="color: red;">@ViewBag.Result</h2>
+                    <a href="/"> VÀO ĐÂY </a> <span>để quay lại trang chủ</span>
+                }
+            }
+        </div>
+    </div>
+</div>

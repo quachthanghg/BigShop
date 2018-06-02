@@ -1,0 +1,99 @@
+﻿<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Danh mục sản phẩm</h3>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Admin <small>Thêm danh mục sản phẩm</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" id="order">
+                    <h2 class="text-center">THÔNG TIN ĐƠN ĐẶT HÀNG</h2>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <p>Họ tên: {{order.CustomerName}}</p>
+                            <p>Email: {{order.CustomerEmail}}</p>
+                            <p>Địa chỉ: {{order.CustomerAddress}}</p>
+                            <p>Số điện thoại: {{order.CustomerMobile}}</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>Mã đơn hàng: {{order.ID}}</p>
+                            <p>Ngày đặt hàng: {{order.CreatedDate | date: 'dd/MM/yyyy'}}</p>
+                            <p>Hinh thức thanh toán: {{order.PaymentMethod}}</p>
+                            <p>Trạng thái: {{order.Status}}</p>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in lstOrderDetails">
+                                <td>{{item.Product.Name}}</td>
+                                <td>{{item.Quantity}}</td>
+                                <td>{{item.Price | currency : symbol : fractionsize }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right" ng-repeat="item in lstOrderDetails">
+                        <span>Tổng tiền: {{item.Quantity * item.Price}} </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h4>Mạng Xã hội</h4>
+                            <p>facebook.com/quachthanghg</p>
+                            <p>google.com.vn/quachthanghg</p>
+                            <p> twitter.com/quachthanghg</p>
+                        </div>
+                        <div class="col-xs-3">
+                            <h4>Sản phẩm</h4>
+                            <p>Điện thoại</p>
+                            <p>Máy tính bảng</p>
+                            <p>Laptop</p>
+                        </div>
+                        <div class="col-xs-5">
+                            <h4>BigShop</h4>
+                            <p>Email: BigShop@gmail.com</p>
+                            <p>HotLine: 0978 850 339</p>
+                            <p>Địa chỉ: Đồng Yên - Bắc Quang - Hà Giang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button ng-click="print_order('order')" class="btn btn-success">Print</button>
+        </div>
+    </div>
+</div>

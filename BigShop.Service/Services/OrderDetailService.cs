@@ -16,17 +16,21 @@ namespace BigShop.Service.Services
         IEnumerable<OrderDetail> GetAllOrderDetail2();
         IEnumerable<OrderDetail> GetAllOrderDetail3();
         IEnumerable<OrderDetail> GetAllOrderDetail4();
+        IEnumerable<OrderDetail> GetOrderDetailById(int orderID);
+        Order GetById(int id);
         OrderDetail Remove(int id);
     }
     public class OrderDetailService : IOrderDetailService
     {
         private IProductRepository _productRepository;
         private IOrderDetailRepository _orderDetailRepository;
+        private IOrderRepository _orderRepository;
         private IUnitOfWork _unitOfWork;
-        public OrderDetailService(IProductRepository productRepository, IOrderDetailRepository orderDetailRepository, IUnitOfWork unitOfWork)
+        public OrderDetailService(IProductRepository productRepository, IOrderDetailRepository orderDetailRepository, IOrderRepository orderRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _orderDetailRepository = orderDetailRepository;
+            _orderRepository = orderRepository;
             _unitOfWork = unitOfWork;
         }
         public IEnumerable<OrderDetail> GetAllOrderDetail()
@@ -52,6 +56,17 @@ namespace BigShop.Service.Services
         public IEnumerable<OrderDetail> GetAllOrderDetail4()
         {
             return _orderDetailRepository.GetMulti(x => x.Order.Status == false);
+        }
+
+        public Order GetById(int id)
+        {
+            return _orderRepository.GetSignleById(id);
+        }
+
+        public IEnumerable<OrderDetail> GetOrderDetailById(int orderID)
+        {
+            var model = _orderDetailRepository.GetMulti(x => x.OrderID == orderID);
+            return model;
         }
 
         public OrderDetail Remove(int id)

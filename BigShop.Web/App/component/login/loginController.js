@@ -12,7 +12,7 @@
                 loginService.login($scope.loginData.userName, $scope.loginData.password)
                     .then(function (response) {
                         if (response !== null && response.data.error == 'invalid_grant') {
-                        notificationService.displayError("Tên đăng nhập hoặc mật khẩu không đúng.");
+                            notificationService.displayError(response.data.error_description);
                     }
                     else {
                         var stateService = $injector.get('$state');

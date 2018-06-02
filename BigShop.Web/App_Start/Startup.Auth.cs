@@ -1,5 +1,8 @@
-﻿using BigShop.Data;
+﻿using BigShop.Common;
+using BigShop.Data;
 using BigShop.Model.Models;
+using BigShop.Service.Services;
+using BigShop.Web.Infrastructure.Core;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -9,6 +12,7 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using static BigShop.Web.App_Start.IdentityConfig;
@@ -26,6 +30,7 @@ namespace BigShop.Web.App_Start
             app.CreatePerOwinContext(BigShopDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
 
             // tao Owincontext de quan ly usermanager
             // owin lam giam su phu thuoc giua server va application
@@ -105,10 +110,21 @@ namespace BigShop.Web.App_Start
                 }
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    //var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    //var lstGroup = applicationGroupService.GetListGroupByUserId(user.Id).ToList();
+                    //if (lstGroup.Any(x => x.Name == CommonConstants.Administractor))
+                    //{
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                                          user,
+                                                          DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    //}
+                    //else
+                    //{
+                    //    context.Rejected();
+                    //    context.SetError("Invalid_Group", "Bạn không phải admin, đừng cố gắng làm gì cho mất công");
+                    //}
+
                 }
                 else
                 {
@@ -122,6 +138,7 @@ namespace BigShop.Web.App_Start
         {
             var userStore = new UserStore<ApplicationUser>(context.Get<BigShopDbContext>());
             var owinManager = new UserManager<ApplicationUser>(userStore);
+
             return owinManager;
         }
     }

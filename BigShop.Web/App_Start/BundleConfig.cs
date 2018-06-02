@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using BigShop.Common;
+using System.Web;
 using System.Web.Optimization;
 
 namespace BigShop.Web
@@ -30,7 +31,7 @@ namespace BigShop.Web
             bundles.Add(new ScriptBundle("~/js/core").Include(
                         "~/Assets/Admin/libs/numeral/numeral.js"
                         ));
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = bool.Parse(ConfigHelper.GetByKey("EnableBundles"));
         }
     }
 }

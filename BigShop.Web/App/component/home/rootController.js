@@ -10,6 +10,7 @@
         }
         $scope.authentication = authData.authenticationData;
 
+        //$scope.sideBar = "/app/shared/views/sidebar.html"
        // authenticationService.validateRequest();
     }
 })(angular.module('bigshop'));

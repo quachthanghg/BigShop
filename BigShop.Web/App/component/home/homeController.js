@@ -2,6 +2,8 @@
     app.controller('homeController', homeController);
     homeController.$inject = ['$scope', 'apiService', '$timeout', '$filter'];
     function homeController($scope, apiService, $timeout, $filter) {
+        $scope.fromDate = [];
+        $scope.toDate = [];
         function getStatistic() {
             var config = {
                 params: {
@@ -70,5 +72,148 @@
             });
         }
         getStatistic();
+
+        $scope.lstHot = [];
+
+        function GetTop() {
+            apiService.get('/Api/Statistic/TopSaleProduct', null, function (result) {
+                $scope.lstHot = result.data;
+                //var name = [];
+                //var price = [];
+                //var quantityProduct = [];
+                //var quantity = [];
+
+                //$.each(result.data, function (i, item) {
+                //    name.push(item.Name);
+                //    price.push(item.Price);
+                //    quantityProduct.push(item.QuantityProduct)
+                //    quantity.push(item.Quantity)
+                //});
+
+                //Highcharts.chart('container', {
+                //    chart: {
+                //        type: 'bar'
+                //    },
+                //    title: {
+                //        text: 'Stacked bar chart'
+                //    },
+                //    xAxis: {
+                //        categories: name
+                //    },
+                //    yAxis: {
+                //        min: 0,
+                //        title: {
+                //            text: 'Total fruit consumption'
+                //        }
+                //    },
+                //    legend: {
+                //        reversed: true
+                //    },
+                //    plotOptions: {
+                //        series: {
+                //            stacking: 'normal'
+                //        }
+                //    },
+                //    series: [{
+                //        name: 'Đã bán',
+                //        data: quantity
+                //    }, {
+                //        name: 'Tổng số',
+                //        data: quantityProduct
+                //    }
+                //});
+
+                //var name = [];
+                //var price = [];
+                //var quantityProduct = [];
+                //var quantity = [];
+
+                //$.each(result.data, function (i, item) {
+                //    name.push(item.Name);
+                //    price.push(item.Price);
+                //    quantityProduct.push(item.QuantityProduct)
+                //    quantity.push(item.Quantity)
+                //});
+
+                //Highcharts.chart('container1', {
+                //    chart: {
+                //        type: 'column'
+                //    },
+                //    title: {
+                //        text: 'Browser market shares. January, 2018'
+                //    },
+                //    subtitle: {
+                //        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+                //    },
+                //    xAxis: {
+                //        type: 'category'
+                //    },
+                //    yAxis: {
+                //        title: {
+                //            text: 'Total percent market share'
+                //        }
+
+                //    },
+                //    legend: {
+                //        enabled: false
+                //    },
+                //    plotOptions: {
+                //        series: {
+                //            borderWidth: 0,
+                //            dataLabels: {
+                //                enabled: true,
+                //                format: '{point.y:.1f}%'
+                //            }
+                //        }
+                //    },
+
+                //    tooltip: {
+                //        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                //        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                //    },
+
+                //    "series": [
+                //        {
+                //            "name": "Browsers",
+                //            "colorByPoint": true,
+                //            "data": [
+                //                {
+                //                    "name": "Chrome",
+                //                    "y": quantity,
+                //                    "drilldown": "Chrome"
+                //                },
+                //                {
+                //                    "name": "Firefox",
+                //                    "y": 10.57,
+                //                    "drilldown": "Firefox"
+                //                },
+                //                {
+                //                    "name": "Internet Explorer",
+                //                    "y": 7.23,
+                //                    "drilldown": "Internet Explorer"
+                //                },
+                //                {
+                //                    "name": "Safari",
+                //                    "y": 5.58,
+                //                    "drilldown": "Safari"
+                //                },
+                //                {
+                //                    "name": "Edge",
+                //                    "y": 4.02,
+                //                    "drilldown": "Edge"
+                //                }
+                //            ]
+                //        }
+                //    ]
+                //});
+
+
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        GetTop();
     }
+
+
 })(angular.module('bigshop.common'));

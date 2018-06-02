@@ -1,4 +1,5 @@
 ﻿using BigShop.Common;
+using BigShop.Common.ViewModels;
 using BigShop.Data.Infrastructure;
 using BigShop.Data.Repositories;
 using BigShop.Model.Models;
@@ -26,6 +27,7 @@ namespace BigShop.Service.Services
         IEnumerable<Product> GetLastest(int top);
 
         IEnumerable<Product> GetHotProduct(int top);
+        IEnumerable<TopSaleViewModel> GetTopSale(int top);
         IEnumerable<Product> Sort(string price, string alias);
 
         IEnumerable<Product> GetRelatedProducts(int id, int top);
@@ -57,14 +59,16 @@ namespace BigShop.Service.Services
         private IUnitOfWork _unitOfWork;
         private ITagRepository _tagRepository;
         private IProductTagRepository _productTagRepository;
+        private IOrderRepository _orderRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository, IProductCategoryRepository productCategoryRepository)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, IProductTagRepository productTagRepository, ITagRepository tagRepository, IProductCategoryRepository productCategoryRepository, IOrderRepository orderRepository)
         {
             this._productRepository = productRepository;
             this._productCategoryRepository = productCategoryRepository;
             this._unitOfWork = unitOfWork;
             this._productTagRepository = productTagRepository;
             this._tagRepository = tagRepository;
+            this._orderRepository = orderRepository;
         }
 
         public Product Add(Product product)
@@ -128,12 +132,12 @@ namespace BigShop.Service.Services
 
         public IEnumerable<Product> GetHotProduct(int top)
         {
-            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true, new string[] { "ProductCategory" }).OrderBy(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true && x.HomeFlag == true, new string[] { "ProductCategory" }).OrderBy(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetLastest(int top)
         {
-            return _productRepository.GetMulti(x => x.Status == true, new string[] { "ProductCategory" }).OrderByDescending(x => x.CreatedDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status == true && x.HomeFlag == true, new string[] { "ProductCategory" }).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetListProductByCategoryPaging(string sort, string alias, int page, int pageSize, out int totalRow)
@@ -341,6 +345,13 @@ namespace BigShop.Service.Services
                 return true;
             }
 
+        }
+        
+        public IEnumerable<TopSaleViewModel> GetTopSale(int top)
+        {
+            var query = _orderRepository.TopSale().Take(top);
+            int a = query.Count();
+            return query;
         }
     }
 }

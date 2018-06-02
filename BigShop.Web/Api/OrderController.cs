@@ -51,5 +51,19 @@ namespace BigShop.Web.Api
                 return response;
             });
         }
+
+
+        [HttpGet]
+        [Route("GetOrderById/{id:int}")]
+        public HttpResponseMessage GetOrderById(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _orderService.GetOrderById(id);
+                var responseData = Mapper.Map<Order, OrderViewModel> (model);
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
     }
 }

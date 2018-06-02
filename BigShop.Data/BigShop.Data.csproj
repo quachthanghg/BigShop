@@ -130,6 +130,10 @@
     <Compile Include="Migrations\201805231003311_AddSPTopSale.Designer.cs">
       <DependentUpon>201805231003311_AddSPTopSale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806020141332_AddBankCodeToTblOrder.cs" />
+    <Compile Include="Migrations\201806020141332_AddBankCodeToTblOrder.Designer.cs">
+      <DependentUpon>201806020141332_AddBankCodeToTblOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805231003311_AddSPTopSale.resx">
       <DependentUpon>201805231003311_AddSPTopSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806020141332_AddBankCodeToTblOrder.resx">
+      <DependentUpon>201806020141332_AddBankCodeToTblOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

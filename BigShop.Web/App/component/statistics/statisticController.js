@@ -72,5 +72,17 @@
         }
 
         getStatistic();
+
+        $scope.lstHot = [];
+
+        function GetTop() {
+            apiService.get('/Api/Statistic/TopSaleProduct', null, function (result) {
+                $scope.lstHot = result.data;
+
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        GetTop();
     }
 })(angular.module('bigshop.statistics'));

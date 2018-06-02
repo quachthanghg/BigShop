@@ -1,0 +1,15 @@
+﻿
+@using BigShop.Web.Models
+@using BigShop.Common
+
+
+<a href="/gio-hang" >
+    <i class="fa fa-shopping-cart" style="font-size: 22px; color: white"></i>
+    @if (Session[CommonConstants.SessionCart] != null)
+    {
+        var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+        var quantity = cartSession.Count();
+        <span class="badge bg-green">@quantity</span>
+    }
+
+</a>

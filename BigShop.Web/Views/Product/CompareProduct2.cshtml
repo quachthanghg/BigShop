@@ -1,6 +1,6 @@
 ﻿@using BigShop.Web.Models;
 @model ProductViewModel
-<div class="product-main simpleCart_shelfItem">
+<div>
     <a href="/san-pham/oppo/oppo-a831/29" class="mask"><img class="img-responsive zoom-img" src="@Model.Image" alt=""></a>
     <div class="product-bottom">
         <hr>
@@ -8,12 +8,12 @@
         <center>
             <h4 class="text-center"><a class="item_add btnAddToCart" href="#" data-id="29"><i></i></a> <span class="item_price">@Model.Price.ToString("#,##") VNĐ</span></h4>
         </center>
-        <h6 class="text-center">@Model.Quantity sản phẩm</h6>
     </div>
     <hr />
-    
+
     <div class="compareProduct" style="padding: 5px;">
         <h4 class="text-center" style="color:red">Thông số kỹ thuật</h4>
         @Html.Raw(Model.Profile)
     </div>
+    <div class="clearfix"></div>
 </div>

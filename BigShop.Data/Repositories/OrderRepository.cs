@@ -9,6 +9,7 @@ namespace BigShop.Data.Repositories
     public interface IOrderRepository : IRepository<Order>
     {
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(string fromDate, string toDate);
+        IEnumerable<TopSaleViewModel> TopSale();
     }
 
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
@@ -24,10 +25,10 @@ namespace BigShop.Data.Repositories
             };
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameters);
         }
-        public IEnumerable<Product> TopSale() 
+        public IEnumerable<TopSaleViewModel> TopSale() 
         {
             var parameters = new SqlParameter[]{};
-            return DbContext.Database.SqlQuery<Product>("TopSale", parameters);
+            return DbContext.Database.SqlQuery<TopSaleViewModel>("TopSale", parameters);
         }
     }
 }

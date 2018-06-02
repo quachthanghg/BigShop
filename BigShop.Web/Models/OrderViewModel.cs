@@ -28,7 +28,8 @@ namespace BigShop.Web.Models
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }
         public string CustomerID { set; get; }
-        
+        public string BankCode { get; set; }
+
         public virtual IEnumerable<OrderDetailViewModel> OrderDetails { set; get; }
     }
 }

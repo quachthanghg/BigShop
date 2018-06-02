@@ -46,10 +46,7 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>
-                            <input type="checkbox" name="all" ng-click="selectAll()" id="check-all" class="flat">
-                        </th>
-                        <th style="width: 5%">ID</th>
+                        <th style="width: 5%">OrderID</th>
                         <th style="width: 45%">Tên người mua</th>
                         <th style="width: 10%">Số điện thoại</th>
                         <th style="width: 17%">Ngày tạo</th>
@@ -59,17 +56,13 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in lstOrder">
-                        <td class="a-center ">
-                            <input type="checkbox" ng-model="item.checked" name="all" class="flat" />
-                        </td>
                         <th scope="row">{{item.ID}}</th>
                         <td>{{item.CustomerName}}</td>
                         <td>{{item.CustomerMobile}}</td>
-                        <td>{{item.OrderDetails.Product.Name}}</td>
                         <td>{{item.CreatedDate | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                         <td><span ng-class="{'badge bg-red': item.Status==false, 'badge bg-green': item.Status==true, }">{{item.Status | statusFilter}}</span></td>
                         <td>
-                            <button ui-sref="edit_products({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
+                            <button ui-sref="detail({id:item.ID})" class="glyphicon glyphicon-pencil btn btn-xs btn-info"></button>
                             <button ng-click="del(item.ID)" class="glyphicon glyphicon-trash btn btn-xs btn-danger"></button>
                         </td>
                     </tr>
@@ -78,7 +71,7 @@
             <div ng-if="loading">
                 <div class="col-xs-4"></div>
                 <div class="col-xs-4">
-                    <i class="fa-4x fa fa-spinner">Loading . . .</i>
+                    <i class="fa-4x fa fa-spinner">Loading</i>
                 </div>
                 <div class="col-xs-4"></div>
             </div>

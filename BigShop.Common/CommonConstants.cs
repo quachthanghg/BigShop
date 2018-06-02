@@ -6,5 +6,7 @@
         public const string postTag = "post";
         public const string defaultFooterID = "default";
         public const string SessionCart = "sessionCart";
+
+        public const string Administractor = "Administractor";
     }
 }

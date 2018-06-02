@@ -20,10 +20,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>60565</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -107,8 +107,8 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -250,7 +250,9 @@
     </Compile>
     <Compile Include="Infrastructure\Core\BaseApiController.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
+    <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extension\EntityExtension.cs" />
+    <Compile Include="Infrastructure\NganLuong\APICheckoutV3.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
@@ -313,9 +315,12 @@
     <Content Include="App\component\orderdetails\orderDetailListController.js" />
     <Content Include="App\component\orderdetails\orderDetailListView.html" />
     <Content Include="App\component\orderdetails\orderDetails.module.js" />
+    <Content Include="App\component\orders\orderInfoController.js" />
+    <Content Include="App\component\orders\orderInfoView.html" />
     <Content Include="App\component\orders\orderListController.js" />
     <Content Include="App\component\orders\orderListView.html" />
     <Content Include="App\component\orders\orders.module.js" />
+    <Content Include="App\component\orders\productEditController.js" />
     <Content Include="App\component\policies\policies.module.js" />
     <Content Include="App\component\policies\policyAddController.js" />
     <Content Include="App\component\policies\policyAddView.html" />
@@ -380,6 +385,7 @@
     <Content Include="App\shared\services\loginService.js" />
     <Content Include="App\shared\services\notificationService.js" />
     <Content Include="App\shared\views\baseView.html" />
+    <Content Include="App\shared\views\sideBar.html" />
     <Content Include="Assets\Admin\build\css\custom.css" />
     <Content Include="Assets\Admin\build\css\custom.min.css" />
     <Content Include="Assets\Admin\build\images\back_disabled.png" />
@@ -8745,6 +8751,7 @@
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\jquery-1.7.1.min.js" />
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\prettify.min.js" />
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\site.js" />
+    <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\underscore-min.js" />
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\underscore.min.js" />
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\ZeroClipboard-1.1.7.min.js" />
     <Content Include="Assets\Client\FortAwesome\src\3.2.1\assets\js\ZeroClipboard-1.1.7.swf" />
@@ -9238,6 +9245,7 @@
     <Content Include="Assets\Client\images\ad.png" />
     <Content Include="Assets\Client\images\arrow.png" />
     <Content Include="Assets\Client\images\bank.PNG" />
+    <Content Include="Assets\Client\images\bank_logo.png" />
     <Content Include="Assets\Client\images\bannerIP.png" />
     <Content Include="Assets\Client\images\bnr-1.jpg" />
     <Content Include="Assets\Client\images\bnr-2.jpg" />
@@ -11091,6 +11099,9 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Product\CompareProduct1.cshtml" />
     <Content Include="Views\Product\CompareProduct2.cshtml" />
+    <Content Include="Views\ShoppingCart\Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\CancleOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\OrderConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigShop.Common\BigShop.Common.csproj">
@@ -11139,7 +11150,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60565</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60565/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

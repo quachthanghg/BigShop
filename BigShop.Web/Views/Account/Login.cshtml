@@ -6,25 +6,24 @@
     ViewBag.MetaDescription = "Đăng nhập với tài khoản BigShop";
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
-<div class="breadcrumbs">
+
     <div class="container">
         <div class="breadcrumbs-main">
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Account</li>
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/dang-nhap">Tài khoản</a></li>
             </ol>
         </div>
     </div>
-</div>
-
 <div class="account">
     <div class="container">
-        <div class="account-top heading">
-            <h2>TÀI KHOẢN</h2>
-        </div>
-        <div class="account-main">
-            <div class="col-md-6 account-left">
-                @using (Html.BeginForm("Login", "Account", new { @url = @ViewBag.Url }, FormMethod.Post))
+        <div style="background: white; padding: 10px;">
+            <div class="account-top heading">
+                <h2>TÀI KHOẢN</h2>
+            </div>
+            <div class="account-main">
+                <div class="col-md-6 account-left">
+                    @using (Html.BeginForm("Login", "Account", new { @url = @ViewBag.Url }, FormMethod.Post))
                 {
                     <h3>Đăng nhập</h3>
                     <div class="account-bottom">
@@ -36,16 +35,17 @@
                             <input type="submit" value="Login">
                         </div>
                     </div>
-                }
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            }
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
 
+                </div>
+                <div class="col-md-6 account-right account-left">
+                    <h3>Bạn đã có tài khoản chưa?</h3>
+                    <p>Đăng ký thành viên để nhận được những tin mới nhất và được giám giá 2-5% khi mua sản phẩm tại BigShop.</p>
+                    <a href="/dang-ky">Đăng ký thành viên</a>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="col-md-6 account-right account-left">
-                <h3>Bạn đã có tài khoản chưa?</h3>
-                <p>Đăng ký thành viên để nhận được những tin mới nhất và được giám giá 5% khi mua sản phẩm tại BigShop.</p>
-                <a href="/dang-ky">Đăng ký thành viên</a>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>

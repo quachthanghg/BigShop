@@ -21,6 +21,12 @@
                         </center>
                         <h6 class="text-center">@item.Quantity sản phẩm</h6>
                     </div>
+                    @if (item.Quantity == 0)
+                    {
+                        <div class="srch srch1">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                    }
                 </div>
             </div>
         }

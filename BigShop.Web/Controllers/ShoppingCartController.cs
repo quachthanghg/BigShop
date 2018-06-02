@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using static BigShop.Web.App_Start.IdentityConfig;
 using BigShop.Web.Infrastructure.Extension;
+using BigShop.Web.Infrastructure.NganLuong;
 
 namespace BigShop.Web.Controllers
 {
@@ -18,6 +19,10 @@ namespace BigShop.Web.Controllers
         private IProductService _productService;
         private ApplicationUserManager _applicationUserManager;
         private IOrderService _orderService;
+
+        private string merchantID = ConfigHelper.GetByKey("MerchantId");
+        private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
+        private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
 
         public ShoppingCartController(IProductService productService, ApplicationUserManager applicationUserManager, IOrderService orderService)
         {
@@ -34,6 +39,20 @@ namespace BigShop.Web.Controllers
                 Session[CommonConstants.SessionCart] = new List<ShoppingCartViewModel>();
             }
             return View();
+        }
+
+        public ActionResult Cart()
+        {
+            if (Session[CommonConstants.SessionCart] == null)
+            {
+                Session[CommonConstants.SessionCart] = new List<ShoppingCartViewModel>();
+            }
+            else
+            {
+                var cartSession = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+                ViewBag.Quantity = cartSession.Count();
+            }
+            return PartialView();
         }
 
         public JsonResult GetUserLoginInfo()
@@ -189,9 +208,10 @@ namespace BigShop.Web.Controllers
             });
         }
 
-        public JsonResult CreateOrder(string orderViewModel)
+        public ActionResult CreateOrder(string orderViewModel)
         {
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+
             Order orderNew = new Order();
             orderNew.UpdateOrder(order);
             if (Request.IsAuthenticated)
@@ -222,13 +242,55 @@ namespace BigShop.Web.Controllers
             }
             if (isEnough)
             {
-                _orderService.Create(orderNew, lstOrderDetail);
+                var orderReturn = _orderService.Create(orderNew, lstOrderDetail);
                 _productService.SaveChanges();
-
-                return Json(new
+                if (order.PaymentMethod == "CASH")
+                { 
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
                 {
-                    status = true
-                });
+                    var currentLink = ConfigHelper.GetByKey("CurrentLink");
+                    RequestInfo info = new RequestInfo();
+                    info.Merchant_id = merchantID;
+                    info.Merchant_password = merchantPassword;
+                    info.Receiver_email = merchantEmail;
+                    info.cur_code = "vnd";
+                    info.bank_code = order.BankCode;
+
+                    info.Order_code = orderReturn.ID.ToString();
+                    info.Total_amount = lstOrderDetail.Sum(x => x.Quantity * x.Price).ToString();
+                    info.fee_shipping = "0";
+                    info.Discount_amount = "0";
+                    info.order_description = "Thanh toán đơn hàng tại Bigshop";
+                    info.return_url = currentLink + "xac-nhan-don-hang";
+                    info.cancel_url = currentLink + "huy-don-hang";
+
+                    info.Buyer_fullname = order.CustomerName;
+                    info.Buyer_email = order.CustomerEmail;
+                    info.Buyer_mobile = order.CustomerMobile;
+
+                    APICheckoutV3 objNLChecout = new APICheckoutV3();
+                    ResponseInfo result = objNLChecout.GetUrlCheckout(info, order.PaymentMethod);
+                    if (result.Error_code == "00")
+                    {
+                        return Json(new
+                        {
+                            status = true,
+                            urlCheckout = result.Checkout_url,
+                            message = result.Description
+                        });
+                    }
+                    else
+                        return Json(new
+                        {
+                            status = false,
+                            message = result.Description
+                        });
+                }
             }
             else
             {
@@ -239,6 +301,34 @@ namespace BigShop.Web.Controllers
                 });
             }
 
+        }
+        public ActionResult OrderConfirm()
+        {
+            string token = Request["token"];
+            RequestCheckOrder info = new RequestCheckOrder();
+            info.Merchant_id = merchantID;
+            info.Merchant_password = merchantPassword;
+            info.Token = token;
+            APICheckoutV3 objNLChecout = new APICheckoutV3();
+            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+            if (result.errorCode == "00")
+            {
+                //update status order
+                _orderService.UpdateStatus(int.Parse(result.order_code));
+                _orderService.SaveChanges();
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+            }
+            else
+            {
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Có lỗi xảy ra. Vui lòng liên hệ admin.";
+            }
+            return View();
+        }
+        public ActionResult CancleOrder()
+        {
+            return View();
         }
     }
 }

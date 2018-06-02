@@ -8,13 +8,23 @@
     ViewBag.MetaDescription = category.MetaDescription;
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
+@{
+    var url10 = "https://localhost:44300/san-pham/" + Model.ProductCategory.Alias + "/" + Model.Alias + "/" + Model.ID;
+}
+<meta property="og:url" content="@url10" />
+<meta property="og:type" content="bigshp.com" />
+<meta property="og:title" content="@Model.Name" />
+<meta property="og:description" content="@category.MetaDescription" />
+<meta property="og:image" content="@Model.Image" />
 
 <div class="container">
-    <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li class="active">Sản phẩm</li>
-        <li class="active">@Model.Name</li>
-    </ol>
+    <div class="breadcrumbs-main">
+        <ol class="breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li class=""><a href="/dang-nhap">Sản phẩm</a></li>
+            <li class="active">@Model.Name</li>
+        </ol>
+    </div>
 </div>
 
 
@@ -44,7 +54,7 @@
     <div class="container">
         <div class="single-main">
             <div class="row">
-                <div class="col-md-9 single-main-left" style="background: white; padding: 20px;">
+                <div class="col-md-9 single-main-left" style="background: white; ">
                     <div class="sngl-top">
                         <div class="col-md-5 single-top-left">
                             <div class="flexslider">
@@ -99,7 +109,15 @@
                                                     <h6 href="#">@Model.ViewCount Lượt xem </h6>
                                                 }
 
-                                                <h6>  <span>@Model.Quantity Sản phẩm</span></h6>
+                                                @if (Model.Quantity == 0)
+                                                {
+                                                    <span style="font-size: 20px; color:red">HẾT HÀNG</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@Model.Quantity Sản phẩm</span>
+                                                }
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -109,11 +127,26 @@
                                     </div>
                                 </div>
 
-                                <h5 class="item_price">
+                                <h5 class="item_price" style="font-size: 22px;">
                                     @Model.Price.ToString("#,##") VNĐ
                                     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
                                     <g:plusone size="medium"></g:plusone>
+
                                 </h5>
+                                <div id="fb-root"></div>
+                                <script>
+                                    (function (d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) return;
+                                        js = d.createElement(s); js.id = id;
+                                        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=185965845388898&autoLogAppEvents=1';
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                                <div class="fb-like" data-href="@url10" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+                                <div class="fb-save" data-uri="https://localhost:44300/san-pham/apple-iphone/iphone-x-64gb/4" data-size="large"></div>
+
                                 <div class="promotionInfomation" style="border-style: dotted;">
                                     <div style="margin-left: 20px;">
                                         <p style="font-size: 24px; color: red;">Khuyến mãi đặc biệt</p>
@@ -125,7 +158,14 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <button style="margin-top: 15px;" class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
+                                @if (Model.Quantity == 0)
+                                {
+                                    <button style="margin-top: 15px;" disabled class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
+                                }
+                                else
+                                {
+                                    <button style="margin-top: 15px;" class="btnAddToCart btn btn-info" data-id="@Model.ID">THÊM VÀO GIỎ HÀNG</button>
+                                }
 
                             </div>
                         </div>
@@ -138,21 +178,18 @@
                                 <div class="col-md-9">
                                     <ul class="nav nav-tabs" style="width: 820px">
                                         <li class="active"><a data-toggle="tab" href="#home">CẤU HÌNH</a></li>
-                                        <li><a data-toggle="tab" href="#menu1">CHI TIẾT SẢN PHẨM</a></li>
+                                        <li><a data-toggle="tab" href="#menu11">CHI TIẾT SẢN PHẨM</a></li>
                                         <li><a data-toggle="tab" href="#menu2">ĐÁNH GIÁ</a></li>
-                                        <li><a data-toggle="tab" href="#menu3">SO SÁNH SẢN PHẨM</a></li>
+                                        <li><a data-toggle="tab" href="#menu9">SO SÁNH SẢN PHẨM</a></li>
                                     </ul>
 
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane fade in active" style="background: white">
                                             <div class="profileProduct">
-                                                <div class="container">
-                                                    @Html.Raw(Model.Profile)
-                                                </div>
-
+                                                @Html.Raw(Model.Profile)
                                             </div>
                                         </div>
-                                        <div id="menu1" class="tab-pane fade" style="background: white">
+                                        <div id="menu11" class="tab-pane fade" style="background: white">
                                             <div class="container">
                                                 <div class="productContent" style="width: 820px">
                                                     <style>
@@ -163,13 +200,24 @@
                                                     @Html.Raw(Model.Content)
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div id="menu2" class="tab-pane fade" style="background: white">
                                             <div class="container">
-                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                                @*<div id="fb-root"></div>
+                                                <script>
+                                                    (function (d, s, id) {
+                                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                                        if (d.getElementById(id)) return;
+                                                        js = d.createElement(s); js.id = id;
+                                                        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=185965845388898&autoLogAppEvents=1';
+                                                        fjs.parentNode.insertBefore(js, fjs);
+                                                    }(document, 'script', 'facebook-jssdk'));</script>*@
+
+                                                <div class="fb-comments" data-href="https://localhost:44300" data-numposts="5"></div>
                                             </div>
                                         </div>
-                                        <div id="menu3" class="tab-pane fade" style="background: white">
+                                        <div id="menu9" class="tab-pane fade">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="search-bar">
@@ -197,15 +245,19 @@
                                                     @{
                                                         Html.RenderAction("CompareProduct1", Model);
                                                     }
+                                                    <div class="clearfix"></div>
                                                 </div>
                                                 <div class="col-md-6" id="compareproduct2">
                                                     @{
                                                         Html.RenderAction("CompareProduct2", Model);
                                                     }
+                                                    <div class="clearfix"></div>
                                                 </div>
                                             </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="col-md-3">
                                     @{
@@ -218,7 +270,7 @@
                                         {
                                             var url = "/san-pham/" + item.ProductCategory.Alias + "/" + item.Alias + "/" + item.ID;
                                             <div class="col-md-12 product-left">
-                                                <div class="product-main simpleCart_shelfItem">
+                                                <div class="product-main simpleCart_shelfItem" style="width: 267px">
                                                     <a href="@url" class="mask"><img class="img-responsive zoom-img" src="@item.Image" alt=""></a>
                                                     <div class="product-bottom">
                                                         <h3 class="text-center">@item.Name</h3>
@@ -232,9 +284,11 @@
                             </div>
 
                         </div>
+                        <div class="clearfix"></div>
                     </div>
 
                     <hr />
+                    <div class="clearfix"></div>
                     <div class="relatedProduct">
                         <h3>SẢN PHẨM LIÊN QUAN</h3>
                         <div class="latestproducts">
@@ -259,7 +313,7 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding: 0 0 0 15px">
                     <div class="panel panel-info">
                         <div class="panel-heading"> <h5 class="text-center">BigShop cam kết</h5></div>
                         <div class="panel-body">
