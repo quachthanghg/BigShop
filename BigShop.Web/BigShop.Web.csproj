@@ -9293,6 +9293,7 @@
     <Content Include="Assets\Client\js\jquery.easydropdown.js" />
     <Content Include="Assets\Client\js\jquery.flexslider.js" />
     <Content Include="Assets\Client\js\memenu.js" />
+    <Content Include="Assets\Client\js\outFocus.js" />
     <Content Include="Assets\Client\js\responsiveslides.min.js" />
     <Content Include="Assets\Client\js\shoppingCart.js" />
     <Content Include="Assets\Client\js\simpleCart.min.js" />

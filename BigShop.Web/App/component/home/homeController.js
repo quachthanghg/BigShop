@@ -17,7 +17,7 @@
                 var benefits = [];
 
                 $.each(result.data, function (i, item) {
-                    labels.push($filter('date')(item.Date, 'dd/MM/yyyy'));
+                    labels.push(item.Date);
                     revenues.push(item.Revenue);
                     benefits.push(item.Benefit);
                 });
@@ -27,10 +27,10 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Doanh thu theo ngày'
+                        text: ''
                     },
                     subtitle: {
-                        text: 'Website: BigShop.com'
+                        text: ''
                     },
                     xAxis: {
                         categories: labels,
@@ -39,7 +39,7 @@
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Doanh thu ($$$)'
+                            text: 'Doanh thu (VNĐ)'
                         }
                     },
                     tooltip: {
@@ -72,148 +72,240 @@
             });
         }
         getStatistic();
-
-        $scope.lstHot = [];
-
+        
         function GetTop() {
             apiService.get('/Api/Statistic/TopSaleProduct', null, function (result) {
-                $scope.lstHot = result.data;
-                //var name = [];
-                //var price = [];
-                //var quantityProduct = [];
-                //var quantity = [];
+                
+                var nameProduct = [];
+                var totalQuantity = [];
+                var Quantity = [];
 
-                //$.each(result.data, function (i, item) {
-                //    name.push(item.Name);
-                //    price.push(item.Price);
-                //    quantityProduct.push(item.QuantityProduct)
-                //    quantity.push(item.Quantity)
-                //});
+                $.each(result.data, function (i, item) {
+                    nameProduct.push(item.Name);
+                    totalQuantity.push(item.Quantity); 
+                    Quantity.push(item.Quantity); 
+                });
 
-                //Highcharts.chart('container', {
-                //    chart: {
-                //        type: 'bar'
-                //    },
-                //    title: {
-                //        text: 'Stacked bar chart'
-                //    },
-                //    xAxis: {
-                //        categories: name
-                //    },
-                //    yAxis: {
-                //        min: 0,
-                //        title: {
-                //            text: 'Total fruit consumption'
-                //        }
-                //    },
-                //    legend: {
-                //        reversed: true
-                //    },
-                //    plotOptions: {
-                //        series: {
-                //            stacking: 'normal'
-                //        }
-                //    },
-                //    series: [{
-                //        name: 'Đã bán',
-                //        data: quantity
-                //    }, {
-                //        name: 'Tổng số',
-                //        data: quantityProduct
-                //    }
-                //});
-
-                //var name = [];
-                //var price = [];
-                //var quantityProduct = [];
-                //var quantity = [];
-
-                //$.each(result.data, function (i, item) {
-                //    name.push(item.Name);
-                //    price.push(item.Price);
-                //    quantityProduct.push(item.QuantityProduct)
-                //    quantity.push(item.Quantity)
-                //});
-
-                //Highcharts.chart('container1', {
-                //    chart: {
-                //        type: 'column'
-                //    },
-                //    title: {
-                //        text: 'Browser market shares. January, 2018'
-                //    },
-                //    subtitle: {
-                //        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
-                //    },
-                //    xAxis: {
-                //        type: 'category'
-                //    },
-                //    yAxis: {
-                //        title: {
-                //            text: 'Total percent market share'
-                //        }
-
-                //    },
-                //    legend: {
-                //        enabled: false
-                //    },
-                //    plotOptions: {
-                //        series: {
-                //            borderWidth: 0,
-                //            dataLabels: {
-                //                enabled: true,
-                //                format: '{point.y:.1f}%'
-                //            }
-                //        }
-                //    },
-
-                //    tooltip: {
-                //        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                //        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                //    },
-
-                //    "series": [
-                //        {
-                //            "name": "Browsers",
-                //            "colorByPoint": true,
-                //            "data": [
-                //                {
-                //                    "name": "Chrome",
-                //                    "y": quantity,
-                //                    "drilldown": "Chrome"
-                //                },
-                //                {
-                //                    "name": "Firefox",
-                //                    "y": 10.57,
-                //                    "drilldown": "Firefox"
-                //                },
-                //                {
-                //                    "name": "Internet Explorer",
-                //                    "y": 7.23,
-                //                    "drilldown": "Internet Explorer"
-                //                },
-                //                {
-                //                    "name": "Safari",
-                //                    "y": 5.58,
-                //                    "drilldown": "Safari"
-                //                },
-                //                {
-                //                    "name": "Edge",
-                //                    "y": 4.02,
-                //                    "drilldown": "Edge"
-                //                }
-                //            ]
-                //        }
-                //    ]
-                //});
-
-
+                Highcharts.chart('container2', {
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: nameProduct
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Số lượng'
+                        }
+                    },
+                    legend: {
+                        reversed: true
+                    },
+                    plotOptions: {
+                        series: {
+                            stacking: 'normal'
+                        }
+                    },
+                    series: [{
+                        name: 'Số lượng bán ra',
+                        data: Quantity
+                    }]
+                });
+                
             }, function () {
                 console.log("Error !");
             });
         }
         GetTop();
+
+        $scope.lstProductNotBuy = [];
+        function GetProductNotBuy() {
+            apiService.get('/Api/Statistic/ProductNotBuy', null, function (result) {
+                $scope.lstProductNotBuy = result.data;
+                
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        GetProductNotBuy();
+        
+        function ProductIsPhone() {
+            apiService.get('/Api/Statistic/ProductIsPhone', null, function (result) {
+
+                var nameProduct = [];
+                var total = [];
+
+                $.each(result.data, function (i, item) {
+                    nameProduct.push(item.Name);
+                    total.push(item.TotalProduct);
+                });
+
+                Highcharts.chart('container4', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: nameProduct,
+                            y: 1
+                        }, {
+                            name: nameProduct,
+                            y: 2
+                            }, {
+                                name: nameProduct,
+                                y: 2
+                        }, {
+                            name: nameProduct,
+                            y: 2
+                        }]
+                    }]
+                });
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        ProductIsPhone();
+
+        function ProductIsTablet() {
+            apiService.get('/Api/Statistic/ProductIsTablet', null, function (result) {
+                $scope.lstProductIsTablet = result.data;
+                Highcharts.chart('container5', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Chrome',
+                            y: 61.41,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: 'Internet Explorer',
+                            y: 11.84
+                        }, {
+                            name: 'Firefox',
+                            y: 10.85
+                        }, {
+                            name: 'Edge',
+                            y: 4.67
+                        }, {
+                            name: 'Safari',
+                            y: 4.18
+                        }, {
+                            name: 'Other',
+                            y: 7.05
+                        }]
+                    }]
+                });
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        ProductIsTablet();
+
+        function ProductIsLaptop() {
+            apiService.get('/Api/Statistic/ProductIsLaptop', null, function (result) {
+                $scope.lstProductIsLaptopy = result.data;
+                Highcharts.chart('container6', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Chrome',
+                            y: 61.41,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: 'Internet Explorer',
+                            y: 11.84
+                        }, {
+                            name: 'Firefox',
+                            y: 10.85
+                        }, {
+                            name: 'Edge',
+                            y: 4.67
+                        }, {
+                            name: 'Safari',
+                            y: 4.18
+                        }, {
+                            name: 'Other',
+                            y: 7.05
+                        }]
+                    }]
+                });
+            }, function () {
+                console.log("Error !");
+            });
+        }
+        ProductIsLaptop();
+        
     }
-
-
 })(angular.module('bigshop.common'));

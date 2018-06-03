@@ -6,6 +6,7 @@ using System.Web.Http;
 using BigShop.Common.ViewModels;
 using System.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BigShop.Web.Api
 {
@@ -46,19 +47,54 @@ namespace BigShop.Web.Api
             });
         }
 
-        [Route("TopSaleProduct")]
+        [Route("ProductNotBuy")]
         [HttpGet]
-        public HttpResponseMessage CountAll(HttpRequestMessage requestMessage)
+        public HttpResponseMessage ProductNotBuy(HttpRequestMessage requestMessage)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
-                //int x = HttpApplication.["Online"];
-                //CommonViewModel model = new CommonViewModel()
-                //{
-                //    PageView = x,
-                //};
+                var model = _statisticService.GetProductNotBuy();
 
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK);
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, model);
+                return responseMessage;
+            });
+        }
+
+        [Route("ProductIsPhone")]
+        [HttpGet]
+        public HttpResponseMessage ProductIsPhone(HttpRequestMessage requestMessage)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _statisticService.GetProductIsPhone();
+
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, model);
+                return responseMessage;
+            });
+        }
+
+        [Route("ProductIsTablet")]
+        [HttpGet]
+        public HttpResponseMessage ProductIsTablet(HttpRequestMessage requestMessage)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _statisticService.GetProductIsTablet();
+
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, model);
+                return responseMessage;
+            });
+        }
+
+        [Route("ProductIsLaptop")]
+        [HttpGet]
+        public HttpResponseMessage ProductIsLaptop(HttpRequestMessage requestMessage)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _statisticService.GetProductIsLaptop();
+
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, model);
                 return responseMessage;
             });
         }

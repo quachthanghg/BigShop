@@ -110,26 +110,27 @@ namespace BigShop.Web.App_Start
                 }
                 if (user != null)
                 {
-                    //var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
-                    //var lstGroup = applicationGroupService.GetListGroupByUserId(user.Id).ToList();
-                    //if (lstGroup.Any(x => x.Name == CommonConstants.Administractor))
-                    //{
+                    var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    var lstGroup = applicationGroupService.GetListGroupByUserId(user.Id).ToList();
+                    if (lstGroup.Any(x => x.Name == CommonConstants.Administractor))
+                    {
                         ClaimsIdentity identity = await userManager.CreateIdentityAsync(
                                                           user,
                                                           DefaultAuthenticationTypes.ExternalBearer);
                         context.Validated(identity);
-                    //}
-                    //else
-                    //{
-                    //    context.Rejected();
-                    //    context.SetError("Invalid_Group", "Bạn không phải admin, đừng cố gắng làm gì cho mất công");
-                    //}
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("Invalid_Group", "Bạn không phải admin, đừng cố gắng làm gì cho mất công");
+                    }
 
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                     context.Rejected();
+                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
+                    
                 }
             }
         }

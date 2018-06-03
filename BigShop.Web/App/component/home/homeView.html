@@ -2,54 +2,213 @@
     <div class="dashboard_graph">
         <div class="row x_title">
             <div class="col-md-4">
-                <h3>Admin <small>Doanh thu</small></h3>
+                <h3>Admin <small>Thống kê</small></h3>
             </div>
-            <!--<form action="/" method="post"></form>
-            <div class="col-md-6 pull-right">
-                <div class="row">
-                    <div class="col-md-1">
-                        Từ
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Biểu đồ doanh thu - lợi nhuận của cửa hàng</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="col-md-5">
-                        <input type="date" name="fromDate" ng-model="fromDate.fromDate" value="" class="form-control" />
-                    </div>
-                    <div class="col-md-1">
-                        Đến
-                    </div>
-                    <div class="col-md-5">
-                        <input type="date" name="toDate" ng-model="toDate.toDate" value="" class="form-control" />
+                    <div class="x_content">
+                        <div id="chart_plot_01" class="demo-placeholder">
+                            <div id="container" style="min-width: 310px; height: 260px; margin: 0 auto"></div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <button type="submit"></button>
-            </div>-->
+
         </div>
-        <div class="col-md-9 col-sm-9 col-xs-12">
-            <div id="chart_plot_01" class="demo-placeholder">
-                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Top 5 sản phẩm bán chạy</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="container2" style="min-width: 150px; height: 233px; max-width: 400px; margin: 0 auto"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Các mặt hàng chưa từng được mua</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <ul ng-repeat="item in lstProductNotBuy">
+                            <li>{{item.Name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Sản phẩm điện thoại</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="container4" style="min-width: 150px; height: 233px; max-width: 400px; margin: 0 auto"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Sản phẩm Máy tính bảng</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="container5" style="min-width: 150px; height: 233px; max-width: 400px; margin: 0 auto"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                    <div class="x_title">
+                        <h2>Sản phẩm Laptop</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="container6" style="min-width: 150px; height: 233px; max-width: 400px; margin: 0 auto"></div>
+
+                    </div>
+                </div>
             </div>
             
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-            <div class="x_title">
-                <h2>Top Sản phẩm bán chạy nhất</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-6" ng-repeat="item in lstHot">
-                <div>
-                    <p>{{item.Name}} ({{item.Quantity}} / {{item.Quantity + item.QuantityProduct}} ) </p>
-                    <p></p>
-                    <div class="">
-                        <div class="progress progress_sm" style="width: {{(item.Quantity /(item.Quantity + item.QuantityProduct)) * 100}}%;">
-                            <div class="progress-bar bg-green" style="background: blue;" role="progressbar" data-transitiongoal="100"></div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="clearfix"></div>
     </div>
 </div>
 

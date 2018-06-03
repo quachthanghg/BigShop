@@ -11,14 +11,14 @@
             $scope.loginSubmit = function () {
                 loginService.login($scope.loginData.userName, $scope.loginData.password)
                     .then(function (response) {
-                        if (response !== null && response.data.error == 'invalid_grant') {
+                        if (response != null && response.data.error == 'invalid_grant' || response.data.error == 'Invalid_Group') {
                             notificationService.displayError(response.data.error_description);
-                    }
-                    else {
-                        var stateService = $injector.get('$state');
-                        stateService.go('home');
-                    }
-                });
+                        }
+                        else{
+                            var stateService = $injector.get('$state');
+                            stateService.go('home');
+                        }
+                    });
             }
         }]);
 })(angular.module('bigshop'));

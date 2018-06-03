@@ -134,6 +134,14 @@
     <Compile Include="Migrations\201806020141332_AddBankCodeToTblOrder.Designer.cs">
       <DependentUpon>201806020141332_AddBankCodeToTblOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806021338472_SPProductNotBuy.cs" />
+    <Compile Include="Migrations\201806021338472_SPProductNotBuy.Designer.cs">
+      <DependentUpon>201806021338472_SPProductNotBuy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806030056390_addMoreSP.cs" />
+    <Compile Include="Migrations\201806030056390_addMoreSP.Designer.cs">
+      <DependentUpon>201806030056390_addMoreSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -231,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806020141332_AddBankCodeToTblOrder.resx">
       <DependentUpon>201806020141332_AddBankCodeToTblOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021338472_SPProductNotBuy.resx">
+      <DependentUpon>201806021338472_SPProductNotBuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806030056390_addMoreSP.resx">
+      <DependentUpon>201806030056390_addMoreSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

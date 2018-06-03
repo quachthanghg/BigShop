@@ -105,15 +105,7 @@
         })
 
         $("#cbkUserLogin").change(function () {
-            //if ($(this).is('check')) {
             cart.getUserLoginInfo();
-            //}
-            //else {
-            //    $('#txtFullName').val('');
-            //    $('#txtAddress').val('');
-            //    $('#txtEmail').val('');
-            //    $('#txtPhoneNumber').val('');
-            //}
 
         });
 
@@ -132,6 +124,8 @@
             }
             else {
                 cart.createOrder();
+                $('#checkout').hide();
+                $('#ckeckoutABC').css('display', 'none');
             }
 
         })
@@ -307,8 +301,9 @@
                         window.location.href = res.urlCheckout;
                     }
                     else {
-                        $('.ckeckout').hide();
                         cart.deleteAll();
+                        $('checkout').hide();
+                        $('#notifycationShoppingCart').show();
                         $('.cartContent').html('Đặt hàng thành công! chúng tôi sẽ liên hệ lại để xác nhận đơn đặt hàng');
                     }
                 }

@@ -52,12 +52,12 @@ namespace BigShop.Web
            );
 
             routes.MapRoute(
-              name: "Order Destroy",
-              url: "huy-don-hang",
-              defaults: new { controller = "ShoppingCart", action = "CancleOrder", id = UrlParameter.Optional },
-              namespaces: new string[] { "BigShop.Web.Controllers" }
-          );
-
+               name: "Order Destroy",
+               url: "huy-don-hang",
+               defaults: new { controller = "ShoppingCart", action = "CancleOrder", id = UrlParameter.Optional },
+               namespaces: new string[] { "BigShop.Web.Controllers" }
+           );
+            
             routes.MapRoute(
                name: "CheckOut",
                url: "thanh-toan",

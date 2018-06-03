@@ -65,5 +65,19 @@ namespace BigShop.Web.Api
                 return response;
             });
         }
+
+        [HttpDelete]
+        [Route("RemoveOrder")]
+        public HttpResponseMessage RemoveOrder(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var model = _orderService.RemoveOrder(id);
+                _orderService.SaveChanges();
+                var responseData = Mapper.Map<Order, OrderViewModel>(model);
+                HttpResponseMessage response = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
     }
 }

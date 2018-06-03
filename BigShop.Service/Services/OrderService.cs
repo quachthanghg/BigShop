@@ -15,6 +15,7 @@ namespace BigShop.Service.Services
         Order Create(Order order, List<OrderDetail> lstOrderDetail);
         Order GetOrderById(int id);
         void UpdateStatus(int orderId);
+        Order RemoveOrder(int id);
         void SaveChanges();
     }
     public class OrderService: IOrderService
@@ -23,12 +24,14 @@ namespace BigShop.Service.Services
         private IErrorService _errorService;
         private IUnitOfWork _unitOfWork;
         private IOrderDetailRepository _orderDetailRepository;
-        public OrderService(IErrorService errorService, IOrderRepository orderRepository, IUnitOfWork unitOfWork, IOrderDetailRepository orderDetailRepository)
+        private IProductRepository _productRepository;
+        public OrderService(IErrorService errorService, IOrderRepository orderRepository, IUnitOfWork unitOfWork, IOrderDetailRepository orderDetailRepository, IProductRepository productRepository)
         {
             this._errorService = errorService;
             this._orderRepository = orderRepository;
             this._unitOfWork = unitOfWork;
             this._orderDetailRepository = orderDetailRepository;
+            this._productRepository = productRepository;
         }
 
         public Order Create(Order order, List<OrderDetail> lstOrderDetail)
@@ -61,6 +64,17 @@ namespace BigShop.Service.Services
         {
             var model = _orderRepository.GetSignleById(id);
             return model;
+        }
+
+        public Order RemoveOrder(int id)
+        {
+            var modelOrder = _orderRepository.GetSignleById(id);
+            var modelOrderDetail = _orderDetailRepository.GetSignleByCondition(x=>x.OrderID== id);
+            var modelProduct = _productRepository.GetSignleByCondition(x => x.ID == modelOrderDetail.ProductID);
+            modelProduct.Quantity += modelOrderDetail.Quantity;
+            _orderDetailRepository.DeleteMulti(x => x.OrderID == id);
+            _unitOfWork.Commit();
+            return _orderRepository.Delete(id); ;
         }
 
         public void SaveChanges()
